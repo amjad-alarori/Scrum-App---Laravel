@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "ScrumApp",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The project of Laravel Framework for the les OO Programming period 2 of the first semester WFADSD2020-B3.",
     "keywords": [
-        "framework",
-        "laravel"
+        "Scrum",
+        "WFADSD2020",
+        "Team B3"
     ],
     "license": "MIT",
     "require": {
