@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 
@@ -14,12 +15,31 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::group(['middleware'=>'web'],function(){
-    Route::get('/',[PagesController::class,'home']);
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/', [PagesController::class, 'welcome']);
+
+
+
+
+
+
+
+    Route::group(['middleware' => Authenticate::class], function () {
+        Route::get('home', [PagesController::class,'home']);
+
+
+
+
+
+
+
+    });
+
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
 
