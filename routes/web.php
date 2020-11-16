@@ -18,7 +18,8 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('/',[PagesController::class,'home']);
 });
 
-//Route::get('/', function () {
-//    return view('welcome');
-//    return view('layouts.layout');
-//});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
