@@ -24,16 +24,16 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-    Route::group(['middleware' => Authenticate::class], function () {
-        Route::get('home', [PagesController::class,'home']);
-
-
-
-
-
-
-
-    });
+//    Route::group(['middleware' => Authenticate::class], function () {
+//        Route::get('home', [PagesController::class,'home']);
+//
+//
+//
+//
+//
+//
+//
+//    });
 
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('dashboard');
