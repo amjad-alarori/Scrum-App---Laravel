@@ -15,8 +15,12 @@ use App\Http\Controllers\PagesController;
 |
 */
 
+
+
 Route::group(['middleware' => 'web'], function () {
-    Route::get('/', [PagesController::class, 'welcome']);
+    /** voeg hier de routes welke zonder authorisatie te bereiken is */
+    Route::get('/', [PagesController::class, 'home']);
+    Route::get('home', [PagesController::class, 'home']);
 
 
 
@@ -24,20 +28,25 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-//    Route::group(['middleware' => Authenticate::class], function () {
-//        Route::get('home', [PagesController::class,'home']);
+
+
+    Route::group(['middleware' => Authenticate::class], function () {
+        /** voeg hier de routes welke authorisatie nodig hebben */
+
+
+
+
+
+
+
+
+
 //
-//
-//
-//
-//
-//
-//
-//    });
+    });
 
-    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+        return view('home');
+    })->name('');
 });
 
 

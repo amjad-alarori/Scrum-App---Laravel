@@ -1,3 +1,9 @@
 body{
     padding-top: 5rem;
 }
+
+.form-signin{
+    width: 100%;
+    max-width: 330px;
+    margin: 80px auto 0;
+}
