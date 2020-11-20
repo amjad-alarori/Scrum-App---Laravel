@@ -16,7 +16,6 @@ use App\Http\Controllers\PagesController;
 */
 
 
-
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('/', [PagesController::class, 'home']);
@@ -44,9 +43,10 @@ Route::group(['middleware' => 'web'], function () {
 //
     });
 
+
     Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
         return view('home');
-    })->name('');
+    })->name('dashboard');
 });
 
 
