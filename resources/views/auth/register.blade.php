@@ -36,6 +36,11 @@
                     <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>
 
+                <div class="mt-4">
+                    <x-jet-label for="biografy" value="{{ __('Little biography and skills list to know you better') }}" />
+                    <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="biography" name="biography" style="margin-top: 4px; margin-bottom: 0px;">{{old('biography')}}</textarea>
+                </div>
+
                 <div class="flex items-center justify-end mt-4">
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                         {{ __('Already registered?') }}

@@ -65,6 +65,13 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" value="{{Auth::user()->email }}"/>
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+
+        <!-- biograohy -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="biography" value="{{ __('Little biography and skills list to know you better') }}" />
+            <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="biography" name="biography" wire:model.defer="state.biography" style="margin-top: 4px; margin-bottom: 0px;">{{Auth::user()->biography }}</textarea>
+            <x-jet-input-error for="email" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">
