@@ -21,16 +21,17 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', [PagesController::class, 'home']);
     Route::get('home', [PagesController::class, 'home']);
 
-
-
-
-
-
-
+/** tijdelijk zonder auth totdat ik de DB met tabellen heb aangemaakt */
+    Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard']);
+    Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp']);
+    Route::get('sprintReview', [PagesController::class, 'sprintReview']);
+    Route::get('scrumBoard', [PagesController::class, 'scrumBoard']);
+    Route::get('retrospective', [PagesController::class, 'retrospective']);
 
 
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
+
 
 
 
