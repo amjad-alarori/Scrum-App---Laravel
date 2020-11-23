@@ -31,8 +31,11 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
-
-
+    Route::get('projectdashboard', [PagesController::class, 'projectdashboard']);
+    Route::get('addSprint', [PagesController::class, 'addSprint']);
+    Route::get('addTeam', [PagesController::class, 'addTeam']);
+    Route::get('definitionOfDone', [PagesController::class, 'definitionOfDone']);
+    Route::get('productBacklog', [PagesController::class, 'productBacklog']);
 
 
 
