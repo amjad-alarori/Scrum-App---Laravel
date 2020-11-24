@@ -71,7 +71,7 @@
 
             <div class="col-md-3 mb-5">
                 <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/scrumBoard.jpg') }}" alt="">
+                    <img class="card-img-top" src="{{ asset('images/scrumBoard.png') }}" alt="">
                     <div class="card-body">
                         <h4 class="card-title">Scrum board</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
