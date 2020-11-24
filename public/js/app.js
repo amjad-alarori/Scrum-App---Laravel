@@ -19664,8 +19664,8 @@ requestAnimationFrame(_update);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/amjadalarori/scrumapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/amjadalarori/scrumapp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/ali/ADSD2020/Periode2/scrumapp/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ali/ADSD2020/Periode2/scrumapp/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
