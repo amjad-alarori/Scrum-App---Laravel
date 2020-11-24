@@ -18,4 +18,8 @@ class Project extends Model
         'sprintLength'
     ];
 
+    public function scrumTeam()
+    {
+        return $this->hasMany(ScrumTeam::class);
+    }
 }
