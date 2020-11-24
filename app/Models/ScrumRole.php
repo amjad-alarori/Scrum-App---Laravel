@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ScrumRole extends Model
 {
     use HasFactory;
+
+    public function scrumTeams()
+    {
+        return $this->hasMany(ScrumTeam::class);
+    }
 }

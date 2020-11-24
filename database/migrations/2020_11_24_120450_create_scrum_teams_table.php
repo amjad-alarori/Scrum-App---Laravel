@@ -16,6 +16,10 @@ class CreateScrumTeamsTable extends Migration
         Schema::create('scrum_teams', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->foreignId('userId')->constrained('users')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreignId('projectId')->constrained('projects')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('roleId')->constrained('scrum_roles')->onDelete('restrict')->onUpdate('restrict');
         });
     }
 
