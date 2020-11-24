@@ -45,162 +45,160 @@
                     <br> Naam 5
                     <br> Naam 6
                 </address>
-
             </div>
         </div>
 
         <!-- container -->
-        <main class="">
-            <div class="container">
-                <div class="row mt-3">
-                    <div class="col-12 bg-block">
-                        <h1>Daily stand up</h1>
-                        <div class="seperator">
-                           <form id="daily standup" action="dailyStandUp.blade.php" method="post">
-                               <input type="hidden" name="nog invullen" value="nog invullen">
-                               <div class="form-group row">
-                                   <label class="col-sm2 col-form-label">Naam teamlid</label>
-                                   <div class="col-sm-10">
-                                       <input class="form-control" type="text" name="naam teamlid" placeholder="Naam teamlid" required="">
-                                   </div>
-                               </div>
-                               <div class="form-group row">
-                                   <label class="col-sm2 col-form-label">Datum</label>
-                                   <div class="col-sm-10">
-                                       <input class="form-control" type="text" name="datum" placeholder="Datum" required="">
-                                   </div>
-                               </div>
-                               <div class="form-group row">
-                                   <label class="col-sm2 col-form-label">Wat heb ik sinds de vorige standup gedaan?</label>
-                                   <div class="col-sm-10">
-                                       <textarea class="form-control" rows="4" placeholder="Wat heb ik sinds de vorige standup gedaan?" name="vorige standup" form="standup" required=""></textarea>
-                                   </div>
-                               </div>
-                               <div class="form-group row">
-                                   <label class="col-sm2 col-form-label">Wat ga ik vandaag doen?</label>
-                                   <div class="col-sm-10">
-                                       <textarea class="form-control" rows="4" placeholder="Wat ga ik vandaag doen?" name="vorige standup" form="standup" required=""></textarea>
-                                   </div>
-                               </div>
-                               <div class="form-group row">
-                                   <label class="col-sm2 col-form-label">Welke uitdagingen verwacht ik?</label>
-                                   <div class="col-sm-10">
-                                       <textarea class="form-control" rows="4" placeholder="Welke uitdagingen verwacht ik?" name="vorige standup" form="standup" required=""></textarea>
-                                   </div>
-                               </div>
-                           </form>
+        <x-guest-layout>
+            <x-jet-authentication-card>
+                <x-slot name="logo">
+                    <x-jet-authentication-card-logo />
+                </x-slot>
+                <x-jet-validation-errors class="mb-4" />
+
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <div>
+                        <x-jet-label for="name" value="{{ __('Naam') }}" />
+                        <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-jet-label for="datum" value="{{ __('Datum') }}" />
+                        <x-jet-input id="datum" class="block mt-1 w-full" type="datum" name="datum" required />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-jet-label for="dailyStandUp" value="{{ __('Wat heb ik sinds de vorige standup gedaan?') }}" />
+                        <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="vorigeStandUp" name="dailyStandUp" style="margin-top: 4px; margin-bottom: 0px;">{{old('biography')}}</textarea>
+                    </div>
+                    <div class="mt-4">
+                        <x-jet-label for="dailyStandUp" value="{{ __('Wat ga ik vandaag doen?') }}" />
+                        <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="vorigeStandUp" name="dailyStandUp" style="margin-top: 4px; margin-bottom: 0px;">{{old('biography')}}</textarea>
+                    </div>
+
+                    <div class="mt-4">
+                        <x-jet-label for="dailyStandUp" value="{{ __('Welke uitdagingen verwacht ik?') }}" />
+                        <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="vorigeStandUp" name="dailyStandUp" style="margin-top: 4px; margin-bottom: 0px;">{{old('biography')}}</textarea>
+
+                        <div class="flex items-center justify-end mt-4">
+
+                            <x-jet-button class="ml-4">
+                                {{ __('Verstuur') }}
+                            </x-jet-button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </main>
+                </form>
+            </x-jet-authentication-card>
+        </x-guest-layout>
 
 
 
 
-{{--        <!-- /.row -->--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-md-3 mb-5">--}}
-{{--                <div class="card h-100">--}}
-{{--                    <img class="card-img-top" src="{{ asset('images/sprint toevoegen.jpg') }}" alt="">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <h4 class="card-title">Sprint toevoegen</h4>--}}
-{{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-esse necessitatibus neque sequi doloribus.</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-footer">--}}
-{{--                        <a href="#" class="btn btn-primary">Voeg een sprint toe</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="col-md-3 mb-5">--}}
-{{--                <div class="card h-100">--}}
-{{--                    <img class="card-img-top" src="{{ asset('images/scrumteam.jpg') }}" alt="">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <h4 class="card-title">Team samenstellen</h4>--}}
-{{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-footer">--}}
-{{--                        <a href="#" class="btn btn-primary">Stel het scrum team samen</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="col-md-3 mb-5">--}}
-{{--                <div class="card h-100">--}}
-{{--                    <img class="card-img-top" src="{{ asset('images/dod.jpg') }}" alt="">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <h4 class="card-title">Definition of Done</h4>--}}
-{{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-footer">--}}
-{{--                        <a href="#" class="btn btn-primary">Bekijken</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+    {{--        <!-- /.row -->--}}
+    {{--        <div class="row">--}}
+    {{--            <div class="col-md-3 mb-5">--}}
+    {{--                <div class="card h-100">--}}
+    {{--                    <img class="card-img-top" src="{{ asset('images/sprint toevoegen.jpg') }}" alt="">--}}
+    {{--                    <div class="card-body">--}}
+    {{--                        <h4 class="card-title">Sprint toevoegen</h4>--}}
+    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
+    esse necessitatibus neque sequi doloribus.</p>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="card-footer">--}}
+    {{--                        <a href="#" class="btn btn-primary">Voeg een sprint toe</a>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--            <div class="col-md-3 mb-5">--}}
+    {{--                <div class="card h-100">--}}
+    {{--                    <img class="card-img-top" src="{{ asset('images/scrumteam.jpg') }}" alt="">--}}
+    {{--                    <div class="card-body">--}}
+    {{--                        <h4 class="card-title">Team samenstellen</h4>--}}
+    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
+    esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="card-footer">--}}
+    {{--                        <a href="#" class="btn btn-primary">Stel het scrum team samen</a>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--            <div class="col-md-3 mb-5">--}}
+    {{--                <div class="card h-100">--}}
+    {{--                    <img class="card-img-top" src="{{ asset('images/dod.jpg') }}" alt="">--}}
+    {{--                    <div class="card-body">--}}
+    {{--                        <h4 class="card-title">Definition of Done</h4>--}}
+    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="card-footer">--}}
+    {{--                        <a href="#" class="btn btn-primary">Bekijken</a>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
 
-{{--            <div class="col-md-3 mb-5">--}}
-{{--                <div class="card h-100">--}}
-{{--                    <img class="card-img-top" src="{{ asset('images/productbacklog.jpg') }}" alt="">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <h4 class="card-title">Product Backlog</h4>--}}
-{{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-footer">--}}
-{{--                        <a href="#" class="btn btn-primary">Bekijken</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+    {{--            <div class="col-md-3 mb-5">--}}
+    {{--                <div class="card h-100">--}}
+    {{--                    <img class="card-img-top" src="{{ asset('images/productbacklog.jpg') }}" alt="">--}}
+    {{--                    <div class="card-body">--}}
+    {{--                        <h4 class="card-title">Product Backlog</h4>--}}
+    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="card-footer">--}}
+    {{--                        <a href="#" class="btn btn-primary">Bekijken</a>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
 
 
-{{--            <h1 class="display-4 mt-5 mb-2">Sprints</h1>--}}
-{{--            <hr>--}}
-{{--            <br>--}}
-{{--            <br>--}}
+    {{--            <h1 class="display-4 mt-5 mb-2">Sprints</h1>--}}
+    {{--            <hr>--}}
+    {{--            <br>--}}
+    {{--            <br>--}}
 
-{{--        <div class="row">--}}
-{{--            <div class="col-md-4 mb-5">--}}
-{{--                <div class="card h-100">--}}
-{{--                    <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <h4 class="card-title">Sprint 1</h4>--}}
-{{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="card-footer">--}}
-{{--                        <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+    {{--        <div class="row">--}}
+    {{--            <div class="col-md-4 mb-5">--}}
+    {{--                <div class="card h-100">--}}
+    {{--                    <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
+    {{--                    <div class="card-body">--}}
+    {{--                        <h4 class="card-title">Sprint 1</h4>--}}
+    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="card-footer">--}}
+    {{--                        <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
 
-{{--        <div class="col-md-4 mb-5">--}}
-{{--            <div class="card h-100">--}}
-{{--                <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
-{{--                <div class="card-body">--}}
-{{--                    <h4 class="card-title">Sprint 2</h4>--}}
-{{--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-{{--                </div>--}}
-{{--                <div class="card-footer">--}}
-{{--                    <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+    {{--        <div class="col-md-4 mb-5">--}}
+    {{--            <div class="card h-100">--}}
+    {{--                <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
+    {{--                <div class="card-body">--}}
+    {{--                    <h4 class="card-title">Sprint 2</h4>--}}
+    {{--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
+    {{--                </div>--}}
+    {{--                <div class="card-footer">--}}
+    {{--                    <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
 
-{{--        <div class="col-md-4 mb-5">--}}
-{{--            <div class="card h-100">--}}
-{{--                <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
-{{--                <div class="card-body">--}}
-{{--                    <h4 class="card-title">Sprint 3</h4>--}}
-{{--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-{{--                </div>--}}
-{{--                <div class="card-footer">--}}
-{{--                    <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+    {{--        <div class="col-md-4 mb-5">--}}
+    {{--            <div class="card h-100">--}}
+    {{--                <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
+    {{--                <div class="card-body">--}}
+    {{--                    <h4 class="card-title">Sprint 3</h4>--}}
+    {{--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
+    {{--                </div>--}}
+    {{--                <div class="card-footer">--}}
+    {{--                    <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
 
-{{--    </div>--}}
-        <!-- /.row -->
+    {{--    </div>--}}
+    <!-- /.row -->
 
     </div>
     <!-- /.container -->
