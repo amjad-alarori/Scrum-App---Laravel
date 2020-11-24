@@ -34,6 +34,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('sprintReview', [PagesController::class, 'sprintReview']);
         Route::get('scrumBoard', [PagesController::class, 'scrumBoard']);
         Route::get('retrospective', [PagesController::class, 'retrospective']);
+        Route::get( 'projectdashboard', [PagesController::class, 'projectdashboard']);
+        Route::get('addsprint', [PagesController::class, 'addSprint']);
+        Route::get('team', [PagesController::class, 'team']);
+        Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
+        Route::get('productbacklog', [PagesController::class, 'productBacklog']);
 
 
 

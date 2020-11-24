@@ -30,4 +30,31 @@ class PagesController extends Controller
         return view('sprintDashboard/retrospective');
     }
 
+    public function projectdashboard(){
+
+        return view('projectdashboard');
+    }
+
+    public function addSprint(){
+
+        return view ( 'addsprint');
+    }
+
+    public function team(){
+
+        return view ('team');
+
+    }
+
+    public function definitionOfDone(){
+
+        return view ('definitionofdone');
+    }
+
+    public function productBacklog(){
+
+        return view('productbacklog');
+    }
+
+
 }

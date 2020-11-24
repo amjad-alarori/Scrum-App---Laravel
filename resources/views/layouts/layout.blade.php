@@ -24,16 +24,6 @@
 
 <body>
 
-<!-- particles.js container -->
-<div id="particles-js"></div>
-
-
-    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
-
-
-
-    <script src="{{ mix('/js/app.js') }}"></script>
-
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/">ScrumApp team B3</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
