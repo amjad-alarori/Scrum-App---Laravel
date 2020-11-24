@@ -20,7 +20,7 @@ use App\Http\Controllers\ProjectController;
 
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
-    Route::get('/', [PagesController::class, 'home'])->name('home');
+    Route::get('', [PagesController::class, 'home'])->name('home');
 
 
 
@@ -32,9 +32,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
-        Route::get('/projectform',[ProjectController::class,'index'])->name('projectForm');
-
-
+        Route::get('projectForm',[ProjectController::class,'create'])->name('projectForm');
+        Route::post('saveProject',[ProjectController::class,'store'])->name('saveProject');
+        Route::get('projects',[ProjectController::class,'index'])->name('projects');
 
 
 
@@ -44,10 +44,9 @@ Route::group(['middleware' => 'web'], function () {
 //
     });
 
-
-    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-        return view('home');
-    })->name('dashboard');
+//    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//        return view('home');
+//    })->name('dashboard');
 });
 
 

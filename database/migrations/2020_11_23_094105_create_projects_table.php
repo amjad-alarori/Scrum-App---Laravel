@@ -17,8 +17,8 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('title');
             $table->mediumText('description')->nullable();
-            $table->text('missie')->nullable();
-            $table->text('vissie')->nullable();
+            $table->text('mission')->nullable();
+            $table->text('vision')->nullable();
             $table->date('deadline')->nullable();
             $table->integer('sprintLength');
             $table->timestamps();

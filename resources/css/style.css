@@ -1,10 +1,15 @@
-body{
+body {
     padding-top: 5rem;
     background-color: #d2d6dc45;
 }
 
-.form-signin{
+.form-signin {
     width: 100%;
     max-width: 330px;
     margin: 80px auto 0;
+}
+
+textarea {
+    margin-top: 4px;
+    margin-bottom: 0px;
 }
