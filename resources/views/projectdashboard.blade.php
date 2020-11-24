@@ -118,7 +118,7 @@
                         <p class="card-text">{{-- {{$sprint->description}} --}}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/sprintDashboard?sprintId={{-- {{$sprint->id}} --}}" class="btn btn-primary">Go to sprint</a>
+                        <a href="/sprintDashboard  ?sprintId= {{$sprint->id}} --}}" class="btn btn-primary">Go to sprint</a>
                     </div>
                 </div>
             </div>
