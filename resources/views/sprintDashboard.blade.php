@@ -71,7 +71,7 @@
 
             <div class="col-md-3 mb-5">
                 <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/scrumBoard.jpg') }}" alt="">
+                    <img class="card-img-top" src="{{ asset('images/scrumBoard.png') }}" alt="">
                     <div class="card-body">
                         <h4 class="card-title">Scrum board</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
@@ -95,53 +95,6 @@
                 </div>
             </div>
         </div>
-
-            <h1 class="display-4 mt-5 mb-2">Sprints</h1>
-            <hr>
-            <br>
-            <br>
-
-        <div class="row">
-            <div class="col-md-4 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="https://placehold.it/300x200" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Sprint 1</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Ga naar sprint</a>
-                    </div>
-                </div>
-            </div>
-
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <img class="card-img-top" src="https://placehold.it/300x200" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Sprint 2</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Ga naar sprint</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <img class="card-img-top" src="https://placehold.it/300x200" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Sprint 3</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Ga naar sprint</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
         <!-- /.row -->
 
     </div>
