@@ -14,7 +14,8 @@ class ProductbacklogController extends Controller
      */
     public function index()
     {
-        //
+        $productBacklog = productbacklog::all();
+        return view('productbacklog', ['productBacklog'=>$productBacklog, 'layout'=>'index']);
     }
 
     /**
