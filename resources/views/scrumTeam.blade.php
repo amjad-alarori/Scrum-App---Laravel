@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Home
+    Scrum team
 @endsection
 
 @section('content')

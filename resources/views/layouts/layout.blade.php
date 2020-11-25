@@ -23,7 +23,8 @@
 </head>
 
 <body>
-<div class="font-sans text-gray-900 antialiased">
+{{--<div class="min-h-screen font-sans text-gray-900 antialiased">--}}
+<div class="h-100 font-sans text-gray-900 antialiased">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/">ScrumApp team B3</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"

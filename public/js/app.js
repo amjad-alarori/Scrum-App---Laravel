@@ -19345,8 +19345,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./lib/stats */ "./resources/js/lib/stats.js");
 
-__webpack_require__(/*! ./style */ "./resources/js/style.js");
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19510,17 +19508,6 @@ if (( false ? undefined : _typeof(module)) === 'object') {
   module.exports = Stats;
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
-
-/***/ }),
-
-/***/ "./resources/js/style.js":
-/*!*******************************!*\
-  !*** ./resources/js/style.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 

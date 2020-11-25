@@ -6,17 +6,12 @@
 
 @section('content')
     <div class="container h-100">
-        <div class="row h-100 align-items-center">
+        <div class="row align-items-center">
             <div class="col-lg-12">
                 <h1 class="display-4 text-white mt-5 mb-2">Project 1</h1>
 
             </div>
         </div>
-    </div>
-
-
-    <!-- Page Content -->
-    <div class="container">
 
         <div class="row">
             <div class="col-md-8 mb-5">
