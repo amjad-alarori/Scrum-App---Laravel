@@ -39,7 +39,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('team', [PagesController::class, 'team']);
         Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
         Route::get('productbacklog', [PagesController::class, 'productBacklog']);
-
+        Route::get('algemeen', [PagesController::class, 'algemeenDashboard']);
 
 
 
