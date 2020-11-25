@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Productbacklog;
 
 class PagesController extends Controller
 {
@@ -52,8 +53,9 @@ class PagesController extends Controller
     }
 
     public function productBacklog(){
+        $products = Productbacklog::all();
 
-        return view('productbacklog');
+        return view('productbacklog', ['products' => $products]);
     }
 
     public function algemeenDashboard(){

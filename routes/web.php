@@ -4,6 +4,7 @@ use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProductBackLogController;
 
 
 /*
@@ -39,6 +40,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('team', [PagesController::class, 'team']);
         Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
         Route::get('productbacklog', [PagesController::class, 'productBacklog']);
+        Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
         Route::get('algemeenDashboard', [PagesController::class, 'algemeenDashboard'])->name('profile');
 
 

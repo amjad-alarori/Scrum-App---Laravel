@@ -31,35 +31,37 @@
 
                     <div class="card mb-3">
                         <div class="card-body">
-                            <form action="{{ url('/store') }}" method="post">
+                            <form action="{{ route('productbacklogs.store') }}" method="post">
+                                @csrf
+                                @method('post')
 
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input name="Title" type="text" class="form-control"  placeholder="Enter Title">
+                                    <input name="title" type="text" class="form-control"  placeholder="Enter Title">
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <input name="Description" type="text" class="form-control"  placeholder="Enter the Description">
+                                    <input name="description" type="text" class="form-control"  placeholder="Enter the Description">
                                 </div>
                                 <div class="form-group">
                                     <label>Priority</label>
-                                    <input name="Priority" type="text" class="form-control"  placeholder="Enter Priority">
+                                    <input name="priority" type="text" class="form-control"  placeholder="Enter Priority">
                                 </div>
                                 <div class="form-group">
                                     <label>Business Value</label>
-                                    <input name="Business_Value" type="text" class="form-control"  placeholder="Enter Business Value">
+                                    <input name="business_value" type="text" class="form-control"  placeholder="Enter Business Value">
                                 </div>
                                 <div class="form-group">
                                     <label>User Story</label>
-                                    <input name="User_Story" type="text" class="form-control"  placeholder="Enter User Story">
+                                    <input name="user_story" type="text" class="form-control"  placeholder="Enter User Story">
                                 </div>
                                 <div class="form-group">
                                     <label>Story Points</label>
-                                    <input name="Story_Points" type="text" class="form-control"  placeholder="Enter Story Points">
+                                    <input name="story_points" type="text" class="form-control"  placeholder="Enter Story Points">
                                 </div>
                                 <div class="form-group">
                                     <label>Acceptance Criteria</label>
-                                    <input name="Acceptance_Criteria" type="text" class="form-control"  placeholder="Acceptance Criteria">
+                                    <input name="acceptance_criteria" type="text" class="form-control"  placeholder="Acceptance Criteria">
                                 </div>
 
                                     <input type="submit" class="btn btn-info" value="Save">
@@ -73,22 +75,22 @@
 
 
 
-{{--                @foreach($students as $student)--}}
-{{--                    <tr>--}}
-{{--                        <td>{{ $student->cne }}</td>--}}
-{{--                        <td>{{ $student->firstName }}</td>--}}
-{{--                        <td>{{ $student->lastName }}</td>--}}
-{{--                        <td>{{ $student->age }}</td>--}}
-{{--                        <td>{{ $student->speciality }}</td>--}}
-{{--                        <td>--}}
-
-{{--                            <a href="{{ url('/edit/'.$student->id) }}" class="btn btn-sm btn-warning">Edit</a>--}}
-
-{{--                        </td>--}}
+                @foreach($products as $product)
+                    <tr>
+                        <td>{{ $product->title }}</td>
+                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->priority }}</td>
+                        <td>{{ $product->business_value }}</td>
+                        <td>{{ $product->user_story }}</td>
+                        <td>{{ $product->story_points }}</td>
+                        <td>{{ $product->acceptance_criteria }}</td>
 
 
-{{--                    </tr>--}}
-{{--                @endforeach--}}
+                        </td>
+
+
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
