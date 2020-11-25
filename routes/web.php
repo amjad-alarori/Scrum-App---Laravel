@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProductBackLogController;
+use App\Http\Controllers\SprintController;
+
 
 
 /*
@@ -42,6 +44,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('productbacklog', [PagesController::class, 'productBacklog']);
         Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
         Route::get('algemeenDashboard', [PagesController::class, 'algemeenDashboard'])->name('profile');
+        Route::get('sprintform', [SprintController::class, 'create']);
+        Route::get('saveProject', [SprintController::class, 'store']);
 
 
 
