@@ -23,49 +23,49 @@
 </head>
 
 <body>
+<div class="font-sans text-gray-900 antialiased">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">ScrumApp team B3</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="/">ScrumApp team B3</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out {{request()->getRequestUri()=='/'?'active':''}}">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-
-            @auth
-                <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            @endif
-        </ul>
-
-        <div class="float-right">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                @if (Route::has('login'))
-                    @auth
-                        @livewire('navigation-dropdown')
-                    @else
-                        <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                            <a href="{{ route('login') }}" class="nav-link">Login</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                                <a href="{{ route('register') }}" class="nav-link">Register</a>
-                            </li>
-                        @endif
-                    @endif
+                <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out {{request()->getRequestUri()=='/'?'active':''}}">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                @auth
+                    <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
                 @endif
             </ul>
-        </div>
-    </div>
-</nav>
-@yield('content')
 
+            <div class="float-right">
+                <ul class="navbar-nav mr-auto">
+                    @if (Route::has('login'))
+                        @auth
+                            @livewire('navigation-dropdown')
+                        @else
+                            <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                                <a href="{{ route('login') }}" class="nav-link">Login</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                                    <a href="{{ route('register') }}" class="nav-link">Register</a>
+                                </li>
+                            @endif
+                        @endif
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @yield('content')
+</div>
 </body>
 
 

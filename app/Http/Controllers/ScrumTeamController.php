@@ -16,10 +16,12 @@ class ScrumTeamController extends Controller
     public function index($projectId)
     {
         $team = Project::find($projectId)->scrumTeam;
+        $members = [];
+        foreach ($team as $member):
+            array_push($members, ['user' => $member->user, 'scrumRole' => $member->scrumRole]);
+        endforeach;
 
-        die(var_dump($team));
-
-        return view('scrumTeam');
+        return view('scrumTeam', ['members'=>$members]);
     }
 
     /**
