@@ -56,5 +56,7 @@ class PagesController extends Controller
         return view('productbacklog');
     }
 
-
+    public function algemeenDashboard(){
+        return view('algemeenDashboard');
+    }
 }
