@@ -4,6 +4,7 @@ use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SprintController;
 
 
 /*
@@ -40,6 +41,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
         Route::get('productbacklog', [PagesController::class, 'productBacklog']);
         Route::get('algemeenDashboard', [PagesController::class, 'algemeenDashboard'])->name('profile');
+        Route::get('sprintform', [SprintController::class, 'create']);
+        Route::get('saveProject', [SprintController::class, 'store']);
 
 
 
