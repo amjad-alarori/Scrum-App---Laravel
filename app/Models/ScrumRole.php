@@ -11,6 +11,6 @@ class ScrumRole extends Model
 
     public function scrumTeams()
     {
-        return $this->hasMany(ScrumTeam::class);
+        return $this->hasMany(ScrumTeam::class, 'roleId', 'id');
     }
 }

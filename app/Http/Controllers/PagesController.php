@@ -40,12 +40,6 @@ class PagesController extends Controller
         return view ( 'addsprint');
     }
 
-    public function team(){
-
-        return view ('team');
-
-    }
-
     public function definitionOfDone(){
 
         return view ('definitionofdone');

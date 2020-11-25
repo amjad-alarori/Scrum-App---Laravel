@@ -17,16 +17,16 @@ class ScrumTeam extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'userId','id');
     }
 
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class,'projectId','id');
     }
 
     public function scrumRole()
     {
-        return $this->belongsTo(ScrumRole::class);
+        return $this->belongsTo(ScrumRole::class,'roleId','id');
     }
 }

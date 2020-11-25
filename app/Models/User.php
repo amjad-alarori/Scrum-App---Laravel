@@ -62,6 +62,6 @@ class User extends Authenticatable
 
     public function scrumTeams()
     {
-        return $this->hasMany(ScrumTeam::class);
+        return $this->hasMany(ScrumTeam::class,'userId','id');
     }
 }

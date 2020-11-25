@@ -50,7 +50,7 @@ class ProjectController extends Controller
 
         $project = new Project();
         $project->title = $request['title'];
-        $project->description = isset($request['title'])?$request['description']:null;
+        $project->description = isset($request['description'])?$request['description']:null;
         $project->mission = isset($request['mission'])?$request['mission']:null;
         $project->vision = isset($request['vision'])?$request['vision']:null;
         $project->deadline = isset($request['deadline'])?$request['deadline']:null;

@@ -20,6 +20,6 @@ class Project extends Model
 
     public function scrumTeam()
     {
-        return $this->hasMany(ScrumTeam::class);
+        return $this->hasMany(ScrumTeam::class,'projectId','id');
     }
 }
