@@ -20,8 +20,11 @@ Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('/', [PagesController::class, 'home']);
     Route::get('home', [PagesController::class, 'home']);
+    Route::get('dod', [PagesController::class, 'dod']);
 
-
+    Route::get('/post/create', 'PostController@create')->name('post.create');
+    Route::post('/post/store', 'PostController@store')->name('post.store');
+    Route::get('/posts', 'PostController@index')->name('posts');
 
 
 
@@ -48,7 +51,3 @@ Route::group(['middleware' => 'web'], function () {
         return view('home');
     })->name('dashboard');
 });
-
-
-
-
