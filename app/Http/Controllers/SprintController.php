@@ -18,7 +18,10 @@ class SprintController extends Controller
      */
     public function index($project)
     {
-        $sprints=DB::table('sprints')->where('id', $project_id );
+        $sprints=DB::table('sprints')->where('project_id', $project->id);
+
+        return view ('projectdashboard', ['sprints'=>$sprints]);
+        
 
     }
 
