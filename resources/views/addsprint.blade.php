@@ -6,6 +6,18 @@
 
 @section('content')
 
+    <header class="bg-primary py-5 mb-5">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-12">
+
+                    <h1 class="display-4 text-white mt-5 mb-2">Add Sprint</h1>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div class="w-full sm:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
@@ -46,6 +58,8 @@
                         <p class ='text-sm text-red-600 mt-2'>{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <input type="hidden" name="projectId" value="{{$projects->id}}">
 
 
 

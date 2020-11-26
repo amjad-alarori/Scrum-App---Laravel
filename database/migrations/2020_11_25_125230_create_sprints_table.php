@@ -14,9 +14,10 @@ class CreateSprintsTable extends Migration
     public function up()
     {
         Schema::create('sprints', function (Blueprint $table) {
-            $table->foreignId('id')->constrained('projects');
+            $table->id();
             $table->string('title');
             $table->string('description');
+            $table->foreignId('project_id')->constrained('projects');
             $table->date('startdate');
             $table->date('enddate');
             $table->timestamps();

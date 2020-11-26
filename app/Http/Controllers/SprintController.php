@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Sprint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Project;
+use phpDocumentor\Reflection\Types\Integer;
+use PhpParser\Node\Expr\New_;
 
 class SprintController extends Controller
 {
@@ -12,9 +16,10 @@ class SprintController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($project)
     {
-        //
+        $sprints=DB::table('sprints')->where('id', $project_id );
+
     }
 
     /**
@@ -35,7 +40,25 @@ class SprintController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>['required', 'string'],
+            'description'=>['string', 'nullable'],
+            'startdate'=>['required', 'date', 'after:' .date('m/d/Y')],
+            'enddate'=>['required', 'date','after:' .date('m/d/Y')],
+            'projectId'=>['required', 'integer'],
+            ]);
+
+        $sprint= New Sprint();
+
+        $sprint->title= isset($request['title'])?$request['title']:null;
+        $sprint->description= isset($request['description'])?$request['description']:null;
+        $sprint->startdate= $request['startdate'];
+        $sprint->enddate= $request['enddate'];
+        $sprint->project_id= $request['projectId'];
+
+        $sprint->save();
+
+        return redirect()->route('projectdashboard');
     }
 
     /**
