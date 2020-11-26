@@ -61,4 +61,9 @@ class PagesController extends Controller
     public function algemeenDashboard(){
         return view('algemeenDashboard');
     }
+
+    public function dod(){
+        return view('dod');
+    }
+
 }
