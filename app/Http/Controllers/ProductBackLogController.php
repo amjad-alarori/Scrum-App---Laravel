@@ -15,9 +15,6 @@ class ProductBackLogController extends Controller
 
         $product = new Productbacklog();
             $product->title = $request->title;
-            $product->rol = 1;
-            $product->sprint = 1;
-            $product->status = 'null';
             $product->description = $request->description;
             $product->priority = $request->priority;
             $product->business_value = $request->business_value;
