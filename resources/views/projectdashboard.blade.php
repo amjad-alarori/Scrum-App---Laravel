@@ -109,13 +109,13 @@
 
         <div class="row">
 
-            {{--    @foreach ($sprints as $sprint):--}}
+              @foreach ($sprints as $sprint):
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
 
                     <div class="card-body">
-                        <h4 class="card-title">{{--}} {{$sprint->title}} --}}Sprint 1</h4>
-                        <p class="card-text">{{-- {{$sprint->description}} --}}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+                        <h4 class="card-title">{{$sprint->title}}</h4>
+                        <p class="card-text">{{$sprint->description}} .</p>
                     </div>
                     <div class="card-footer">
                         <a href="/sprintDashboard  {{-- ?sprintId= {{$sprint->id}} --}}" class="btn btn-primary">Go to sprint</a>

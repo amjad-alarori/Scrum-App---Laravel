@@ -14,11 +14,21 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
+
      * @return Project[]|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        return view('projects');
+        $user = Auth::user();
+        $teams = $user->scrumTeams; /*array*/
+
+        $projects = [];
+        foreach ($teams as $team):
+            $project = $team->project;
+            $projects[$project->id] = $project;
+        endforeach;
+
+        return view('projects', ['projects' => $projects]);
     }
 
     /**
@@ -28,9 +38,13 @@ class ProjectController extends Controller
      */
     public function home(Project $project)
     {
-//        echo "This is page project ".$project->title;
 
-        return view('projectdashboard',['project'=>$project]);
+        $sprints=$project->sprints;
+        $teammembers=$project->scrumTeam;
+
+    //        echo "This is page project ".$project->title;
+
+        return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);
     }
 
     /**

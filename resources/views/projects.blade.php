@@ -27,6 +27,19 @@
                                 You don't have any projects yet. Create a project <a href="project/new" id="hereLink">here.</a>
                             </div>
                         </div>
+
+                        @foreach ($projects as $project)
+                            <div class="card">
+                                <hr>
+                                <div class="card-header">{{$project->title}}</div>
+                                <div class="card-body">{{$project->description}}
+                                    <a href="project/new" id="hereLink">here.</a>
+                                </div>
+                            </div>
+
+                        @endforeach
+
+
                     </div>
                 </div>
             </div>
