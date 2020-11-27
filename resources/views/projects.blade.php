@@ -15,73 +15,22 @@
             </div>
         </div>
 
-
-        <!-- /.row -->
-
-        <div class="row">
-            <div class="col-md-3 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/sprint toevoegen.jpg') }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Sprint toevoegen</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque sequi doloribus.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Voeg een sprint toe</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/scrumteam.jpg') }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Team samenstellen</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Stel het scrum team samen</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/dod.jpg') }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Definition of Done</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="/dod" class="btn btn-primary">Bekijken</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/productbacklog.jpg') }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Product Backlog</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque sequi doloribus.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Bekijken</a>
+        <!-- Message when no projects have been created yet -->
+        <div class="py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <hr>
+                            <div class="card-header">Your projects</div>
+                            <div class="card-body">
+                                You don't have any projects yet. Create a project <a href="project/new" id="hereLink">here.</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-
-
-
-
-
-
-        </div>
-
         <!-- /.row -->
 
     </div>

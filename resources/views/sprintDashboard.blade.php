@@ -25,7 +25,7 @@
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.</p>
-                <a class="btn btn-primary" href="#">Meer informatie over sprint</a>
+                <a class="btn btn-primary" href="#">More about Sprint</a>
             </div>
             <div class="col-md-4 mb-5">
                 <h2>Teamleden</h2>
@@ -51,7 +51,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/dailyStandUp" class="btn btn-primary">Daily stand up bekijken</a>
+                        <a href="/dailyStandUp" class="btn btn-primary">Go to Daily stand up</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/sprintReview" class="btn btn-primary">Sprint review bekijken</a>
+                        <a href="/sprintReview" class="btn btn-primary">Go to Sprint review</a>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/scrumBoard" class="btn btn-primary">Scrum Board bekijken</a>
+                        <a href="/scrumBoard" class="btn btn-primary">Go to Scrum Board</a>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/retrospective" class="btn btn-primary">Retrospective bekijken</a>
+                        <a href="/retrospective" class="btn btn-primary">Go to Retrospective</a>
                     </div>
                 </div>
             </div>
