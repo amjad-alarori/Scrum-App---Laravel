@@ -86,7 +86,14 @@
 
 @section('Script')
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-    <script type="text/javascript">
+    <script>
+        function dangetAlert(parentObj) {
+            $(parentObj).prepend('<div class="alert alert-danger" id="searcherror" role="alert">' + messagetxt + '</div>');
+            $("#searcherror").delay(3000).slideUp(300, function () {
+                $(this).remove();
+            });
+        };
+
         $(function () {
             $("#userSearch").click(function () {
                 $.post("{{route('searchuser')}}", $("#searchform").serialize())
@@ -99,19 +106,13 @@
                             email = response.email;
                         }
                         if (messagetxt !== null) {
-                            $('#formcontainer').prepend('<div class="alert alert-danger" id="searcherror" role="alert">' + messagetxt + '</div>');
-                            $("#searcherror").delay(3000).slideUp(300, function () {
-                                $(this).remove();
-                            });
+                            dangetAlert('#formcontainer');
                         } else {
                             $("#user").val(email);
                         }
                     }).fail(function () {
                     messagetxt = "something went wrong. \ntry it again!";
-                    $('#formcontainer').prepend('<div class="alert alert-danger" id="searcherror" role="alert">' + messagetxt + '</div>');
-                    $("#searcherror").delay(3000).slideUp(300, function () {
-                        $(this).remove();
-                    });
+                    dangetAlert('#formcontainer');
                 });
             });
         })
