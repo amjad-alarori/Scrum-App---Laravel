@@ -66,10 +66,6 @@ class PagesController extends Controller
         return view('productbacklog', ['products' => $products]);
     }
 
-    public function algemeenDashboard(){
-        return view('algemeenDashboard');
-    }
-
     public function dod(){
         return view('dod');
     }
