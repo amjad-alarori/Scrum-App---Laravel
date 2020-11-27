@@ -43,7 +43,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('project/save',[ProjectController::class,'store'])->name('saveProject');
         Route::get('projects',[ProjectController::class,'index'])->name('projects');
         Route::get('project/{project}/scrumTeam', [ScrumTeamController::class, 'index'])->name('scrumTeam');
-        Route::post('search/user',[PagesController::class,'searchuser'])->name('searchuser');
+        Route::post('search/user',[ScrumTeamController::class,'searchuser'])->name('searchuser');
 
 
         Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard']);

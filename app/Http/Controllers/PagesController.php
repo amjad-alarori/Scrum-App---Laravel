@@ -70,37 +70,4 @@ class PagesController extends Controller
         return view('dod');
     }
 
-    public function searchuser(Request $request)
-    {
-        if (strlen($_POST['user']) === 0):
-            $response['status'] = null;
-            $response['message'] = null;
-            $response['user'] = null;
-            return json_encode($response);
-        endif;
-
-        $response = [];
-        try {
-            $user = User::query()->where('name', 'LIKE', '%' . $_POST['user'] . '%')
-                ->orWhere('email', 'LIKE', '%' . $_POST['user'] . '%')->get();
-        } catch (\Exception $e) {
-            $user = false;
-        }
-
-        if ($user === false || count($user) === 0):
-            $response['status'] = false;
-            $response['message'] = 'user not found!';
-            $response['user'] = null;
-        elseif (count($user) > 1):
-            $response['status'] = false;
-            $response['message'] = 'more than one user found';
-            $response['user'] = null;
-        elseif (count($user) === 1):
-            $response['status'] = true;
-            $response['message'] = '';
-            $response['email'] = $user[0]->email;
-        endif;
-
-        return json_encode($response);
-    }
 }
