@@ -18,16 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $teams = $user->scrumTeams; /*array*/
-
-        $projects = [];
-        foreach ($teams as $team):
-            $project = $team->project;
-            $projects[$project->id] = $project;
-        endforeach;
-
-        return view('projects', ['projects' => $projects]);
+        return view('projects');
     }
 
     /**
