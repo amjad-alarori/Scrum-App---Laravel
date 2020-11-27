@@ -32,10 +32,89 @@
             </div>
         </div>
     @endforeach
+    <hr class="m-4"/>
 
-    {{--  Form to add new member  --}}
+    <div class="flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-gray-100">
+        <div class="w-full md:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg"
+             id="formcontainer">
+            <form method="POST" id="searchform" action="{{-- route('saveProject') --}}">
+                @csrf
 
+                <div class="form-group">
+                    <label class="block font-medium text-sm text-gray-700" for="user">E-mail of the user</label>
+                    <div class="input-group md-form form-sm form-2 pl-0">
+                        <input class="rounded-md shadow-sm block mt-1 w-full form-control lime-border" id="user"
+                               type="text" placeholder="Search e-mail" aria-label="user" name="user"
+                               value="{{old('user')}}">
+                        <div class="input-group-append">
+                            <button type="button"
+                                    class="rounded-md shadow-sm block mt-1 w-full btn input-group-text lime lighten-2"
+                                    id="userSearch">search
+                            </button>
+                        </div>
+                    </div>
+                    @error('user')
+                    <p class='text-sm text-red-600 mt-2'>{{ $message }}</p>
+                    @enderror
+                </div>
 
+                <div class="form-group">
+                    <label class="block font-medium text-sm text-gray-700" for="role">Role</label>
+                    <select class="form-control rounded-md shadow-sm block mt-1 w-full" id="role" name="role" required
+                            autofocus>
+                        @foreach($scrumRoles as $role)
+                            <option
+                                value="{{$role->id}}" {{old('role')==$role->id?"selected":""}}>{{$role->title}}</option>
+                        @endforeach
+                    </select>
+                    @error('role')
+                    <p class='text-sm text-red-600 mt-2'>{{ $message }}</p>
+                    @enderror
+                </div>
 
+                <div class="flex items-center justify-end mt-4">
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                        Create project
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
+@endsection
+
+@section('Script')
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#userSearch").click(function () {
+                $.post("{{route('searchuser')}}", $("#searchform").serialize())
+                    .done(function (data) {
+                        let response = jQuery.parseJSON(data)
+                        if (response.status === false) {
+                            messagetxt = response.message;
+                        } else if (response.message !== null) {
+                            messagetxt = null;
+                            email = response.email;
+                        }
+                        if (messagetxt !== null) {
+                            $('#formcontainer').prepend('<div class="alert alert-danger" id="searcherror" role="alert">' + messagetxt + '</div>');
+                            $("#searcherror").delay(3000).slideUp(300, function () {
+                                $(this).remove();
+                            });
+                        } else {
+                            $("#user").val(email);
+                        }
+                    }).fail(function () {
+                    messagetxt = "something went wrong. \ntry it again!";
+                    $('#formcontainer').prepend('<div class="alert alert-danger" id="searcherror" role="alert">' + messagetxt + '</div>');
+                    $("#searcherror").delay(3000).slideUp(300, function () {
+                        $(this).remove();
+                    });
+                });
+            });
+        })
+        ;
+    </script>
 @endsection

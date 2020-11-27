@@ -7,7 +7,7 @@
 @section('content')
     <div class="h-100 flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-gray-100">
         <div class="w-full md:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg">
-            <form method="POST" action="{{url('saveProject')}}">
+            <form method="POST" action="{{route('saveProject')}}">
                 @csrf
                 <div>
                     <label class="block font-medium text-sm text-gray-700" for="title">Project title</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ScrumRole;
 use App\Models\ScrumTeam;
 use Illuminate\Http\Request;
 
@@ -11,17 +12,21 @@ class ScrumTeamController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Project $project
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index($projectId)
+    public function index(Project $project)
     {
-        $team = Project::find($projectId)->scrumTeam;
+        $team = $project->scrumTeam;
+
         $members = [];
         foreach ($team as $member):
             array_push($members, ['user' => $member->user, 'scrumRole' => $member->scrumRole]);
         endforeach;
 
-        return view('scrumTeam', ['members'=>$members]);
+        $scrumRoles = ScrumRole::all();
+
+        return view('scrumTeam', ['members'=>$members, 'scrumRoles' => $scrumRoles]);
     }
 
     /**

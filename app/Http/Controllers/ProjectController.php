@@ -48,6 +48,7 @@ class ProjectController extends Controller
             'sprintLength'=>['integer','min:1']
         ]);
 
+
         $project = new Project();
         $project->title = $request['title'];
         $project->description = isset($request['description'])?$request['description']:null;
