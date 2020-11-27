@@ -70,7 +70,7 @@
                         <p class="card-text">Assemble new scrum teams or change existing ones</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/team" class="btn btn-primary">Go to teams</a>
+                        <a href="/project/{{$project->id}}/scrumTeam" class="btn btn-primary">Go to teams</a>
                     </div>
                 </div>
             </div>

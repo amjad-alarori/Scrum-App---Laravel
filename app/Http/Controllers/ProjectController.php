@@ -5,21 +5,41 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\ScrumRole;
 use App\Models\ScrumTeam;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
-     * @return Project[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
+     * @return Project[]|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        return Project::all();
+        $user = Auth::user();
+        $teams = $user->scrumTeams; /*array*/
 
+        $projects = [];
+        foreach ($teams as $team):
+            $project = $team->project;
+            $projects[$project->id] = $project;
+        endforeach;
+
+        return view('projects', ['projects' => $projects]);
+    }
+
+    /**
+     * Voor Roderik
+     * @param Project $project
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function home(Project $project)
+    {
+//        echo "This is page project ".$project->title;
+
+        return view('projectdashboard',['project'=>$project]);
     }
 
     /**
@@ -35,27 +55,27 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>['required', 'string'],
-            'description'=>['string','nullable'],
-            'mission'=>['string','nullable'],
-            'vision'=>['string','nullable'],
-            'deadline'=>['date','after:'.date('m/d/Y')],
-            'sprintLength'=>['integer','min:1']
+            'title' => ['required', 'string'],
+            'description' => ['string', 'nullable'],
+            'mission' => ['string', 'nullable'],
+            'vision' => ['string', 'nullable'],
+            'deadline' => ['date', 'after:' . date('m/d/Y')],
+            'sprintLength' => ['integer', 'min:1']
         ]);
 
 
         $project = new Project();
         $project->title = $request['title'];
-        $project->description = isset($request['description'])?$request['description']:null;
-        $project->mission = isset($request['mission'])?$request['mission']:null;
-        $project->vision = isset($request['vision'])?$request['vision']:null;
-        $project->deadline = isset($request['deadline'])?$request['deadline']:null;
+        $project->description = isset($request['description']) ? $request['description'] : null;
+        $project->mission = isset($request['mission']) ? $request['mission'] : null;
+        $project->vision = isset($request['vision']) ? $request['vision'] : null;
+        $project->deadline = isset($request['deadline']) ? $request['deadline'] : null;
         $project->deadline = $request['deadline'];
         $project->sprintLength = $request['sprintLength'];
 
@@ -80,7 +100,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param \App\Models\Project $project
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
@@ -91,7 +111,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param \App\Models\Project $project
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project)
@@ -102,8 +122,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Project $project
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Project $project)
@@ -114,7 +134,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
+     * @param \App\Models\Project $project
      * @return \Illuminate\Http\Response
      */
     public function destroy(Project $project)
