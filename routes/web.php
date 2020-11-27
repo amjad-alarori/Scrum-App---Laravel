@@ -6,7 +6,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProductBackLogController;
 use App\Http\Controllers\SprintController;
-
+use App\Http\Controllers\ScrumTeamController;
 
 
 /*
@@ -34,11 +34,18 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
+
+
+
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
-        Route::get('projectForm',[ProjectController::class,'create'])->name('projectForm');
-        Route::post('saveProject',[ProjectController::class,'store'])->name('saveProject');
+        Route::get('project/new',[ProjectController::class,'create'])->name('createProject');
+        Route::post('project/save',[ProjectController::class,'store'])->name('saveProject');
         Route::get('projects',[ProjectController::class,'index'])->name('projects');
+        Route::get('project/{project}/scrumTeam', [ScrumTeamController::class, 'index'])->name('scrumTeam');
+        Route::post('search/user',[PagesController::class,'searchuser'])->name('searchuser');
+
+
         Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard']);
         Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp']);
         Route::get('sprintReview', [PagesController::class, 'sprintReview']);
@@ -46,7 +53,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('retrospective', [PagesController::class, 'retrospective']);
         Route::get( 'projectdashboard', [PagesController::class, 'projectdashboard']);
         Route::get('addsprint', [PagesController::class, 'addSprint']);
-        Route::get('team', [PagesController::class, 'team']);
         Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
         Route::get('productbacklog', [PagesController::class, 'productBacklog']);
         Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');

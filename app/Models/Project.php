@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed scrumTeam
+ */
+
 class Project extends Model
 {
     use HasFactory;
@@ -18,4 +22,8 @@ class Project extends Model
         'sprintLength'
     ];
 
+    public function scrumTeam()
+    {
+        return $this->hasMany(ScrumTeam::class,'projectId','id');
+    }
 }

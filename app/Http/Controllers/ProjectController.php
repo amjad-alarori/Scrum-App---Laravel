@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ScrumRole;
+use App\Models\ScrumTeam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -46,9 +49,10 @@ class ProjectController extends Controller
             'sprintLength'=>['integer','min:1']
         ]);
 
+
         $project = new Project();
         $project->title = $request['title'];
-        $project->description = isset($request['title'])?$request['description']:null;
+        $project->description = isset($request['description'])?$request['description']:null;
         $project->mission = isset($request['mission'])?$request['mission']:null;
         $project->vision = isset($request['vision'])?$request['vision']:null;
         $project->deadline = isset($request['deadline'])?$request['deadline']:null;
@@ -56,6 +60,20 @@ class ProjectController extends Controller
         $project->sprintLength = $request['sprintLength'];
 
         $project->save();
+
+
+        /**
+         * Add the author of the project as a first team member as ScrumMaster
+         * because a project without any team member is not possible.
+         * the projects are only visible for the team members of it.
+         */
+        $scrumTeam = new ScrumTeam();
+        $scrumTeam->projectId = $project->id;
+        $scrumTeam->userId = Auth::id();
+        $scrumTeam->roleId = 2;
+
+        $scrumTeam->save();
+
         return redirect()->Route('projects');
     }
 
