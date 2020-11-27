@@ -60,7 +60,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
         Route::get('productbacklog', [PagesController::class, 'productBacklog']);
         Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
-        Route::get('algemeenDashboard', [PagesController::class, 'algemeenDashboard'])->name('profile');
         Route::get('sprintform', [SprintController::class, 'create']);
         Route::get('saveProject', [SprintController::class, 'store']);
 
