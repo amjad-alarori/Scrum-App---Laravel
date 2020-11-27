@@ -26,4 +26,11 @@ class Project extends Model
     {
         return $this->hasMany(ScrumTeam::class,'projectId','id');
     }
+
+    public function sprints(){
+
+        return $this->hasMany(Sprint::class, 'project_id', 'id');
+    }
 }
+
+

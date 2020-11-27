@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Productbacklog;
@@ -44,10 +45,13 @@ class PagesController extends Controller
         return view('projectdashboard');
     }
 
-    public function addSprint()
+    public function addSprint(Project $project)
     {
 
-        return view('addsprint');
+
+
+
+        return view('addsprint', ['project'=>$project]);
     }
 
     public function definitionOfDone()

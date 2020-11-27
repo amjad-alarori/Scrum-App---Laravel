@@ -59,7 +59,7 @@
                         @enderror
                     </div>
 
-                    <input type="hidden" name="projectId" value="{{$projects->id}}">
+                    <input type="hidden" name="projectId" value="{{$project->id}}">
 
 
 

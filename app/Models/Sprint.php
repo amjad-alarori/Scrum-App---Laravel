@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Sprint extends Model
 {
     use HasFactory;
+
+
+    public function project()
+    {
+
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
 }

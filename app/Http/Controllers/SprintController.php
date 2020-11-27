@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Sprint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Project;
 use phpDocumentor\Reflection\Types\Integer;
 use PhpParser\Node\Expr\New_;
 
@@ -14,14 +14,12 @@ class SprintController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index($project)
+    public function index(Sprint $sprint)
     {
-        $sprints=DB::table('sprints')->where('project_id', $project->id);
 
-        return view ('projectdashboard', ['sprints'=>$sprints]);
-        
+
 
     }
 
@@ -32,7 +30,7 @@ class SprintController extends Controller
      */
     public function create()
     {
-        //
+        return view ('addsprint');
     }
 
     /**

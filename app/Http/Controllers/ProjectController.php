@@ -27,7 +27,9 @@ class ProjectController extends Controller
             $projects[$project->id] = $project;
         endforeach;
 
+
         return view('projects', ['projects' => $projects]);
+
     }
 
     /**
@@ -37,9 +39,11 @@ class ProjectController extends Controller
      */
     public function home(Project $project)
     {
-//        echo "This is page project ".$project->title;
+        $sprints=$project->sprints;
+        $teammembers=$project->scrumTeam;
 
-        return view('projectdashboard',['project'=>$project]);
+
+        return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);
     }
 
     /**
