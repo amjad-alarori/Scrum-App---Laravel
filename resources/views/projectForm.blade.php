@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <label class="block font-medium text-sm text-gray-700" for="sprintLength">Deadline</label>
+                    <label class="block font-medium text-sm text-gray-700" for="sprintLength">Sprint length</label>
                     <input class="form-input rounded-md shadow-sm inline-block mt-1 col-sm-5" id="sprintLength"
                            type="number" name="sprintLength" autocomplete="sprintLength"
                            value="{{old('sprintLength')}}"> day(s)

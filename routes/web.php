@@ -39,15 +39,18 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
+
+        /* ProjectController */
+        Route::get( 'project/{project}', [ProjectController::class, 'home']);
+        Route::get('projects',[ProjectController::class,'index'])->name('projects');
         Route::get('project/new',[ProjectController::class,'create'])->name('createProject');
         Route::post('project/save',[ProjectController::class,'store'])->name('saveProject');
-        Route::get('projects',[ProjectController::class,'index'])->name('projects');
+
+        /* ScrumTeamController */
         Route::get('project/{project}/scrumTeam', [ScrumTeamController::class, 'index'])->name('scrumTeam');
         Route::post('search/user',[ScrumTeamController::class,'searchuser'])->name('searchuser');
-
-
-
-        Route::get( 'project/{project}', [ProjectController::class, 'home']);
+        Route::post('scrumteam/store',[ScrumTeamController::class,'store'])->name('storeTeamMember');
+//        Route::resource('team','ScrumTeamController');
 
 
 

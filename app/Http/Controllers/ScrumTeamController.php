@@ -6,6 +6,8 @@ use App\Models\Project;
 use App\Models\ScrumRole;
 use App\Models\ScrumTeam;
 use App\Models\User;
+use App\Rules\ScrumRoleStore;
+use App\Rules\TeamMemberNotExists;
 use Illuminate\Http\Request;
 
 class ScrumTeamController extends Controller
@@ -27,7 +29,7 @@ class ScrumTeamController extends Controller
 
         $scrumRoles = ScrumRole::all();
 
-        return view('scrumTeam', ['members'=>$members, 'scrumRoles' => $scrumRoles]);
+        return view('scrumTeam', ['members' => $members, 'scrumRoles' => $scrumRoles, 'project' => $project]);
     }
 
     /**
@@ -44,11 +46,30 @@ class ScrumTeamController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+//        dd($request->all());
+        $request->validate([
+            'user' => ['required', 'exists:users,email' , new TeamMemberNotExists($request['project'])],
+            'role' => ['required', new ScrumRoleStore($request['project'])],
+        ]);
+
+        $team = new ScrumTeam();
+
+        $user = User::query()->where('email', '=', $request['user'])->first();
+
+        $team->fill([
+            'userId' => $user->id,
+            'projectId' => $request['project'],
+            'roleId' => $request['role'],
+        ]);
+
+        $team->save();
+
+        return back();
+
     }
 
     /**

@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property mixed scrumTeam
  */
-
 class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'title',
         'description',
         'mission',
@@ -24,6 +23,7 @@ class Project extends Model
 
     public function scrumTeam()
     {
-        return $this->hasMany(ScrumTeam::class,'projectId','id');
+        return $this->hasMany(ScrumTeam::class, 'projectId', 'id')
+            ->orderBy('roleId')->orderBy('userId');
     }
 }

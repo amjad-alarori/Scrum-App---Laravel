@@ -5,13 +5,14 @@
 @endsection
 
 @section('content')
-    @foreach($members as $member)
-        <div class="container pt-5">
-            <div class="row">
-                <div class="card col-sm-4 rounded p-1 scrum-team-member">
+    <div class="container pt-5">
+        <div class="row">
+            @foreach($members as $member)
+                <div class="col-sm-4">
+                <div class="card m-2 scrum-team-member rounded p-1">
                     <div class="row no-gutters h-100 w-100">
                         <div class="col-sm-5 h-100 rounded" style="background: #868e96;">
-                            <img class="card-img-top h-100 w-100 p-2 rounded-full"
+                            <img class="member-card-img p-2 rounded-full"
                                  src="{{ $member['user']->profile_photo_url }}" alt="{{ $member['user']->name }}"/>
                         </div>
                         <div class="col-sm-7 h-100">
@@ -29,17 +30,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+            @endforeach
         </div>
-    @endforeach
+    </div>
     <hr class="m-4"/>
 
     <div class="flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-gray-100">
         <div class="w-full md:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg"
              id="formcontainer">
-            <form method="POST" id="searchform" action="{{-- route('saveProject') --}}">
+            <form method="POST" id="searchform" action="{{ route('storeTeamMember') }}">
                 @csrf
-
+                <input type="hidden" name="project" value="{{$project->id}}">
                 <div class="form-group">
                     <label class="block font-medium text-sm text-gray-700" for="user">E-mail of the user</label>
                     <div class="input-group md-form form-sm form-2 pl-0">
