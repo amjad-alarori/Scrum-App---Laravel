@@ -31,9 +31,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/post/create', 'PostController@create')->name('post.create');
     Route::post('/post/store', 'PostController@store')->name('post.store');
     Route::get('/posts', 'PostController@index')->name('posts');
-    Route::resource('photos', PhotoController::class);
-
-
 
 
 
@@ -42,10 +39,12 @@ Route::group(['middleware' => 'web'], function () {
 
         /* ProjectController */
 //        Route::resource('project','ProjectController');
-        Route::get( 'project/{project}', [ProjectController::class, 'home']);
+        Route::get( 'projects/project{project}', [ProjectController::class, 'show']);
         Route::get('projects',[ProjectController::class,'index'])->name('projects');
-        Route::get('project/new',[ProjectController::class,'create'])->name('createProject');
         Route::post('project/save',[ProjectController::class,'store'])->name('saveProject');
+        Route::get('project/new',[ProjectController::class,'create'])->name('newProject');
+
+
 
         /* ScrumTeamController */
         Route::get('project/{project}/scrumTeam', [ScrumTeamController::class, 'index'])->name('scrumTeam');
@@ -54,8 +53,6 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('scrumteam/destroy/{scrumTeam}',[ScrumTeamController::class,'destroy'])->name('removeTeamMember');
 
 
-        //Route::get( 'projectdashboard/{project}', [ProjectController::class, 'home']);
-        Route::get('project/{project}', [ProjectController::class, 'home']);
 
 
 

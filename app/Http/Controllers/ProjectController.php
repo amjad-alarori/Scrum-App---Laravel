@@ -34,22 +34,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Voor Roderik
-     * @param Project $project
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function home(Project $project)
-    {
-
-        $sprints=$project->sprints;
-        $teammembers=$project->scrumTeam;
-
-    //        echo "This is page project ".$project->title;
-
-        return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
@@ -108,11 +92,16 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Project $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show(Project $project)
     {
-        //
+        $sprints=$project->sprints;
+        $teammembers=$project->scrumTeam;
+
+        //        echo "This is page project ".$project->title;
+
+        return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);
     }
 
     /**
