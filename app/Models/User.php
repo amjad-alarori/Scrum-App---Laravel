@@ -20,7 +20,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
+
      * @var array
      */
     protected $fillable = [
@@ -59,4 +59,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function scrumTeams()
+    {
+        return $this->hasMany(ScrumTeam::class,'userId','id');
+    }
 }

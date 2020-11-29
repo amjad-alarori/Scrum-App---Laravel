@@ -23,7 +23,8 @@
 </head>
 
 <body>
-
+{{--<div class="min-h-screen font-sans text-gray-900 antialiased">--}}
+<div class="h-100 font-sans text-gray-900 antialiased">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/">ScrumApp team B3</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -43,28 +44,28 @@
                     </li>
                 @endif
             </ul>
-        </div>
 
-        <ul class="navbar-nav mr-auto">
-            @if (Route::has('login'))
-                @auth
-                    @livewire('navigation-dropdown')
-                @else
-                    <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                        <a href="{{ route('login') }}" class="nav-link">Login</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                            <a href="{{ route('register') }}" class="nav-link">Register</a>
-                        </li>
+            <div class="float-right">
+                <ul class="navbar-nav mr-auto">
+                    @if (Route::has('login'))
+                        @auth
+                            @livewire('navigation-dropdown')
+                        @else
+                            <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                                <a href="{{ route('login') }}" class="nav-link">Login</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                                    <a href="{{ route('register') }}" class="nav-link">Register</a>
+                                </li>
+                            @endif
+                        @endif
                     @endif
-                @endif
-            @endif
-        </ul>
+                </ul>
+            </div>
+        </div>
     </nav>
     @yield('content')
-
-
 </div>
 </body>
 
@@ -80,4 +81,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+@yield('Script')
 </html>

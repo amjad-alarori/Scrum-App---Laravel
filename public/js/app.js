@@ -19345,7 +19345,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./lib/stats */ "./resources/js/lib/stats.js");
 
-__webpack_require__(/*! ./style */ "./resources/js/style.js");
+__webpack_require__(/*! ./scripts */ "./resources/js/scripts.js");
 
 /***/ }),
 
@@ -19513,10 +19513,10 @@ if (( false ? undefined : _typeof(module)) === 'object') {
 
 /***/ }),
 
-/***/ "./resources/js/style.js":
-/*!*******************************!*\
-  !*** ./resources/js/style.js ***!
-  \*******************************/
+/***/ "./resources/js/scripts.js":
+/*!*********************************!*\
+  !*** ./resources/js/scripts.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19531,8 +19531,8 @@ if (( false ? undefined : _typeof(module)) === 'object') {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Code\scrumapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Code\scrumapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! E:\Windesheim ADSD20\Periode 2\scrumapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Windesheim ADSD20\Periode 2\scrumapp\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -1,11 +1,106 @@
 @extends('layouts.layout')
 
 @section('title')
-    Home
+    Product Backlog
 @endsection
 
 @section('content')
 
- productbacklog
+
+    <div class="card mb-3">
+        <img src="https://cdn.pixabay.com/photo/2018/01/17/04/14/industry-3087393_1280.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Business Value</th>
+                    <th scope="col">User Story</th>
+                    <th scope="col">Story Points</th>
+                    <th scope="col">Acceptance Criteria</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <section class="card mb-3">
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <form action="{{ route('productbacklogs.store') }}" method="post">
+                                @csrf
+                                @method('post')
+
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input name="title" type="text" class="form-control"  placeholder="Enter Title">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input name="description" type="text" class="form-control"  placeholder="Enter the Description">
+                                </div>
+                                <div class="form-group">
+                                    <label>Priority</label>
+                                    <input name="priority" type="text" class="form-control"  placeholder="Enter Priority">
+                                </div>
+                                <div class="form-group">
+                                    <label>Business Value</label>
+                                    <input name="business_value" type="text" class="form-control"  placeholder="Enter Business Value">
+                                </div>
+                                <div class="form-group">
+                                    <label>User Story</label>
+                                    <input name="user_story" type="text" class="form-control"  placeholder="Enter User Story">
+                                </div>
+                                <div class="form-group">
+                                    <label>Story Points</label>
+                                    <input name="story_points" type="text" class="form-control"  placeholder="Enter Story Points">
+                                </div>
+                                <div class="form-group">
+                                    <label>Acceptance Criteria</label>
+                                    <input name="acceptance_criteria" type="text" class="form-control"  placeholder="Acceptance Criteria">
+                                </div>
+
+                                    <input type="submit" class="btn btn-info" value="Save">
+
+                            </form>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+
+                @foreach($products as $product)
+                    <tr>
+                        <td>{{ $product->title }}</td>
+                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->priority }}</td>
+                        <td>{{ $product->business_value }}</td>
+                        <td>{{ $product->user_story }}</td>
+                        <td>{{ $product->story_points }}</td>
+                        <td>{{ $product->acceptance_criteria }}</td>
+
+
+                        </td>
+
+
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
 
 @endsection
