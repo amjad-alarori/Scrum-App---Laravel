@@ -28,12 +28,10 @@ class ScrumRoleStore implements Rule
      */
     public function passes($attribute, $value)
     {
-
-        if ($value === 1 || $value === 2):
-            $count = ScrumTeam::query()->where(
-                ['projectId', '=', $this->projectId],
-                ['roleId', '=', $value]
-            )->count();
+        if ($value == 1 || $value == 2):
+            $count = ScrumTeam::query()
+                ->where('projectId', '=', $this->projectId)
+                ->where('roleId', '=', $value)->count();
 
             if ($count === 0):
                 return true;
