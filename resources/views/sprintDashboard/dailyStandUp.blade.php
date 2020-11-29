@@ -24,7 +24,7 @@
 
         <div class="row">
             <div class="col-md-8 mb-5">
-                <h2>Daily Standup-informatie</h2>
+                <h2>Daily Standup</h2>
                 <hr>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi
                     soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam.
@@ -32,7 +32,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur
                     magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt
                     voluptate. Voluptatum.</p>
-                <a class="btn btn-primary" href="#">Meer informatie over daily stand up</a>
+                <a class="btn btn-primary" href="#">More about daily stand up</a>
             </div>
             <div class="col-md-4 mb-5">
                 <h2>Teamleden</h2>
@@ -56,34 +56,34 @@
                 @csrf
 
                 <div>
-                    <x-jet-label for="name" value="{{ __('Naam') }}"/>
+                    <x-jet-label for="name" value="{{ __('Name') }}"/>
                     <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus
                                  autocomplete="name"/>
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label for="datum" value="{{ __('Datum') }}"/>
+                    <x-jet-label for="datum" value="{{ __('Date') }}"/>
                     <x-jet-input id="datum" class="block mt-1 w-full" type="datum" name="datum" required/>
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label for="dailyStandUp" value="{{ __('Wat heb ik sinds de vorige standup gedaan?') }}"/>
+                    <x-jet-label for="dailyStandUp" value="{{ __('What did I do yesterday?') }}"/>
                     <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="vorigeStandUp"
                               name="dailyStandUp"
                               style="margin-top: 4px; margin-bottom: 0px;">{{old('biography')}}</textarea>
                 </div>
                 <div class="mt-4">
-                    <x-jet-label for="dailyStandUp" value="{{ __('Wat ga ik vandaag doen?') }}"/>
+                    <x-jet-label for="dailyStandUp" value="{{ __('What will I do today?') }}"/>
                     <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="vorigeStandUp"
                               name="dailyStandUp"
-                              style="margin-top: 4px; margin-bottom: 0px;">{{old('biography')}}</textarea>
+                              style="margin-top: 4px; margin-bottom: 0px;"></textarea>
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label for="dailyStandUp" value="{{ __('Welke uitdagingen verwacht ik?') }}"/>
+                    <x-jet-label for="dailyStandUp" value="{{ __('What does block me from achieving the sprint goal?') }}"/>
                     <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="vorigeStandUp"
                               name="dailyStandUp"
-                              style="margin-top: 4px; margin-bottom: 0px;">{{old('biography')}}</textarea>
+                              style="margin-top: 4px; margin-bottom: 0px;"></textarea>
 
                     <div class="flex items-center justify-end mt-4">
 

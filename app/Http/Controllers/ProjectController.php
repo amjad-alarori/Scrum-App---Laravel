@@ -14,6 +14,7 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
+
      * @return Project[]|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
@@ -39,9 +40,11 @@ class ProjectController extends Controller
      */
     public function home(Project $project)
     {
+
         $sprints=$project->sprints;
         $teammembers=$project->scrumTeam;
 
+    //        echo "This is page project ".$project->title;
 
         return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);
     }
