@@ -15,6 +15,13 @@ class CreateProductBacklogsTable extends Migration
     {
         Schema::create('product_backlogs', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
+            $table->text('description');
+            $table->text('priority');
+            $table->text('business_value');
+            $table->text('user_story');
+            $table->text('story_points');
+            $table->text('acceptance_criteria');
             $table->timestamps();
         });
     }

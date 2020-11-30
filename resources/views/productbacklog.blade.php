@@ -53,15 +53,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>User Story</label>
-                                    <input name="user_story" type="text" class="form-control"  placeholder="Enter User Story">
+                                    <textarea name="user_story" type="text" class="form-control"  placeholder="Enter User Story"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Story Points</label>
-                                    <input name="story_points" type="text" class="form-control"  placeholder="Enter Story Points">
+                                    <textarea name="story_points" type="text" class="form-control"  placeholder="Enter Story Points"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Acceptance Criteria</label>
-                                    <input name="acceptance_criteria" type="text" class="form-control"  placeholder="Acceptance Criteria">
+                                    <textarea name="acceptance_criteria" type="text" class="form-control"  placeholder="Acceptance Criteria"></textarea>
                                 </div>
 
                                     <input type="submit" class="btn btn-info" value="Save">
