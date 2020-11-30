@@ -56,7 +56,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-        Route::get('sprintDashboard/{sprint}', [PagesController::class, 'sprintDashboard']);
+        Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard']);
         Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp']);
         Route::get('sprintReview', [PagesController::class, 'sprintReview']);
         Route::get('scrumBoard', [PagesController::class, 'scrumBoard']);
