@@ -63,15 +63,16 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('retrospective', [PagesController::class, 'retrospective']);
         Route::get('project/{project}/addsprint', [PagesController::class, 'addSprint']);
         Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
-        Route::get('productbacklog', [PagesController::class, 'productBacklog']);
-        Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
         Route::get('sprintform', [SprintController::class, 'create']);
         Route::get('saveProject', [SprintController::class, 'store']);
 
 
 
+        /* Amjad's routs product backlog */
 
-
+                Route::get('productbacklog', [ProductBacklogController::class, 'create']);
+                Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
+                Route::get('productbacklog/destroy/{productBacklog}',[ProductBackLogController::class,'destroy'])->name('removeProductBacklog');
 
 
 //

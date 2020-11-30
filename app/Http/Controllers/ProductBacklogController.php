@@ -24,7 +24,9 @@ class ProductBacklogController extends Controller
      */
     public function create()
     {
-        //
+        $products = Productbacklog::all();
+
+        return view('productbacklog', ['products' => $products]);
     }
 
     /**
@@ -35,7 +37,15 @@ class ProductBacklogController extends Controller
      */
     public function store(Request $request)
     {
-        // here validation //
+        $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['string', 'nullable'],
+            'priority' => ['string', 'nullable'],
+            'business_value' => ['string', 'nullable'],
+            'user_story' => ['string', 'nullable'],
+            'story_points' => ['string', 'nullable'],
+            'acceptance_criteria' => ['string', 'nullable'],
+        ]);
 
         $product = new Productbacklog();
         $product->title = $request->title;
@@ -93,6 +103,12 @@ class ProductBacklogController extends Controller
      */
     public function destroy(ProductBacklog $productBacklog)
     {
-        //
+        $productBacklog->delete();
+        return redirect()->back();
+
+//        $title = title::find($this);
+//        $title->delete();
+//
+//        return redirect('/home')->with('success', 'product has been deleted');
     }
 }

@@ -60,11 +60,6 @@ class PagesController extends Controller
         return view('definitionofdone');
     }
 
-    public function productBacklog(){
-        $products = Productbacklog::all();
-
-        return view('productbacklog', ['products' => $products]);
-    }
 
     public function dod(){
         return view('dod');

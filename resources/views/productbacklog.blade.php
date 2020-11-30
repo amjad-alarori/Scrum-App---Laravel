@@ -21,6 +21,7 @@
                     <th scope="col">User Story</th>
                     <th scope="col">Story Points</th>
                     <th scope="col">Acceptance Criteria</th>
+                    <th scope="col"></th>
 
                 </tr>
                 </thead>
@@ -76,6 +77,7 @@
 
 
                 @foreach($products as $product)
+
                     <tr>
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->description }}</td>
@@ -84,13 +86,14 @@
                         <td>{{ $product->user_story }}</td>
                         <td>{{ $product->story_points }}</td>
                         <td>{{ $product->acceptance_criteria }}</td>
-
-
-                        </td>
-
+                        <td> <a class="btn btn-danger" href="{{route('removeProductBacklog',['productBacklog' => $product->id])}}">Delete</a></td>
 
                     </tr>
+
+
                 @endforeach
+
+
                 </tbody>
             </table>
         </div>
