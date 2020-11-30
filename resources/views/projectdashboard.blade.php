@@ -48,7 +48,7 @@
                 <address>
                     @foreach ($teammembers as $teammember)
 
-                        <li>{{$teammember->userId}}</li>
+                        <li>{{$teammember->user->name}}</li>
 
                     @endforeach
                 </address>
@@ -114,38 +114,32 @@
         </div>
 
 
-        <h1 class="display-4 mt-5 mb-2">Sprints</h1>
+        <h5 class="display-4 mt-5 mb-2">Sprints</h5>
         <hr>
         <br>
         <br>
 
         <div class="row">
             @foreach ($sprints as $sprint)
-                <div class="col-md-4 mb-5">
+               <div class="col-md-4 mb-5">
                     <div class="card h-100">
 
                         <div class="card-body">
-                            <h4 class="card-title">{{$sprint->title}}</h4>
-                            <p class="card-text">{{$sprint->description}} .</p>
+                            <h1 style="font-weight: bold" class="card-title">{{$sprint->title}}</h1>
+                            <p class="card-text">{{$sprint->description}}</p>
+                            <br>
+                            <br>
+                            Startdate:
+                            <br>
+                            {{date("d/m/Y",strtotime($sprint->startdate))}}
+                            <br>
+                            <br>
+                            Enddate:
+                            <br>
+                            {{date("d/m/Y", strtotime($sprint->enddate))}}
                         </div>
                         <div class="card-footer">
-                            <a href="/sprintDashboard  {{-- ?sprintId= {{$sprint->id}} --}}" class="btn btn-primary">Go
-                                to sprint</a>
-                        </div>
-                    </div>
-                </div>
 
-                {{--    @endforeach --}}
-
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-
-                        <div class="card-body">
-                            <h4 class="card-title">{{$sprint->title}}</h4>
-                            <p class="card-text">{{$sprint->description}}Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
-                        </div>
-                        <div class="card-footer">
                             <a href="/sprintDashboard/{{$sprint->id}}" class="btn btn-primary">Go to sprint</a>
                         </div>
                     </div>

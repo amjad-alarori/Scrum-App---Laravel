@@ -96,8 +96,13 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+
+
+
         $sprints=$project->sprints;
         $teammembers=$project->scrumTeam;
+
+//        (date("D m Y",strtotime($sprints[0]->startdate)));
 
         //        echo "This is page project ".$project->title;
 

@@ -53,7 +53,10 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('scrumteam/destroy/{scrumTeam}',[ScrumTeamController::class,'destroy'])->name('removeTeamMember');
 
 
-
+        /* SprintController */
+       // Route::get('sprintform', [SprintController::class, 'create']);
+        Route::post('saveSprint', [SprintController::class, 'store']);
+        Route::get('project/{project}/addsprint', [SprintController::class, 'create']);
 
 
         Route::get('sprintDashboard/{sprint}', [PagesController::class, 'sprintDashboard']);
@@ -61,12 +64,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('sprintReview', [PagesController::class, 'sprintReview']);
         Route::get('scrumBoard', [PagesController::class, 'scrumBoard']);
         Route::get('retrospective', [PagesController::class, 'retrospective']);
-        Route::get('project/{project}/addsprint', [PagesController::class, 'addSprint']);
+     //  Route::get('project/{project}/addsprint', [PagesController::class, 'addSprint']);
         Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
         Route::get('productbacklog', [PagesController::class, 'productBacklog']);
         Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
-        Route::get('sprintform', [SprintController::class, 'create']);
-        Route::get('saveProject', [SprintController::class, 'store']);
+
 
 
 
