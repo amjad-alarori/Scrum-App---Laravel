@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -31,5 +32,11 @@ class PostController extends Controller
         $posts = Post::all();
 
         return view('dod', compact('posts'));
+    }
+    public function deletePost($id)
+    {
+        DB::delete('DELETE FROM posts WHERE id = ?', [$id]);
+
+        return redirect('posts');
     }
 }
