@@ -1,0 +1,3 @@
+https://appdividend.com/2018/06/20/create-comment-nesting-in-laravel/
+https://www.studentstutorial.com/laravel/retrieve-data-laravel
+https://www.studentstutorial.com/laravel/insert-data-laravel

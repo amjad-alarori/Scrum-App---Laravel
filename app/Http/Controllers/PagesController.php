@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Productbacklog;
+use App\Models\Post;
 
 class PagesController extends Controller
 {
     public function home(){
         return view('home');
     }
-
     public function sprintDashboard(){
         return view('sprintDashboard');
     }
@@ -37,8 +37,13 @@ class PagesController extends Controller
     }
 
     public function addSprint(){
-
         return view ( 'addsprint');
+    }
+
+    public function dod(){
+        $posts = Post::all();
+
+        return view('dod', compact('posts'));
     }
 
     public function team(){

@@ -21,13 +21,22 @@ use App\Http\Controllers\SprintController;
 */
 
 
-Route::group(['middleware' => 'web'], function () {
+    Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
-    Route::get('', [PagesController::class, 'home'])->name('home');
+        Route::get('', [PagesController::class, 'home'])->name('home');
+        Route::get('/', [PagesController::class, 'home']);
+        Route::get('home', [PagesController::class, 'home']);
+        Route::get('dod', [PagesController::class, 'dod']);
+
+        Route::get('/post/create', 'PostController@create')->name('post.create');
+        Route::post('/post/store', 'PostController@store')->name('post.store');
+        Route::get('/posts', 'PostController@index')->name('posts');
+        Route::get('/post/show/{id}', 'PostController@show')->name('post.show');
+        Route::delete('delete/{id}', 'UserController@deletePost')->name('posts.delete');
 
 
 
-    Route::group(['middleware' => Authenticate::class], function () {
+        Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
         Route::get('projectForm',[ProjectController::class,'create'])->name('projectForm');
         Route::post('saveProject',[ProjectController::class,'store'])->name('saveProject');
@@ -59,7 +68,3 @@ Route::group(['middleware' => 'web'], function () {
 //        return view('home');
 //    })->name('dashboard');
 });
-
-
-
-

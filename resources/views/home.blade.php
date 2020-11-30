@@ -123,7 +123,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Bekijken</a>
+                        <a href="/dod" class="btn btn-primary">Bekijken</a>
                     </div>
                 </div>
             </div>
