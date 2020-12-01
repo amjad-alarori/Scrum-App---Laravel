@@ -13,7 +13,7 @@ class DailyStandUpController extends Controller
      */
     public function index()
     {
-        //
+    //
     }
 
     /**
