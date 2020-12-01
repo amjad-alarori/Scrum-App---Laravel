@@ -30,8 +30,16 @@
                                     @if($fullPermission)
                                         <div class="h-25">
                                             <div class="float-right">
-                                                <a href="{{route('removeTeamMember',['scrumTeam' => $member['teamMember']->id])}}"
-                                                   class="btn btn-primary stretched-link float-right w-100">Remove</a>
+                                                <form method="post"
+                                                      action="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}">
+                                                    @csrf
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit"
+                                                            class="btn btn-primary stretched-link float-right w-100">
+                                                        Remove
+                                                    </button>
+                                                </form>
+{{--                                                <a href="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}" class="btn btn-primary stretched-link float-right w-100">Remove</a>--}}
                                             </div>
                                         </div>
                                     @endif
@@ -50,9 +58,8 @@
         <div class="flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-gray-100">
             <div class="w-full md:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg"
                  id="formcontainer">
-                <form method="POST" id="searchform" action="{{ route('storeTeamMember') }}">
+                <form method="POST" id="searchform" action="{{ route('scrumTeam.store',['project'=>$project->id]) }}">
                     @csrf
-                    <input type="hidden" name="project" value="{{$project->id}}">
                     <div class="form-group">
                         <label class="block font-medium text-sm text-gray-700" for="user">E-mail of the user</label>
                         <div class="input-group md-form form-sm form-2 pl-0">
@@ -89,7 +96,7 @@
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit"
                                 class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
-                            Create project
+                            Add team member
                         </button>
                     </div>
                 </form>

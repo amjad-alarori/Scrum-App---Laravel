@@ -85,7 +85,7 @@ class ProjectController extends Controller
 
         $scrumTeam->save();
 
-        return redirect()->Route('projects');
+        return redirect()->Route('project.index');
     }
 
     /**
@@ -96,9 +96,6 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-
-
-
         $sprints=$project->sprints;
         $teammembers=$project->scrumTeam;
 

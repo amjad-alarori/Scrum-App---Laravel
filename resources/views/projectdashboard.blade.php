@@ -67,7 +67,7 @@
                             necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/project/{{$project->id}}/addsprint" class="btn btn-primary">Add sprint</a>
+                        <a href="{{route('sprint.create',['project' => $project->id])}}" class="btn btn-primary">Add sprint</a>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                         <p class="card-text">Assemble new scrum teams or change existing ones</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/project/ {{-- }}{{$project->id}}/ --}}scrumTeam" class="btn btn-primary">Go to
+                        <a href="{{route('scrumTeam.index',['project' => $project->id])}}" class="btn btn-primary">Go to
                             teams</a>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                             necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/productbacklog" class="btn btn-primary">Go to page</a>
+                        <a href="{{route('ProductBackLog.index',['project'=>$project->id])}}" class="btn btn-primary">Go to page</a>
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="card-footer">
 
-                            <a href="/sprintDashboard/{{$sprint->id}}" class="btn btn-primary">Go to sprint</a>
+                            <a href="{{route('sprint.show',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-primary">Go to sprint</a>
                         </div>
                     </div>
                 </div>

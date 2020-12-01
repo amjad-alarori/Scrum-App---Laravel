@@ -32,7 +32,7 @@
 
                     <div class="card mb-3">
                         <div class="card-body">
-                            <form action="{{ route('productbacklogs.store') }}" method="post">
+                            <form action="{{ route('ProductBackLog.store',['project'=> $project->id]) }}" method="post">
                                 @csrf
                                 @method('post')
 
@@ -86,7 +86,7 @@
                         <td>{{ $product->user_story }}</td>
                         <td>{{ $product->story_points }}</td>
                         <td>{{ $product->acceptance_criteria }}</td>
-                        <td> <a class="btn btn-danger" href="{{route('removeProductBacklog',['productBacklog' => $product->id])}}">Delete</a></td>
+                        <td> <a class="btn btn-danger" href="{{route('ProductBackLog.destroy',['project'=>$project->id,'ProductBackLog' => $product->id])}}">Delete</a></td>
 
                     </tr>
 

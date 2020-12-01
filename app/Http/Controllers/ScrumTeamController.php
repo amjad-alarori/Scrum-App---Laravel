@@ -59,13 +59,14 @@ class ScrumTeamController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     * @param Project $project
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Project $project)
     {
         $request->validate([
-            'user' => ['required', 'exists:users,email', new TeamMemberNotExists($request['project'])],
-            'role' => ['required', new ScrumRoleStore($request['project'])],
+            'user' => ['required', 'exists:users,email', new TeamMemberNotExists($project->id)],
+            'role' => ['required', new ScrumRoleStore($project->id)],
         ]);
 
         $team = new ScrumTeam();
@@ -74,7 +75,7 @@ class ScrumTeamController extends Controller
 
         $team->fill([
             'userId' => $user->id,
-            'projectId' => $request['project'],
+            'projectId' => $project->id,
             'roleId' => $request['role'],
         ]);
 
@@ -87,10 +88,11 @@ class ScrumTeamController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Project $project
      * @param \App\Models\ScrumTeam $scrumTeam
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function show(ScrumTeam $scrumTeam)
+    public function show(Project $project, ScrumTeam $scrumTeam)
     {
         //
     }
@@ -98,10 +100,11 @@ class ScrumTeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param Project $project
      * @param \App\Models\ScrumTeam $scrumTeam
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function edit(ScrumTeam $scrumTeam)
+    public function edit(Project $project, ScrumTeam $scrumTeam)
     {
         //
     }
@@ -110,10 +113,11 @@ class ScrumTeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     * @param Project $project
      * @param \App\Models\ScrumTeam $scrumTeam
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function update(Request $request, ScrumTeam $scrumTeam)
+    public function update(Request $request,Project $project, ScrumTeam $scrumTeam)
     {
         //
     }
@@ -121,20 +125,13 @@ class ScrumTeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Project $project
      * @param \App\Models\ScrumTeam $scrumTeam
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(ScrumTeam $scrumTeam)
+    public function destroy(Project $project, ScrumTeam $scrumTeam)
     {
-        /**
-         *
-         *
-         * still make the validation
-         *
-         *
-         */
         $membersCount = ScrumTeam::query()->where('projectId', '=', $scrumTeam->projectId)->count();
 
         if ($membersCount > 1):

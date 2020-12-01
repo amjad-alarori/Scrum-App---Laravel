@@ -24,7 +24,7 @@
                             <hr>
                             <div class="card-header">Your projects</div>
                             <div class="card-body">
-                                You don't have any projects yet. Create a project <a href="project/new" id="hereLink">here.</a>
+                                You don't have any projects yet. Create a project <a href="{{route('project.create')}}" id="hereLink">here.</a>
                             </div>
                         </div>
 
