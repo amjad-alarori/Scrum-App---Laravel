@@ -46,9 +46,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('search/user', [ScrumTeamController::class, 'searchuser'])->name('searchuser');
 
 
-        Route::resource('project', 'ProjectController')->only('index');
+        Route::resource('project', 'ProjectController');
         Route::prefix('project/{project}')->group(function () {
-            Route::resource('project', 'ProjectController')->except('index');
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBackLogController');
