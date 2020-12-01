@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Productbacklog;
+use App\Models\Post;
 
 class PagesController extends Controller
 {
@@ -16,6 +17,7 @@ class PagesController extends Controller
 
     public function sprintDashboard()
     {
+    public function sprintDashboard(){
         return view('sprintDashboard');
     }
 
@@ -45,6 +47,10 @@ class PagesController extends Controller
         return view('projectdashboard');
     }
 
+    public function addSprint(){
+        return view ( 'addsprint');
+    }
+
     public function addSprint(Project $project)
     {
 
@@ -52,6 +58,16 @@ class PagesController extends Controller
 
 
         return view('addsprint', ['project'=>$project]);
+
+    public function dod(){
+        $posts = Post::all();
+
+        return view('dod', compact('posts'));
+    }
+
+    public function team(){
+
+        return view ('team');
     }
 
     public function definitionOfDone()

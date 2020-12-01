@@ -28,16 +28,16 @@ class SprintController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
-        return view ('addsprint');
+        return view('addsprint', ['project'=>$project]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -59,7 +59,7 @@ class SprintController extends Controller
 
         $sprint->save();
 
-        return redirect()->route('projectdashboard');
+        return redirect( "projects/project$sprint->project_id");
     }
 
     /**
