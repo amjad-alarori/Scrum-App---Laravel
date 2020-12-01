@@ -52,9 +52,28 @@
         <br>
         <br>
 
+<<<
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        @foreach($posts as $post)
+                            <p><b>{{ $post->title }}</b></p>
+                            <p>
+                                {{ $post->body }}
+                            </p>
+                            <p><a href='delete/{{ $post->id }}'>Delete</a></p>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+        <br>
+        <br>
+
         <div class="row">
             <div class="col-md-4 mb-5">
                     <a class="nav-link" href="{{ route('post.create') }}">Create Post</a>
+                    <a class="nav-link" href="{{ route('post.create') }}">Create a requirement</a>
             </div>
         </div>
     <!-- /.container -->

@@ -21,7 +21,7 @@
     <div class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div class="w-full sm:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                <form method="POST" action="{{url('saveSprint')}}">
+                <form method="POST" action="{{route('sprint.store',['project'=>$project->id])}}">
                     @csrf
                     <div>
                         <label class="block font-medium text-sm text-gray-700" for="title">Sprint title</label>
@@ -59,9 +59,7 @@
                         @enderror
                     </div>
 
-                    <input type="hidden" name="projectId" value="{{$project->id}}">
-
-
+{{--                    <input type="hidden" name="projectId" value="{{$project->id}}">--}}
 
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">Create Sprint </button>

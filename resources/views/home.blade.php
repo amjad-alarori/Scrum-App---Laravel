@@ -91,7 +91,7 @@
                             necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Bekijken</a>
+                        <a href="/productbacklog" class="btn btn-primary">Bekijken</a>
                     </div>
                 </div>
             </div>

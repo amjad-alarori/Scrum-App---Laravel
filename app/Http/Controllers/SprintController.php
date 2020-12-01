@@ -14,9 +14,10 @@ class SprintController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @param Project $project
+     * @return void
      */
-    public function index(Sprint $sprint)
+    public function index(Project $project)
     {
 
 
@@ -26,27 +27,28 @@ class SprintController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
-        return view ('addsprint');
+        return view('addsprint', ['project'=>$project]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Project $project)
     {
         $request->validate([
             'title'=>['required', 'string'],
             'description'=>['string', 'nullable'],
             'startdate'=>['required', 'date', 'after:' .date('m/d/Y')],
             'enddate'=>['required', 'date','after:' .date('m/d/Y')],
-            'projectId'=>['required', 'integer'],
+//            'projectId'=>['required', 'integer'],
             ]);
 
         $sprint= New Sprint();
@@ -55,11 +57,11 @@ class SprintController extends Controller
         $sprint->description= isset($request['description'])?$request['description']:null;
         $sprint->startdate= $request['startdate'];
         $sprint->enddate= $request['enddate'];
-        $sprint->project_id= $request['projectId'];
+        $sprint->project_id= $project->id;
 
         $sprint->save();
 
-        return redirect()->route('projectdashboard');
+        return redirect(route('project.show',['project'=>$sprint->project_id]));
     }
 
     /**
@@ -68,7 +70,7 @@ class SprintController extends Controller
      * @param  \App\Models\Sprint  $sprint
      * @return \Illuminate\Http\Response
      */
-    public function show(Sprint $sprint)
+    public function show(Project $project, Sprint $sprint)
     {
         //
     }
@@ -76,10 +78,11 @@ class SprintController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sprint  $sprint
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param \App\Models\Sprint $sprint
+     * @return void
      */
-    public function edit(Sprint $sprint)
+    public function edit(Project $project, Sprint $sprint)
     {
         //
     }
@@ -87,11 +90,12 @@ class SprintController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sprint  $sprint
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Project $project
+     * @param \App\Models\Sprint $sprint
+     * @return void
      */
-    public function update(Request $request, Sprint $sprint)
+    public function update(Request $request,Project $project, Sprint $sprint)
     {
         //
     }
@@ -99,10 +103,11 @@ class SprintController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sprint  $sprint
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param \App\Models\Sprint $sprint
+     * @return void
      */
-    public function destroy(Sprint $sprint)
+    public function destroy(Project $project, Sprint $sprint)
     {
         //
     }

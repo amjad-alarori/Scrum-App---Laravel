@@ -85,7 +85,7 @@ class ProjectController extends Controller
 
         $scrumTeam->save();
 
-        return redirect()->Route('projects');
+        return redirect()->Route('project.index');
     }
 
     /**
@@ -98,6 +98,8 @@ class ProjectController extends Controller
     {
         $sprints=$project->sprints;
         $teammembers=$project->scrumTeam;
+
+//        (date("D m Y",strtotime($sprints[0]->startdate)));
 
         //        echo "This is page project ".$project->title;
 

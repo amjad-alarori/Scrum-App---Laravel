@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Models\Productbacklog;
+use App\Models\Post;
 
 class PagesController extends Controller
 {
@@ -13,6 +12,7 @@ class PagesController extends Controller
     {
         return view('home');
     }
+
 
     public function sprintDashboard()
     {
@@ -41,33 +41,27 @@ class PagesController extends Controller
 
     public function projectdashboard()
     {
-
         return view('projectdashboard');
     }
 
     public function addSprint(Project $project)
     {
+        return view('addsprint', ['project' => $project]);
+    }
 
+    public function dod()
+    {
+        $posts = Post::all();
+        return view('dod', compact('posts'));
+    }
 
-
-
-        return view('addsprint', ['project'=>$project]);
+    public function team()
+    {
+        return view ('team');
     }
 
     public function definitionOfDone()
     {
-
         return view('definitionofdone');
     }
-
-    public function productBacklog(){
-        $products = Productbacklog::all();
-
-        return view('productbacklog', ['products' => $products]);
-    }
-
-    public function dod(){
-        return view('dod');
-    }
-
 }

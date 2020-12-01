@@ -21,6 +21,7 @@
                     <th scope="col">User Story</th>
                     <th scope="col">Story Points</th>
                     <th scope="col">Acceptance Criteria</th>
+                    <th scope="col"></th>
 
                 </tr>
                 </thead>
@@ -31,7 +32,7 @@
 
                     <div class="card mb-3">
                         <div class="card-body">
-                            <form action="{{ route('productbacklogs.store') }}" method="post">
+                            <form action="{{ route('ProductBackLog.store',['project'=> $project->id]) }}" method="post">
                                 @csrf
                                 @method('post')
 
@@ -53,15 +54,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>User Story</label>
-                                    <input name="user_story" type="text" class="form-control"  placeholder="Enter User Story">
+                                    <textarea name="user_story" type="text" class="form-control"  placeholder="Enter User Story"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Story Points</label>
-                                    <input name="story_points" type="text" class="form-control"  placeholder="Enter Story Points">
+                                    <textarea name="story_points" type="text" class="form-control"  placeholder="Enter Story Points"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Acceptance Criteria</label>
-                                    <input name="acceptance_criteria" type="text" class="form-control"  placeholder="Acceptance Criteria">
+                                    <textarea name="acceptance_criteria" type="text" class="form-control"  placeholder="Acceptance Criteria"></textarea>
                                 </div>
 
                                     <input type="submit" class="btn btn-info" value="Save">
@@ -76,6 +77,7 @@
 
 
                 @foreach($products as $product)
+
                     <tr>
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->description }}</td>
@@ -84,13 +86,14 @@
                         <td>{{ $product->user_story }}</td>
                         <td>{{ $product->story_points }}</td>
                         <td>{{ $product->acceptance_criteria }}</td>
-
-
-                        </td>
-
+                        <td> <a class="btn btn-danger" href="{{route('ProductBackLog.destroy',['project'=>$project->id,'ProductBackLog' => $product->id])}}">Delete</a></td>
 
                     </tr>
+
+
                 @endforeach
+
+
                 </tbody>
             </table>
         </div>

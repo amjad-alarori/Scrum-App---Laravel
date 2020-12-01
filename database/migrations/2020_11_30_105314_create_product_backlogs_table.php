@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductbacklogsTable extends Migration
+class CreateProductBacklogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProductbacklogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('productbacklogs', function (Blueprint $table) {
+        Schema::create('product_backlogs', function (Blueprint $table) {
             $table->id();
             $table->text('title');
             $table->text('description');
@@ -33,6 +33,6 @@ class CreateProductbacklogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productbacklogs');
+        Schema::dropIfExists('product_backlogs');
     }
 }
