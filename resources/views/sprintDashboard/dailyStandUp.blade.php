@@ -52,7 +52,7 @@
         <x-jet-authentication-card>
             <x-jet-validation-errors class="mb-4"/>
 
-            <form method="POST" action="{{ route('register') }}">
+            <form class="form-signing" method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <div>
@@ -63,7 +63,7 @@
 
                 <div class="mt-4">
                     <x-jet-label for="datum" value="{{ __('Date') }}"/>
-                    <x-jet-input id="datum" class="block mt-1 w-full" type="datum" name="datum" required/>
+                    <x-jet-input id="datum" class="block mt-1 w-full" type="date" name="datum" required/>
                 </div>
 
                 <div class="mt-4">
@@ -93,6 +93,17 @@
                     </div>
                 </div>
             </form>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        @foreach($prints as $sprint)
+                            <p>{{$prints->date}}</p>
+                            <p>{{$prints->sprint_id}}</p>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
         </x-jet-authentication-card>
 
 

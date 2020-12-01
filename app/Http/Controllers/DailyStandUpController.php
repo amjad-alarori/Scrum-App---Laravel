@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Sprint;
 
 class DailyStandUpController extends Controller
 {
@@ -14,6 +15,10 @@ class DailyStandUpController extends Controller
     public function index()
     {
         //
+        $sprints = Sprint::all();
+        return view('sprints', [
+            'sprints' => $sprints
+        ]);
     }
 
     /**
