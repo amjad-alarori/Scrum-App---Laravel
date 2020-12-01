@@ -21,62 +21,37 @@ use App\Http\Controllers\ScrumTeamController;
 */
 
 
-    Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
-        Route::get('', [PagesController::class, 'home'])->name('home');
-    Route::get('/', [PagesController::class, 'home']);
-    Route::get('home', [PagesController::class, 'home']);
-    Route::get('dod', [PagesController::class, 'dod']);
+    Route::get('', [PagesController::class, 'home'])->name('home');
 
+
+    /**
+     * Onderstaande met Trisjean bespreken.
+     */
     Route::get('/post/create', 'PostController@create')->name('post.create');
     Route::post('/post/store', 'PostController@store')->name('post.store');
     Route::get('/posts', 'PostController@index')->name('posts');
-        Route::get('/', [PagesController::class, 'home']);
-        Route::get('home', [PagesController::class, 'home']);
-        Route::get('dod', [PagesController::class, 'dod']);
+    Route::get('dod', [PagesController::class, 'dod']);
 
-        Route::get('/post/create', 'PostController@create')->name('post.create');
-        Route::post('/post/store', 'PostController@store')->name('post.store');
-        Route::get('/posts', 'PostController@index')->name('posts');
-        Route::get('/post/show/{id}', 'PostController@show')->name('post.show');
-        Route::delete('delete/{id}', 'UserController@deletePost')->name('posts.delete');
+    Route::get('/post/show/{id}', 'PostController@show')->name('post.show');
+    Route::delete('delete/{id}', 'UserController@deletePost')->name('posts.delete');
 
 
 
-        Route::group(['middleware' => Authenticate::class], function () {
+
+
+    Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
-
-        /* ProjectController */
-//        Route::resource('project','ProjectController');
-        Route::get( 'projects/project{project}', [ProjectController::class, 'show']);
-        Route::get('projects',[ProjectController::class,'index'])->name('projects');
-        Route::post('project/save',[ProjectController::class,'store'])->name('saveProject');
-        Route::get('project/new',[ProjectController::class,'create'])->name('newProject');
+        Route::post('search/user', [ScrumTeamController::class, 'searchuser'])->name('searchuser');
 
 
-
-        /* ScrumTeamController */
-        Route::get('project/{project}/scrumTeam', [ScrumTeamController::class, 'index'])->name('scrumTeam');
-        Route::post('search/user',[ScrumTeamController::class,'searchuser'])->name('searchuser');
-        Route::post('scrumteam/store',[ScrumTeamController::class,'store'])->name('storeTeamMember');
-        Route::get('scrumteam/destroy/{scrumTeam}',[ScrumTeamController::class,'destroy'])->name('removeTeamMember');
-
-
-        /* SprintController */
-       // Route::get('sprintform', [SprintController::class, 'create']);
-        Route::post('saveSprint', [SprintController::class, 'store']);
-        Route::get('project/{project}/addsprint', [SprintController::class, 'create']);
-
-
-        Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard']);
-        Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp']);
-        Route::get('sprintReview', [PagesController::class, 'sprintReview']);
-        Route::get('scrumBoard', [PagesController::class, 'scrumBoard']);
-        Route::get('retrospective', [PagesController::class, 'retrospective']);
-     //  Route::get('project/{project}/addsprint', [PagesController::class, 'addSprint']);
-        Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
-        Route::get('productbacklog', [PagesController::class, 'productBacklog']);
-        Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
+        Route::resource('project', 'ProjectController')->only('index');
+        Route::prefix('project/{project}')->group(function () {
+            Route::resource('project', 'ProjectController')->except('index');
+            Route::resource('scrumTeam', 'ScrumTeamController');
+            Route::resource('sprint', 'SprintController');
+            Route::resource('ProductBackLog', 'ProductBackLogController');
 
 
 
@@ -85,7 +60,10 @@ use App\Http\Controllers\ScrumTeamController;
 
 
 
-//
+
+
+
+        });
     });
 
 //    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
