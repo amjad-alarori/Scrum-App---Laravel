@@ -53,19 +53,19 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('ProductBackLog', 'ProductBackLogController');
 
 
-            Route::get('sprintDashboard/{sprint}', [PagesController::class, 'sprintDashboard']);
-            Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp']);
-            Route::get('sprintReview', [PagesController::class, 'sprintReview']);
-            Route::get('scrumBoard', [PagesController::class, 'scrumBoard']);
-            Route::get('retrospective', [PagesController::class, 'retrospective']);
-            Route::get('project/{project}/addsprint', [PagesController::class, 'addSprint']);
-            Route::get('definitionofdone', [PagesController::class, 'definitionOfDone']);
-            Route::get('productbacklog', [PagesController::class, 'productBacklog']);
-            Route::get('algemeen', [PagesController::class, 'algemeenDashboard']);
-            Route::post('productbacklog/store', [ProductBackLogController::class, 'store'])->name('productbacklogs.store');
-            Route::get('sprintform', [SprintController::class, 'create']);
-            Route::get('saveProject', [SprintController::class, 'store']);
+
+
+
+
+
+
+
+
+
+        });
+    });
 
 //    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //        return view('home');
 //    })->name('dashboard');
+});
