@@ -20,8 +20,6 @@ class SprintController extends Controller
     public function index(Project $project)
     {
 
-
-
     }
 
     /**
@@ -32,42 +30,42 @@ class SprintController extends Controller
      */
     public function create(Project $project)
     {
-        return view('addsprint', ['project'=>$project]);
+        return view('addsprint', ['project' => $project]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, Project $project)
     {
         $request->validate([
-            'title'=>['required', 'string'],
-            'description'=>['string', 'nullable'],
-            'startdate'=>['required', 'date', 'after:' .date('m/d/Y')],
-            'enddate'=>['required', 'date','after:' .date('m/d/Y')],
+            'title' => ['required', 'string'],
+            'description' => ['string', 'nullable'],
+            'startdate' => ['required', 'date', 'after:' . date('m/d/Y')],
+//            'enddate'=>['required', 'date','after:' .date('m/d/Y')],
 //            'projectId'=>['required', 'integer'],
-            ]);
+        ]);
 
-        $sprint= New Sprint();
+        $sprint = new Sprint();
 
-        $sprint->title= isset($request['title'])?$request['title']:null;
-        $sprint->description= isset($request['description'])?$request['description']:null;
-        $sprint->startdate= $request['startdate'];
-        $sprint->enddate= $request['enddate'];
-        $sprint->project_id= $project->id;
+        $sprint->title = isset($request['title']) ? $request['title'] : null;
+        $sprint->description = isset($request['description']) ? $request['description'] : null;
+        $sprint->startdate = $request['startdate'];
+        $sprint->enddate = date('Y-m-d', strtotime($request['startdate'] . " + " . $project->sprintLength . " days"));
+        $sprint->project_id = $project->id;
 
         $sprint->save();
 
-        return redirect(route('project.show',['project'=>$sprint->project_id]));
+        return redirect(route('project.show', ['project' => $sprint->project_id]));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sprint  $sprint
+     * @param \App\Models\Sprint $sprint
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project, Sprint $sprint)
@@ -95,7 +93,7 @@ class SprintController extends Controller
      * @param \App\Models\Sprint $sprint
      * @return void
      */
-    public function update(Request $request,Project $project, Sprint $sprint)
+    public function update(Request $request, Project $project, Sprint $sprint)
     {
         //
     }
