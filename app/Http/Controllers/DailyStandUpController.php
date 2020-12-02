@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ScrumTeam;
+use http\Client\Curl\User;
+use App\Models\DailyStandUp;
+use Illuminate\Support\Facades\Auth;
 
 class DailyStandUpController extends Controller
 {
@@ -13,7 +17,16 @@ class DailyStandUpController extends Controller
      */
     public function index()
     {
-    //
+        $user = Auth::user();
+        $teams = $user->scrumTeams; /*array*/
+
+        $dailyStandUps = [];
+        foreach ($teams as $team):
+            $dailyStandUp = $team->$dailyStandUp;
+            $dailyStandUps[$dailyStandUp->id] = $dailyStandUp;
+        endforeach;
+
+        return view('dailyStandUps', ['dailyStandUps' => $dailyStandUps]);
     }
 
     /**

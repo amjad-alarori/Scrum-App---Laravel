@@ -51,7 +51,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBackLogController');
-
+            Route::resource('DailyStandUp', 'DailyStandUpController');
 
 
 
