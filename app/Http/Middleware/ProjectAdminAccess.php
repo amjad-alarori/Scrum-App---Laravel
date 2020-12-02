@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class ProjectAccess
+class ProjectAdminAccess
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,6 @@ class ProjectAccess
      */
     public function handle(Request $request, Closure $next)
     {
-
-        dd($request->route('project')->id, $request->route('project'));
         return $next($request);
     }
 }

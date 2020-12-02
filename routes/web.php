@@ -3,9 +3,6 @@
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ProductBackLogController;
-use App\Http\Controllers\SprintController;
 use App\Http\Controllers\ScrumTeamController;
 
 
@@ -38,6 +35,12 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBackLogController');
+
+
+
+
+
+
 
 
         });
