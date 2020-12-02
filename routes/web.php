@@ -40,20 +40,10 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('ProductBackLog', 'ProductBackLogController');
 
 
-
-
-
-
-        Route::prefix('project/{project}')->group(function () {
-            /** Graag de routes van alle controllers die een modle heeft hier onder schrijven */
-
-
-
-
         });
     });
+});
 
 //    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //        return view('home');
 //    })->name('dashboard');
-});
