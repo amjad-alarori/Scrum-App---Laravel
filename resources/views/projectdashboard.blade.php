@@ -139,7 +139,6 @@
                             {{date("d/m/Y", strtotime($sprint->enddate))}}
                         </div>
                         <div class="card-footer">
-
                             <a href="{{route('sprint.show',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-primary">Go to sprint</a>
                         </div>
                     </div>
