@@ -68,9 +68,11 @@ class SprintController extends Controller
      * @param \App\Models\Sprint $sprint
      * @return \Illuminate\Http\Response
      */
+
     public function show(Project $project, Sprint $sprint)
+
     {
-        //
+        return view ('sprintDashboard', ['sprints' =>$sprint]);
     }
 
     /**
@@ -108,5 +110,7 @@ class SprintController extends Controller
     public function destroy(Project $project, Sprint $sprint)
     {
         //
+
+
     }
 }
