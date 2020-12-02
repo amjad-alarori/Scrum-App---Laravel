@@ -29,11 +29,9 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
         Route::post('search/user', [ScrumTeamController::class, 'searchuser'])->name('searchuser');
-
 
         Route::resource('project', 'ProjectController');
         Route::prefix('project/{project}')->group(function () {
@@ -46,7 +44,8 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-
+        Route::prefix('project/{project}')->group(function () {
+            /** Graag de routes van alle controllers die een modle heeft hier onder schrijven */
 
 
 
