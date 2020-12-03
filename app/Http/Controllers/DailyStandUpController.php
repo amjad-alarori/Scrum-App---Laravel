@@ -19,9 +19,7 @@ class DailyStandUpController extends Controller
      */
     public function index()
     {
-
-
-        return view('dailyStandUps', ['dailyStandUps' => $dailyStandUps]);
+        return view('dailyStandUp', ['dailyStandUp' => $dailyStandUps]);
     }
 
     /**

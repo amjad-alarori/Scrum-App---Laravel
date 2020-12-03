@@ -7,6 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProductBackLogController;
 use App\Http\Controllers\SprintController;
 use App\Http\Controllers\ScrumTeamController;
+use App\Http\Controllers\DailyStandUpController;
 
 
 /*
@@ -21,11 +22,12 @@ use App\Http\Controllers\ScrumTeamController;
 */
 
 
-Route::group(['middleware' => 'web'], function () {
+    Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('', [PagesController::class, 'home'])->name('home');
-
-
+    Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
+    Route::get('sprintDashboard/dailyStandUp', [DailyStandUpController::class, 'create']);
+        //Route::get('dailyStandUp', [DailyStandUpController::class, 'dailyStandUp']);
 
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
@@ -37,8 +39,8 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBackLogController');
-            Route::resource('dailyStandUp', 'DailyStandUpController');
-
+            //Route::resource('dailyStandUp', 'DailyStandUpController');
+            //Route::resource('sprintDashboard', 'PagesController');
 
 
 
