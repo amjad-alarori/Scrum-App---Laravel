@@ -20,16 +20,12 @@ class ProjectAdminAccess
         $project = $request->route('project');
         $userId = Auth::id();
 
-
-
         $count = $project->scrumTeam()->where('userId', $userId)->where('roleId',1)->orwhere('roleId',2)->count();
 
         if ($count>0):
             return $next($request);
         endif;
-        return redirect()->back()->with('NoAccess', 'Access denied for that address');
+        return redirect()->back()->with('NoAccess', 'Access denied for that page');
 
-
-        return $next($request);
     }
 }

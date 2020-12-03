@@ -25,6 +25,6 @@ class ProjectAccess
         if ($count>0):
             return $next($request);
         endif;
-        return redirect()->back()->with('NoAccess', 'Access denied for that address');
+        return redirect()->back()->with('NoAccess', 'Access denied for that page');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\ProjectAccess;
+use App\Http\Middleware\ProjectAdminAccess;
 use App\Models\Project;
 use App\Models\ScrumRole;
 use App\Models\ScrumTeam;
@@ -14,6 +15,7 @@ class ProjectController extends Controller
     public function __construct()
     {
         $this->middleware(ProjectAccess::class)->only('show');
+        $this->middleware(ProjectAdminAccess::class)->except(['show', 'index']);
     }
 
     /**
