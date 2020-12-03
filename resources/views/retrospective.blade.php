@@ -24,12 +24,53 @@
     </header>
 
 
+    
     <div class="container">
-        <div class="row">
 
-                    <div class="column">What went Good? </div>
-                    <div class="column">Which things can be improved?</div>
-                    <div class="column"></div>
+
+        <div class="rowRetrospective">
+
+
+
+
+            <div class="columnRetrospective" id="retrospectiveGood">
+                <h3 class="columnRetrospectiveTitle">What went Good? </h3>
+                <br>
+
+
+                @foreach($retrospective as $comment)
+                    @if ($comment->category==1)
+
+                <div class="input-group overflow">
+                    <div class="card-body">
+                        <p class="card-text">{{$comment->text}}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{$comment->user->name}}
+                    </div>
+                </div>
+                    @endif
+                    @endforeach
+
+            </div>
+
+            <div class="columnRetrospective" id="retrospectiveImprove">
+             <h3 class="columnRetrospectiveTitle">Which things can be improved?</h3>
+                <br>
+             @foreach ($retrospective as $comment)
+             @if($comment->category==2)
+                        <div class="input-group overflow">
+                            <div class="card-body">
+                                <p class="card-text">{{$comment->text}}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                {{$comment->user->name}}
+                            </div>
+                 @endif
+                 @endforeach
+
+            </div>
+
 
 
         </div>

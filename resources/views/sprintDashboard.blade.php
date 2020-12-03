@@ -90,7 +90,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('retrospective.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'retrospective'=>$retrospective=1])}}" class="btn btn-primary">Go to Retrospective</a>
+                        <a href="{{route('retrospective.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-primary">Go to Retrospective</a>
                     </div>
                 </div>
             </div>
