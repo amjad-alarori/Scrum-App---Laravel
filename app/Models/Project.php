@@ -31,6 +31,11 @@ class Project extends Model
 
         return $this->hasMany(Sprint::class, 'project_id', 'id');
     }
+
+    public function defOfDones()
+    {
+        return $this->hasMany(DefOfDone::class, 'projectId','id');
+    }
 }
 
 

@@ -29,13 +29,13 @@ Route::group(['middleware' => 'web'], function () {
     /**
      * Onderstaande met Trisjean bespreken.
      */
-    Route::get('/post/create', 'PostController@create')->name('post.create');
-    Route::post('/post/store', 'PostController@store')->name('post.store');
-    Route::get('/posts', 'PostController@index')->name('posts');
-    Route::get('dod', [PagesController::class, 'dod']);
-
-    Route::get('/post/show/{id}', 'PostController@show')->name('post.show');
-    Route::delete('delete/{id}', 'UserController@deletePost')->name('posts.delete');
+//    Route::get('/post/create', 'PostController@create')->name('post.create');
+//    Route::post('/post/store', 'PostController@store')->name('post.store');
+//    Route::get('/posts', 'PostController@index')->name('posts');
+//    Route::get('dod', [PagesController::class, 'dod']);
+//
+//    Route::get('/post/show/{id}', 'PostController@show')->name('post.show');
+//    Route::delete('delete/{id}', 'UserController@deletePost')->name('posts.delete');
 
 
 
@@ -51,8 +51,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBackLogController');
-
-
+            Route::resource('defofdone','DefOfDoneController');
 
 
 

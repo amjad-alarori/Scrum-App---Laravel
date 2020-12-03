@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-header">Create a Definition of Done requirement</div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('post.store') }}">
+                        <form method="post" action="{{ route('DefOfDone.store') }}">
                             <div class="form-group">
                                 @csrf
                                 <label class="label">Requirement Title: </label>
