@@ -3,9 +3,6 @@
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ProductBackLogController;
-use App\Http\Controllers\SprintController;
 use App\Http\Controllers\ScrumTeamController;
 
 
@@ -29,26 +26,31 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
         Route::post('search/user', [ScrumTeamController::class, 'searchuser'])->name('searchuser');
-
 
         Route::resource('project', 'ProjectController');
         Route::prefix('project/{project}')->group(function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBacklogController');
+
+
+
+
+
          });
 
         Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
+
+
         });
     });
+});
 
 //    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //        return view('home');
 //    })->name('dashboard');
-});

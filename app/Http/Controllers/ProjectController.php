@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ProjectAccess;
+use App\Http\Middleware\ProjectAdminAccess;
 use App\Models\Project;
 use App\Models\ScrumRole;
 use App\Models\ScrumTeam;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(ProjectAccess::class)->only('show');
+        $this->middleware(ProjectAdminAccess::class)->except(['show', 'index']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -98,10 +105,6 @@ class ProjectController extends Controller
     {
         $sprints=$project->sprints;
         $teammembers=$project->scrumTeam;
-
-//        (date("D m Y",strtotime($sprints[0]->startdate)));
-
-        //        echo "This is page project ".$project->title;
 
         return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);
     }
