@@ -66,11 +66,13 @@ class SprintController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Sprint $sprint
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
+
     public function show(Project $project, Sprint $sprint)
+
     {
-        //
+        return view ('sprintDashboard', ['sprint' =>$sprint, 'project'=>$project]);
     }
 
     /**
@@ -108,5 +110,7 @@ class SprintController extends Controller
     public function destroy(Project $project, Sprint $sprint)
     {
         //
+
+
     }
 }
