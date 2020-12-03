@@ -51,7 +51,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/dailyStandUp" class="btn btn-primary">Go to Daily stand up</a>
+                        <a href="{{route('dailyStandUp.create')}}" class="btn btn-primary">Go to Daily stand up</a>
                     </div>
                 </div>
             </div>

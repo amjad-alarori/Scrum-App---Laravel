@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Sprint;
 use Illuminate\Http\Request;
 use App\Models\ScrumTeam;
 use http\Client\Curl\User;
@@ -17,14 +19,7 @@ class DailyStandUpController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $teams = $user->scrumTeams; /*array*/
 
-        $dailyStandUps = [];
-        foreach ($teams as $team):
-            $dailyStandUp = $team->$dailyStandUp;
-            $dailyStandUps[$dailyStandUp->id] = $dailyStandUp;
-        endforeach;
 
         return view('dailyStandUps', ['dailyStandUps' => $dailyStandUps]);
     }
@@ -36,7 +31,8 @@ class DailyStandUpController extends Controller
      */
     public function create()
     {
-        //
+        return view('sprintDashboard/dailyStandUp');
+
     }
 
     /**
@@ -45,9 +41,28 @@ class DailyStandUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Sprint $sprint, User $user, Project $project)
     {
-        //
+        $request->validate(['yesterday'=>['required', 'string'],
+           'today'=>['required', 'string'],
+            'challenge'=>['required', 'string']]);
+
+
+        $dailyStandUp = new DailyStandUp();
+
+        $dailyStandUp->yesterday = $request['yesterday'];
+        $dailyStandUp->today = $request['today'];
+        $dailyStandUp->challenge = $request['challenge'];
+        $dailyStandUp->sprint_id = $sprint->id;
+        $dailyStandUp->user_id = $user->id;
+
+        $dailyStandUp->save();
+
+        return redirect(route('dailyStandUp.index', ['project'=>$project->id, 'sprint'=>$sprint->id]));
+
+
+
+
     }
 
     /**

@@ -61,10 +61,7 @@
                                  autocomplete="name"/>
                 </div>
 
-                <div class="mt-4">
-                    <x-jet-label for="datum" value="{{ __('Date') }}"/>
-                    <x-jet-input id="datum" class="block mt-1 w-full" type="datum" name="datum" required/>
-                </div>
+
 
                 <div class="mt-4">
                     <x-jet-label for="dailyStandUp" value="{{ __('What did I do yesterday?') }}"/>
