@@ -15,14 +15,14 @@ class CreateDailyStandUpsTable extends Migration
     {
         Schema::create('daily_stand_ups', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->date('date');
+
             $table->text('yesterday');
             $table->text('today');
             $table->text('challenge');
             $table->timestamps();
-            $table->unsignedBigInteger('sprint_id');
-            $table->foreign('sprint_id')->references('id')->on('sprints');
+
+            $table->foreignId('sprint_id')->constrained('sprints');
+            $table->foreignId('user_id')->constrained('users');
         });
     }
 

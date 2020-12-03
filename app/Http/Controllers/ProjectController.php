@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ProjectAccess;
+use App\Http\Middleware\ProjectAdminAccess;
 use App\Models\Project;
 use App\Models\ScrumRole;
 use App\Models\ScrumTeam;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(ProjectAccess::class)->only('show');
+        $this->middleware(ProjectAdminAccess::class)->except(['show', 'index']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,10 +26,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $teams = $user->scrumTeams; /*array*/
+        $user = Auth::user(); //user(zelfverzonnen woord/variable)= de ingelogde user volgens Auth(gemaakt door Laravel)
+        $teams = $user->scrumTeams; /*array*/ //teams(verzonnen woord als variable) = de user ophalen uit de databasetabel waar hij maar voorkomt als gebruiker(want een user kan in meerdere scrumteeams zitten) en in een array aanbienden.
 
-        $projects = [];
+        $projects = []; //projects = de user met zijn hele hebben en houden uit de database.
         foreach ($teams as $team):
             $project = $team->project;
             $projects[$project->id] = $project;
@@ -98,10 +105,6 @@ class ProjectController extends Controller
     {
         $sprints=$project->sprints;
         $teammembers=$project->scrumTeam;
-
-//        (date("D m Y",strtotime($sprints[0]->startdate)));
-
-        //        echo "This is page project ".$project->title;
 
         return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);
     }
