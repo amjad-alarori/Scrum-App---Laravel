@@ -15,5 +15,11 @@ class Sprint extends Model
     {
 
         return $this->belongsTo(Project::class, 'project_id', 'id');
+
+    }
+
+    public function retrospective()
+    {
+        return $this->hasMany(Retrospective::class, 'sprint_id', 'id');
     }
 }
