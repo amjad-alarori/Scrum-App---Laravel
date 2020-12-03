@@ -17,6 +17,8 @@ class ProductBacklogController extends Controller
     public function index(Project $project)
     {
         $products = Productbacklog::query()->where('ProjectId','=',$project->id);
+//        $products = Productbacklog::all();
+
 
         return view('productbacklog', ['products' => $products, 'project'=>$project]);
     }
@@ -40,16 +42,18 @@ class ProductBacklogController extends Controller
      */
     public function store(Request $request, Project $project)
     {
+
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['string', 'nullable'],
-            'priority' => ['string', 'nullable'],
-            'business_value' => ['string', 'nullable'],
+            'priority' => ['integer', 'nullable'],
+            'business_value' => ['integer', 'nullable'],
             'user_story' => ['string', 'nullable'],
-            'story_points' => ['string', 'nullable'],
+            'story_points' => ['integer', 'nullable'],
             'acceptance_criteria' => ['string', 'nullable'],
-            'projectId'=>['required', 'integer'],
+
         ]);
+
 
         $product = new Productbacklog();
         $product->title = $request->title;
