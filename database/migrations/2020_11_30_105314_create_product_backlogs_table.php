@@ -18,9 +18,9 @@ class CreateProductBacklogsTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->text('priority');
-            $table->text('business_value');
+            $table->integer('business_value');
             $table->text('user_story');
-            $table->text('story_points');
+            $table->integer('story_points');
             $table->text('acceptance_criteria');
             $table->foreignId('ProjectId')->constrained('projects');
             $table->timestamps();

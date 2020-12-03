@@ -39,7 +39,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::prefix('project/{project}')->group(function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
-            Route::resource('ProductBackLog', 'ProductBackLogController');
+            Route::resource('ProductBackLog', 'ProductBacklogController');
 
 
 

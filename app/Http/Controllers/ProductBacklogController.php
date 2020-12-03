@@ -48,6 +48,7 @@ class ProductBacklogController extends Controller
             'user_story' => ['string', 'nullable'],
             'story_points' => ['string', 'nullable'],
             'acceptance_criteria' => ['string', 'nullable'],
+            'projectId'=>['required', 'integer'],
         ]);
 
         $product = new Productbacklog();
@@ -57,13 +58,17 @@ class ProductBacklogController extends Controller
         $product->business_value = $request->business_value;
         $product->user_story = $request->user_story;
         $product->story_points = $request->story_points;
+        $product->project_id = $project->id;
         $product->acceptance_criteria = $request->acceptance_criteria;
+
+
+
 
         $product->save();
 
         return redirect()->back()->with('sucess', 'inserted successfually');
-    }
 
+    }
     /**
      * Display the specified resource.
      *

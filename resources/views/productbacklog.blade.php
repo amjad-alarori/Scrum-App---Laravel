@@ -25,6 +25,22 @@
 
                 </tr>
                 </thead>
+
+                @foreach($products as $product)
+
+                    <tr>
+                        <td>{{ $product->title }}</td>
+                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->priority }}</td>
+                        <td>{{ $product->business_value }}</td>
+                        <td>{{ $product->user_story }}</td>
+                        <td>{{ $product->story_points }}</td>
+                        <td>{{ $product->acceptance_criteria }}</td>
+                        <td> <a class="btn btn-danger" href="{{route('ProductBackLog.destroy',['project'=>$project->id,'ProductBackLog' => $product->id])}}">Delete</a></td>
+
+                    </tr>
+                @endforeach
+
                 <tbody>
 
 
@@ -75,23 +91,6 @@
 
 
 
-
-                @foreach($products as $product)
-
-                    <tr>
-                        <td>{{ $product->title }}</td>
-                        <td>{{ $product->description }}</td>
-                        <td>{{ $product->priority }}</td>
-                        <td>{{ $product->business_value }}</td>
-                        <td>{{ $product->user_story }}</td>
-                        <td>{{ $product->story_points }}</td>
-                        <td>{{ $product->acceptance_criteria }}</td>
-                        <td> <a class="btn btn-danger" href="{{route('ProductBackLog.destroy',['project'=>$project->id,'ProductBackLog' => $product->id])}}">Delete</a></td>
-
-                    </tr>
-
-
-                @endforeach
 
 
                 </tbody>
