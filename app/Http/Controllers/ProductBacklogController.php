@@ -16,7 +16,7 @@ class ProductBacklogController extends Controller
      */
     public function index(Project $project)
     {
-        $products = Productbacklog::query()->where('ProjectId','=',$project->id);
+        $products = Productbacklog::query()->where('project_id','=',$project->id)->get();
 //        $products = Productbacklog::all();
 
 
