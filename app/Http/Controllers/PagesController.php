@@ -19,11 +19,6 @@ class PagesController extends Controller
         return view('sprintDashboard');
     }
 
-    public function dailyStandUp()
-    {
-        return view('sprintDashboard/dailyStandUp');
-    }
-
     public function sprintReview()
     {
         return view('sprintDashboard/sprintReview');

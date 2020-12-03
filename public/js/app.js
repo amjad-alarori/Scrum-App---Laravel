@@ -19531,8 +19531,8 @@ if (( false ? undefined : _typeof(module)) === 'object') {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Code\scrumapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Code\scrumapp\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\Ghislaine\code\scrumapp1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Ghislaine\code\scrumapp1\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
