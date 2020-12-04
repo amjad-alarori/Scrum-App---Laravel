@@ -13,13 +13,19 @@ class PagesController extends Controller
         return view('home');
     }
 
-
     public function sprintDashboard()
     {
         return view('sprintDashboard');
     }
 
+    public function dailyStandUp()
+    {
+        return view('sprintDashboard/dailyStandUp');
+    }
+
+
     public function sprintReview()
+
     {
         return view('sprintDashboard/sprintReview');
     }

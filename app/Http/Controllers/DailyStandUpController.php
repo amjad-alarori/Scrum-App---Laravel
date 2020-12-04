@@ -19,9 +19,7 @@ class DailyStandUpController extends Controller
      */
     public function index()
     {
-
-
-        return view('dailyStandUps', ['dailyStandUps' => $dailyStandUps]);
+        return view('dailyStandUp', ['dailyStandUp' => $dailyStandUps]);
     }
 
     /**
@@ -31,7 +29,7 @@ class DailyStandUpController extends Controller
      */
     public function create()
     {
-        return view('sprintDashboard/dailyStandUp');
+        return view('dailyStandUpForm');
 
     }
 
