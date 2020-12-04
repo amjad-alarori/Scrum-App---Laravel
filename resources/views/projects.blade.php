@@ -49,7 +49,7 @@
                                 </ul>
                             </div>
                             <div class="col-lg-2">
-                                <a class="btn float-right bg-success w-75 ml-5 my-1"
+                                <a class="btn float-right bg-success bg-darken-5 w-75 ml-5 my-1"
                                    href="{{route('project.show',['project'=>$project['project']])}}">
                                     Go to</a>
                                 @if($project['role']->id != 3)
@@ -59,7 +59,6 @@
                                     <a class="btn float-right bg-danger w-75 ml-5 my-1"
                                         href="{{route('project.destroy',['project'=>$project['project']])}}">
                                         Delete</a>
-
                                 @endif
                             </div>
                         </div>

@@ -30,16 +30,17 @@
                                     @if($fullPermission)
                                         <div class="h-25">
                                             <div class="float-right">
-                                                <form action="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}">
-                                                        @method('DELETE')
-                                                        @csrf
-{{--                                                    <input type="hidden" name="_method" value="DELETE">--}}
-                                                        <button type="submit"
-                                                                class="btn btn-primary stretched-link float-right w-100">
-                                                            Remove
-                                                        </button>
+                                                <form method="post"
+                                                    action="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    {{--<input type="hidden" name="_method" value="DELETE">--}}
+                                                    <button type="submit"
+                                                            class="btn btn-primary stretched-link float-right w-100">
+                                                        Remove
+                                                    </button>
                                                 </form>
-{{--                                                <a href="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}" class="btn btn-primary stretched-link float-right w-100">Remove</a>--}}
+                                                {{--<a href="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}" class="btn btn-primary stretched-link float-right w-100">Remove</a>--}}
                                             </div>
                                         </div>
                                     @endif
