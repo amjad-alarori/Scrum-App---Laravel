@@ -32,12 +32,11 @@ class ProjectController extends Controller
         $projects = []; //projects = de user met zijn hele hebben en houden uit de database.
         foreach ($teams as $team):
             $project = $team->project;
-            $projects[$project->id] = $project;
+            $role = $team->scrumRole;
+            array_push($projects, ['project'=>$project, 'role'=> $role]);
         endforeach;
 
-
         return view('projects', ['projects' => $projects]);
-
     }
 
     /**
@@ -117,7 +116,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        dd("edit", $project);
     }
 
     /**
