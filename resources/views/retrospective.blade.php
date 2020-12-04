@@ -27,6 +27,8 @@
 
     <div class="container">
 
+        <a href="{{route('retrospective.create',['project'=>$project->id, 'sprint'=> $sprint->id, 'user'=>$user->id])}}" class="btn btn-primary">Add a new retrospective comment</a>
+
 
         <div class="rowRetrospective">
 
@@ -46,7 +48,7 @@
                         <p class="card-text">{{$comment->text}}</p>
                     </div>
                     <div class="card-footer text-muted">
-                        {{$comment->user->name}}
+                       Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
                     </div>
                 </div>
                     @endif
@@ -70,6 +72,7 @@
                  @endforeach
 
             </div>
+
 
 
 

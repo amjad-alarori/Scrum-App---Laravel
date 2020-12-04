@@ -31,11 +31,11 @@ class RetrospectiveController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project, Sprint $sprint, User $user)
     {
-        //
+        return view('addretrospective', ['project'=>$project, 'sprint'=>$sprint, 'user'=>$user]);
     }
 
     /**
