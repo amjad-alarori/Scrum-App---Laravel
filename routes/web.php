@@ -18,7 +18,6 @@ use App\Http\Controllers\DailyStandUpController;
 |
 */
 
-
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('', [PagesController::class, 'home'])->name('home');
@@ -38,7 +37,12 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBacklogController');
             Route::resource('defofdone', 'DefOfDoneController');
-        });
+
+
+
+
+
+         });
 
         Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
             Route::resource('retrospective', 'RetrospectiveController');
@@ -47,6 +51,4 @@ Route::group(['middleware' => 'web'], function () {
         });
     });
 });
-//    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//        return view('home');
-//    })->name('dashboard');
+//    Route::middleware(['auth:sanctum', 'verified'])->get('/project', [ProjectController::class,'index'])->name('dashboard');

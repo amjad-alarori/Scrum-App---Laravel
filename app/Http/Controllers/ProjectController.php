@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function __construct()
     {
         $this->middleware(ProjectAccess::class)->only('show');
-        $this->middleware(ProjectAdminAccess::class)->except(['show', 'index']);
+        $this->middleware(ProjectAdminAccess::class)->except(['show', 'index', 'create', 'store']);
     }
 
     /**
@@ -32,12 +32,11 @@ class ProjectController extends Controller
         $projects = [];
         foreach ($teams as $team):
             $project = $team->project;
-            $projects[$project->id] = $project;
+            $role = $team->scrumRole;
+            array_push($projects, ['project'=>$project, 'role'=> $role]);
         endforeach;
 
-
         return view('projects', ['projects' => $projects]);
-
     }
 
     /**
@@ -113,11 +112,11 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Project $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit(Project $project)
     {
-        //
+        return view('projectForm',['project'=>$project]);
     }
 
     /**
@@ -125,21 +124,41 @@ class ProjectController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Project $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['string', 'nullable'],
+            'mission' => ['string', 'nullable'],
+            'vision' => ['string', 'nullable'],
+            'deadline' => ['date', 'after:' . date('m/d/Y',$project->createdat)],
+            'sprintLength' => ['integer', 'min:1']
+        ]);
+
+        $project->title = $request['title'];
+        $project->description = isset($request['description']) ? $request['description'] : null;
+        $project->mission = isset($request['mission']) ? $request['mission'] : null;
+        $project->vision = isset($request['vision']) ? $request['vision'] : null;
+        $project->deadline = isset($request['deadline']) ? $request['deadline'] : null;
+        $project->deadline = $request['deadline'];
+        $project->sprintLength = $request['sprintLength'];
+
+        $project->update();
+
+        return redirect()->Route('project.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Project $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect(route("project.index"));
     }
 }
