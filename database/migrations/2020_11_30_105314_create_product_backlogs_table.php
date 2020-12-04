@@ -17,11 +17,13 @@ class CreateProductBacklogsTable extends Migration
             $table->id();
             $table->text('title');
             $table->text('description');
-            $table->text('priority');
-            $table->text('business_value');
+            $table->integer('priority');
+            $table->integer('business_value');
             $table->text('user_story');
-            $table->text('story_points');
+            $table->integer('story_points');
             $table->text('acceptance_criteria');
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
         });
     }

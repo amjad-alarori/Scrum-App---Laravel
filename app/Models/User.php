@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(ScrumTeam::class,'userId','id');
     }
+
+    public function retrospective()
+    {
+        return $this->hasMany(Retrospective::class, 'user_id', 'id');
+    }
 }

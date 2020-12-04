@@ -13,10 +13,10 @@
             <div class="row h-100 align-items-center">
                 <div class="col-lg-12">
 
-                    {{--    @foreach ($project as $projectinfo): --}}
 
-                    <h1 class="display-4 text-white mt-5 mb-2"> {{--{{$projectinfo['title']}} --}} Project 1</h1>
-                    {{--    @endforeach --}}
+
+                    <h1 class="display-4 text-white mt-5 mb-2"> {{$project->title}}</h1>
+
 
                 </div>
             </div>
@@ -31,16 +31,15 @@
                 <h2>Project information</h2>
                 <hr>
 
-                {{--   @foreach ($project as $projectinfo): --}}
-                <p> {{--{{$projectinfo->description}} --}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-                    deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta
-                    unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur
-                    magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt
-                    voluptate. Voluptatum.</p>
-                {{--  @endforeach --}}
+
+                <p>{{$project->description}}</p>
                 <br>
-                <a class="btn btn-primary" href="#">More info</a>
+                <br>
+                Mission: {{$project->mission}}
+                <br>
+                Vision: {{$project->vision}}
+
+
             </div>
             <div class="col-md-4 mb-5">
                 <h2>Teammembers</h2>
@@ -79,7 +78,9 @@
                         <p class="card-text">Assemble new scrum teams or change existing ones</p>
                     </div>
                     <div class="card-footer">
+
                         <a href="{{route('scrumTeam.index',['project' => $project->id])}}" class="btn btn-primary">Go to
+
                             teams</a>
                     </div>
                 </div>
@@ -126,21 +127,22 @@
 
                         <div class="card-body">
                             <h1 style="font-weight: bold" class="card-title">{{$sprint->title}}</h1>
+                            <hr>
                             <p class="card-text">{{$sprint->description}}</p>
                             <br>
                             <br>
-                            Startdate:
+                            <hr>
+                            Startdate:  {{date("d/m/Y",strtotime($sprint->startdate))}}
                             <br>
-                            {{date("d/m/Y",strtotime($sprint->startdate))}}
-                            <br>
-                            <br>
-                            Enddate:
-                            <br>
-                            {{date("d/m/Y", strtotime($sprint->enddate))}}
+                            Enddate:    {{date("d/m/Y", strtotime($sprint->enddate))}}
                         </div>
                         <div class="card-footer">
 
                             <a href="{{route('sprint.show',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-primary">Go to sprint</a>
+                            <a href="{{route('sprint.update',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-warning">Edit sprint</a>
+                            <a href="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-danger">Delete sprint</a>
+
+
                         </div>
                     </div>
                 </div>

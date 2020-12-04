@@ -31,6 +31,12 @@ class Project extends Model
 
         return $this->hasMany(Sprint::class, 'project_id', 'id');
     }
+
+    public function backlogElements()
+    {
+        return $this->hasMany(ProductBacklog::class,'ProjectId' ,'id');
+
+    }
 }
 
 

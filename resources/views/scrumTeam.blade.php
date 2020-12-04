@@ -30,14 +30,14 @@
                                     @if($fullPermission)
                                         <div class="h-25">
                                             <div class="float-right">
-                                                <form method="post"
-                                                      action="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}">
-                                                    @csrf
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit"
-                                                            class="btn btn-primary stretched-link float-right w-100">
-                                                        Remove
-                                                    </button>
+                                                <form action="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}">
+                                                        @method('DELETE')
+                                                        @csrf
+{{--                                                    <input type="hidden" name="_method" value="DELETE">--}}
+                                                        <button type="submit"
+                                                                class="btn btn-primary stretched-link float-right w-100">
+                                                            Remove
+                                                        </button>
                                                 </form>
 {{--                                                <a href="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}" class="btn btn-primary stretched-link float-right w-100">Remove</a>--}}
                                             </div>
@@ -107,7 +107,6 @@
 
 @section('Script')
     @if($fullPermission)
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
         <script>
             function dangerAlert(parentObj) {
                 $(parentObj).prepend('<div class="alert alert-danger" id="searcherror" role="alert">' + messagetxt + '</div>');
@@ -138,11 +137,10 @@
                     });
                 });
 
-                $("#destroy-error").delay(3000).slideUp(800, function () {
+                $("#destroy-error").delay(5000).slideUp(800, function () {
                     $(this).remove();
                 });
-            })
-            ;
+            });
         </script>
     @endif
 @endsection
