@@ -25,8 +25,10 @@ use App\Http\Controllers\DailyStandUpController;
     Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('', [PagesController::class, 'home'])->name('home');
+    //tijdelijke routes om snelle toegang te krijgen tot view
     Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
-    Route::get('sprintDashboard/dailyStandUp', [DailyStandUpController::class, 'create']);
+    Route::get('sprintDashboard/dailyStandUp', [PagesController::class, 'dailyStandUp']);
+    Route::get('dailyStandUpForm', [DailyStandUpController::class, 'create']);
         //Route::get('dailyStandUp', [DailyStandUpController::class, 'dailyStandUp']);
 
     Route::group(['middleware' => Authenticate::class], function () {

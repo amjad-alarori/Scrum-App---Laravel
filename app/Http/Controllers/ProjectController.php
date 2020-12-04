@@ -19,10 +19,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $user = Auth::user(); //user(zelfverzonnen woord/variable)= de ingelogde user volgens Auth(gemaakt door Laravel)
-        $teams = $user->scrumTeams; /*array*/ //teams(verzonnen woord als variable) = de user ophalen uit de databasetabel waar hij maar voorkomt als gebruiker(want een user kan in meerdere scrumteeams zitten) en in een array aanbienden.
+        $user = Auth::user();
+        $teams = $user->scrumTeams; /*array*/
 
-        $projects = []; //projects = de user met zijn hele hebben en houden uit de database.
+        $projects = [];
         foreach ($teams as $team):
             $project = $team->project;
             $projects[$project->id] = $project;

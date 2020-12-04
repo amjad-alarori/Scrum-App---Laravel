@@ -29,7 +29,7 @@ class DailyStandUpController extends Controller
      */
     public function create()
     {
-        return view('sprintDashboard/dailyStandUp');
+        return view('dailyStandUpForm');
 
     }
 
