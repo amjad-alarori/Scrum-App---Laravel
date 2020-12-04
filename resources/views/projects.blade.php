@@ -45,7 +45,8 @@
                                     <li>Vision: {{$project['project']->vision}}</li>
                                     <li>Deadline: {{date('Y M d', strtotime($project['project']->deadline))}}</li>
                                     <li>Sprint length: {{$project['project']->sprintLength}} days</li>
-                                    <li>Your role: <span class="font-weight-bold">{{$project['role']->title}}</span></li>
+                                    <li>Your role: <span class="font-weight-bold">{{$project['role']->title}}</span>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-lg-2">
@@ -54,11 +55,15 @@
                                     Go to</a>
                                 @if($project['role']->id != 3)
                                     <a class="btn float-right bg-warning w-75 ml-5 my-1"
-                                        href="{{route('project.edit',['project'=>$project['project']])}}">
+                                       href="{{route('project.edit',['project'=>$project['project']])}}">
                                         Edit</a>
-                                    <a class="btn float-right bg-danger w-75 ml-5 my-1"
-                                        href="{{route('project.destroy',['project'=>$project['project']])}}">
-                                        Delete</a>
+                                    <form method="post"
+                                          action="{{route('project.destroy',['project'=>$project['project']])}}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn float-right bg-danger w-75 ml-5 my-1">Delete
+                                        </button>
+                                    </form>
                                 @endif
                             </div>
                         </div>
