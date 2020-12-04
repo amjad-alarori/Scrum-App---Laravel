@@ -46,8 +46,7 @@ class PagesController extends Controller
 
     public function dod()
     {
-        $posts = Post::all();
-        return view('dod', compact('posts'));
+        return view('dod');
     }
 
     public function team()

@@ -24,8 +24,6 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-
-
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
         Route::post('search/user', [ScrumTeamController::class, 'searchuser'])->name('searchuser');
@@ -35,6 +33,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
             Route::resource('ProductBackLog', 'ProductBacklogController');
+            Route::resource('defofdone','DefOfDoneController');
 
 
 
