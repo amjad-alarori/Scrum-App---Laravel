@@ -29,7 +29,7 @@ class DefOfDoneController extends Controller
      */
     public function create(Project $project)
     {
-        return view('defOfDoneReq', ['project'=>$project]);
+        return view('defofdonereq', ['project'=>$project]);
     }
 
     /**
