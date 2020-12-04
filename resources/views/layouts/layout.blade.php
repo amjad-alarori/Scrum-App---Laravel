@@ -40,7 +40,7 @@
 
                 @auth
                     <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link {{request()->url()==route('project.index')?'active':''}}" href="{{route('project.index')}}">Projects <span class="sr-only">(current)</span></a>
                     </li>
                 @endif
             </ul>

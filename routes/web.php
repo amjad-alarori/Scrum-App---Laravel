@@ -17,7 +17,6 @@ use App\Http\Controllers\ScrumTeamController;
 |
 */
 
-
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('', [PagesController::class, 'home'])->name('home');
@@ -50,6 +49,4 @@ Route::group(['middleware' => 'web'], function () {
     });
 });
 
-//    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//        return view('home');
-//    })->name('dashboard');
+//    Route::middleware(['auth:sanctum', 'verified'])->get('/project', [ProjectController::class,'index'])->name('dashboard');
