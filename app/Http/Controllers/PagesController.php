@@ -24,11 +24,11 @@ class PagesController extends Controller
     }
 
 
-    public function sprintReview()
-
-    {
-        return view('sprintDashboard/sprintReview');
-    }
+//    public function sprintReview()
+//
+//    {
+//        return view('sprintDashboard/sprintReview');
+//    }
 
     public function scrumBoard()
     {
