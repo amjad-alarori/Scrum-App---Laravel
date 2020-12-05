@@ -1,6 +1,7 @@
-html{
+html {
     height: 100%;
 }
+
 body {
     padding-top: 5rem;
     background-color: #d2d6dc45;
@@ -12,7 +13,8 @@ body {
     max-width: 330px;
     margin: 80px auto 0;
 }
-.scrum-team-member{
+
+.scrum-team-member {
     height: 160px;
     width: 360px;
 }
@@ -28,7 +30,7 @@ body {
 
 }
 
-.member-card-img{
+.member-card-img {
     width: 100%;
     height: 100%;
 }
@@ -43,4 +45,48 @@ body {
     content: "";
     display: table;
     clear: both;
+}
+
+.bg-olive {
+    background-color: #3d9970;
+}
+
+
+.tracking-in-expand-fwd {
+    -webkit-animation: tracking-in-expand-fwd 3s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s both;
+    animation: tracking-in-expand-fwd 3s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s both;
+}
+
+@-webkit-keyframes tracking-in-expand-fwd {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-700px);
+        transform: translateZ(-700px);
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-expand-fwd {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-700px);
+        transform: translateZ(-700px);
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
 }
