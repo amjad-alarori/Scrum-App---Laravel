@@ -51,10 +51,13 @@ body {
     background-color: #3d9970;
 }
 
-
 .tracking-in-expand-fwd {
     -webkit-animation: tracking-in-expand-fwd 3s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s both;
     animation: tracking-in-expand-fwd 3s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0.5s both;
+}
+.tracking-in-expand-fwd-delayed {
+    -webkit-animation: tracking-in-expand-fwd 3s cubic-bezier(0.215, 0.610, 0.355, 1.000) 4s both;
+    animation: tracking-in-expand-fwd 3s cubic-bezier(0.215, 0.610, 0.355, 1.000) 4s both;
 }
 
 @-webkit-keyframes tracking-in-expand-fwd {
