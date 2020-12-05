@@ -35,6 +35,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
             Route::resource('retrospective', 'RetrospectiveController');
+            Route::resource('review', 'ReviewController');
             //Route::resource('sprintDashboard', 'PagesController');
 
             //tijdelijke routes om snelle toegang te krijgen tot view
