@@ -86,48 +86,44 @@
     </div><br>
 
 
-
-<div class="card">
-        <table class="table">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Priority</th>
-                    <th scope="col">Business Value</th>
-                    <th scope="col">User Story</th>
-                    <th scope="col">Story Points</th>
-                    <th scope="col">Acceptance Criteria</th>
-                    <th scope="col"></th>
-
-                </tr>
-                </thead>
-        </table>
-
-</div>
+{{--     view --}}
 
 
 
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Project id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Business Value</th>
+            <th scope="col">User Story</th>
+            <th scope="col">Story Points</th>
+            <th scope="col">Acceptance Criteria</th>
+        </tr>
+        </thead>
+        <tbody>
 
-                @foreach($products as $product)
+        @foreach($products as $product)
+        <tr>
+            <th scope="row">{{ $product->project_id }}</th>
+            <td>{{ $product->title }}</td>
+            <td>{{ $product->description }}</td>
+            <td>{{ $product->priority }}</td>
+            <td>{{ $product->business_value }}</td>
+            <td>{{ $product->user_story }}</td>
+            <td>{{ $product->story_points }}</td>
+            <td>{{ $product->acceptance_criteria }}</td>
+            <td> <a class="btn btn-danger" href="{{route('ProductBackLog.destroy',['project'=>$project->id,'ProductBackLog' => $product->id])}}">Delete</a></td>
+        </tr>
 
+        </tbody>
+    </table>
 
-                            <table class="table">
-                                <tr>
-                                    <td>{{ $product->title }}</td>
-                                    <td>{{ $product->description }}</td>
-                                    <td>{{ $product->priority }}</td>
-                                    <td>{{ $product->business_value }}</td>
-                                    <td>{{ $product->user_story }}</td>
-                                    <td>{{ $product->story_points }}</td>
-                                    <td>{{ $product->acceptance_criteria }}</td>
-                                    <td> <a class="btn btn-danger" href="{{route('ProductBackLog.destroy',['project'=>$project->id,'ProductBackLog' => $product->id])}}">Delete</a></td>
-                                </tr>
-                            </table>
-
-
-                @endforeach
+    @endforeach
 @endsection
+
 
 
 
