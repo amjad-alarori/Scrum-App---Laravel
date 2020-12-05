@@ -13,7 +13,6 @@ class PagesController extends Controller
         return view('home');
     }
 
-
     public function sprintDashboard()
     {
         return view('sprintDashboard');
@@ -24,10 +23,12 @@ class PagesController extends Controller
         return view('sprintDashboard/dailyStandUp');
     }
 
-    public function sprintReview()
-    {
-        return view('sprintDashboard/sprintReview');
-    }
+
+//    public function sprintReview()
+//
+//    {
+//        return view('sprintDashboard/sprintReview');
+//    }
 
     public function scrumBoard()
     {
@@ -51,8 +52,7 @@ class PagesController extends Controller
 
     public function dod()
     {
-        $posts = Post::all();
-        return view('dod', compact('posts'));
+        return view('dod');
     }
 
     public function team()

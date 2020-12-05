@@ -40,7 +40,7 @@
 
                 @auth
                     <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link {{request()->url()==route('project.index')?'active':''}}" href="{{route('project.index')}}">Projects <span class="sr-only">(current)</span></a>
                     </li>
                 @endif
             </ul>
@@ -65,6 +65,15 @@
             </div>
         </div>
     </nav>
+    @if(session()->has('NoAccess'))
+        <div class="container">
+            <div class="alert alert-danger alert-dismissible m-3" id="noaccess-error">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{session('NoAccess')}}
+            </div>
+        </div>
+    @endif
+
     @yield('content')
 </div>
 </body>
@@ -80,6 +89,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#noaccess-error").delay(4000).slideUp(800, function () {
+            $(this).remove();
+        });
+    });
+</script>
 
 @yield('Script')
+
 </html>

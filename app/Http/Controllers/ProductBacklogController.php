@@ -16,7 +16,9 @@ class ProductBacklogController extends Controller
      */
     public function index(Project $project)
     {
-        $products = Productbacklog::query()->where('ProjectId','=',$project->id);
+        $products = Productbacklog::query()->where('project_id','=',$project->id)->get();
+//        $products = Productbacklog::all();
+
 
         return view('productbacklog', ['products' => $products, 'project'=>$project]);
     }
@@ -40,15 +42,18 @@ class ProductBacklogController extends Controller
      */
     public function store(Request $request, Project $project)
     {
+
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['string', 'nullable'],
-            'priority' => ['string', 'nullable'],
-            'business_value' => ['string', 'nullable'],
+            'priority' => ['integer', 'nullable'],
+            'business_value' => ['integer', 'nullable'],
             'user_story' => ['string', 'nullable'],
-            'story_points' => ['string', 'nullable'],
+            'story_points' => ['integer', 'nullable'],
             'acceptance_criteria' => ['string', 'nullable'],
+
         ]);
+
 
         $product = new Productbacklog();
         $product->title = $request->title;
@@ -57,14 +62,17 @@ class ProductBacklogController extends Controller
         $product->business_value = $request->business_value;
         $product->user_story = $request->user_story;
         $product->story_points = $request->story_points;
-        $product->ProjectId = $project->id;
+        $product->project_id = $project->id;
         $product->acceptance_criteria = $request->acceptance_criteria;
+
+
+
 
         $product->save();
 
         return redirect()->back()->with('sucess', 'inserted successfually');
-    }
 
+    }
     /**
      * Display the specified resource.
      *

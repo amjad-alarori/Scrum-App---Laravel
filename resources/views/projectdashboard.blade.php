@@ -5,150 +5,140 @@
 @endsection
 
 @section('content')
-
-
-    <!-- Header -->
     <header class="bg-primary py-5 mb-5">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-lg-12">
-
-                    {{--    @foreach ($project as $projectinfo): --}}
-
-                    <h1 class="display-4 text-white mt-5 mb-2"> {{--{{$projectinfo['title']}} --}} Project 1</h1>
-                    {{--    @endforeach --}}
-
+                    <h1 class="display-4 text-white mt-5 mb-2"> {{$project->title}}</h1>
                 </div>
             </div>
         </div>
     </header>
 
-
     <div class="container">
-
-        <div class="row">
-            <div class="col-md-8 mb-5">
-                <h2>Project information</h2>
-                <hr>
-
-                {{--   @foreach ($project as $projectinfo): --}}
-                <p> {{--{{$projectinfo->description}} --}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-                    deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta
-                    unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur
-                    magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt
-                    voluptate. Voluptatum.</p>
-                {{--  @endforeach --}}
-                <br>
-                <a class="btn btn-primary" href="#">More info</a>
+        <div class="row my-5">
+            <div class="col-md-5">
+                <div class="card rounded m-2">
+                    <div class="card-header h2">Project information</div>
+                    <div class="card-body">
+                        {{$project->description}}
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                Mission:<br/>
+                                Vision:<br/>
+                                Deadline:<br/>
+                                Sprint length:
+                            </div>
+                            <div class="col-6">
+                                {{$project->mission}}<br/>
+                                {{$project->vision}}<br/>
+                                {{date('d F Y',strtotime($project->deadline))}}<br/>
+                                {{$project->sprintLength}} days
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 mb-5">
-                <h2>Teammembers</h2>
-                <hr>
-                <address>
-                    @foreach ($teammembers as $teammember)
 
-                        <li>{{$teammember->user->name}}</li>
-
-                    @endforeach
-                </address>
-
+            <div class="col-md-7">
+                <div class="card w-100 m-2">
+                    <div class="row no-gutters card-header rounded">
+                        <div class="col-3">
+                            <img class="card-img p-2 rounded" src="{{ asset('images/scrumteam.jpg') }}"
+                                 alt="Scrum team members">
+                        </div>
+                        <div class="col-9">
+                            <div class="h5 inline-block mt-2">Scrum Team</div>
+                            <a href="{{route('scrumTeam.index',['project' => $project->id])}}"
+                               class="btn btn-primary float-right">Go to teams</a>
+                            <p class="card-text pt-3">Assemble new scrum teams or change existing ones.</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @foreach ($teammembers as $teammember)
+                            <li class="{{$teammember->user->id==Auth::id()?"font-weight-bold":""}}">{{$teammember->user->name . " (" . $teammember->scrumRole->title . ")"}}</li>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- /.row -->
 
         <div class="row">
-            <div class="col-md-3 mb-5">
+            <div class="col-md-6 mb-5">
                 <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/sprint toevoegen.jpg') }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Add a sprint</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque sequi doloribus.</p>
+                    <div class="card-img-top h-100">
+                        <img class="w-100 h-100 img-fluid mx-auto p-1" src="{{ asset('images/productbacklog.jpg') }}"
+                             alt="Product backlog">
                     </div>
-                    <div class="card-footer">
-                        <a href="{{route('sprint.create',['project' => $project->id])}}" class="btn btn-primary">Add sprint</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/scrumteam.jpg') }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Scrum Team</h4>
-                        <p class="card-text">Assemble new scrum teams or change existing ones</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{route('scrumTeam.index',['project' => $project->id])}}" class="btn btn-primary">Go to
-                            teams</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/dod.jpg') }}" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Definition of Done</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="/definitionofdone" class="btn btn-primary">Go to page</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-5">
-                <div class="card h-100">
-                    <img class="card-img-top" src="{{ asset('images/productbacklog.jpg') }}" alt="">
                     <div class="card-body">
                         <h4 class="card-title">Product Backlog</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
                             necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('ProductBackLog.index',['project'=>$project->id])}}" class="btn btn-primary">Go to page</a>
+                        <a href="{{route('ProductBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
+                            page</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-5">
+                <div class="card h-100">
+                    <div class="card-img-top h-100">
+                        <img class="w-100 h-100 img-fluid mx-auto p-1" src="{{asset('images/dod.jpg')}}" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Definition of Done</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
+                            necessitatibus neque.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{route('defofdone.index',['project'=>$project])}}" class="btn btn-primary">Go to
+                            page</a>
                     </div>
                 </div>
             </div>
         </div>
 
-
-        <h5 class="display-4 mt-5 mb-2">Sprints</h5>
-        <hr>
-        <br>
-        <br>
-
         <div class="row">
-            @foreach ($sprints as $sprint)
-               <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-
-                        <div class="card-body">
-                            <h1 style="font-weight: bold" class="card-title">{{$sprint->title}}</h1>
-                            <p class="card-text">{{$sprint->description}}</p>
-                            <br>
-                            <br>
-                            Startdate:
-                            <br>
-                            {{date("d/m/Y",strtotime($sprint->startdate))}}
-                            <br>
-                            <br>
-                            Enddate:
-                            <br>
-                            {{date("d/m/Y", strtotime($sprint->enddate))}}
-                        </div>
-                        <div class="card-footer">
-                            <a href="{{route('sprint.show',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-primary">Go to sprint</a>
-                        </div>
+            <div class="card w-100 m-2">
+                <div class="row no-gutters card-header rounded">
+                    <div class="col-2 col-md-1">
+                        <img class="card-img p-1 rounded" src="{{ asset('images/sprint toevoegen.jpg') }}"
+                             alt="Sprints">
+                    </div>
+                    <div class="col-10 col-md-11 d-flex align-items-center">
+                        <h4 class="card-title h5 inline-block mt-2">Sprints</h4>
+                        <a href="{{route('sprint.create',['project' => $project])}}" class="btn btn-primary ml-auto">Add
+                            sprint</a>
                     </div>
                 </div>
-
-        @endforeach
-
-
-        <!-- /.row -->
-
+                <div class="card-body">
+                    @foreach ($sprints as $sprint)
+                        <div class="col-md-4 mb-5">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h1 class="card-title h5 border-bottom border-secondary pb-2">{{$sprint->title}}</h1>
+                                    <p class="card-text py-3 border-bottom border-secondary">{{$sprint->description}}</p>
+                                    <p class="card-text pt-3">
+                                        Startdate: {{date("d/m/Y",strtotime($sprint->startdate))}}<br>
+                                        Enddate: {{date("d/m/Y", strtotime($sprint->enddate))}}
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{{route('sprint.show',['project'=> $project, 'sprint'=> $sprint])}}"
+                                       class="btn btn-primary">Go to sprint</a>
+                                    <a href="{{route('sprint.update',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
+                                       class="btn btn-warning">Edit sprint</a>
+                                    <a href="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
+                                       class="btn btn-danger">Delete sprint</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
-        <!-- /.container -->
 @endsection

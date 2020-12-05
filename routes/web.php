@@ -3,11 +3,8 @@
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ProductBackLogController;
-use App\Http\Controllers\SprintController;
 use App\Http\Controllers\ScrumTeamController;
-
+use App\Http\Controllers\DailyStandUpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,41 +17,33 @@ use App\Http\Controllers\ScrumTeamController;
 |
 */
 
-
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('', [PagesController::class, 'home'])->name('home');
-
-
-
-
-
 
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */
         Route::post('search/user', [ScrumTeamController::class, 'searchuser'])->name('searchuser');
 
-
         Route::resource('project', 'ProjectController');
         Route::prefix('project/{project}')->group(function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
-            Route::resource('ProductBackLog', 'ProductBackLogController');
+            Route::resource('ProductBackLog', 'ProductBacklogController');
+            Route::resource('defofdone', 'DefOfDoneController');
+         });
 
+        Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
+            Route::resource('retrospective', 'RetrospectiveController');
+            Route::resource('review', 'ReviewController');
+            //Route::resource('sprintDashboard', 'PagesController');
 
-
-
-
-
-
-
-
-
-
+            //tijdelijke routes om snelle toegang te krijgen tot view
+            Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
+            Route::get('sprintDashboard/dailyStandUp', [PagesController::class, 'dailyStandUp'])->name('dailyStandUp');
+            Route::get('dailyStandUpForm', [DailyStandUpController::class, 'create'])->name('dailyStandUpForm');
+            //Route::get('dailyStandUp', [DailyStandUpController::class, 'dailyStandUp']);
         });
     });
-
-//    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//        return view('home');
-//    })->name('dashboard');
 });
+//    Route::middleware(['auth:sanctum', 'verified'])->get('/project', [ProjectController::class,'index'])->name('dashboard');
