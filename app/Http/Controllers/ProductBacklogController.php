@@ -57,6 +57,7 @@ class ProductBacklogController extends Controller
         $product->business_value = $request->business_value;
         $product->user_story = $request->user_story;
         $product->story_points = $request->story_points;
+        $product->ProjectId = $project->id;
         $product->acceptance_criteria = $request->acceptance_criteria;
 
         $product->save();
@@ -73,7 +74,7 @@ class ProductBacklogController extends Controller
      */
     public function show(Project $project, ProductBacklog $productBacklog)
     {
-        //
+
     }
 
     /**

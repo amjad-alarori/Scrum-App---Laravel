@@ -18,7 +18,7 @@ class CreateProductBacklogsTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->text('priority');
-            $table->text('business_value');
+            $table->text('business_value'); // aanpassen intiger//
             $table->text('user_story');
             $table->text('story_points');
             $table->text('acceptance_criteria');
