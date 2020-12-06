@@ -18,8 +18,9 @@ class RetrospectiveController extends Controller
      */
     public function index(Project $project, Sprint $sprint, User $user)
     {
-        $retrospective= Retrospective::query()->where('sprint_id','=', $sprint->id);
+       // $retrospective= Retrospective::query()->where('sprint_id','=', $sprint->id)->get();
 
+        $retrospective=$sprint->retrospective;
         return view ('retrospective', ['project'=> $project, 'sprint'=> $sprint, 'user'=> $user, 'retrospective'=>$retrospective]);
 
 
@@ -30,11 +31,11 @@ class RetrospectiveController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project, Sprint $sprint, User $user)
     {
-        //
+        return view('addretrospective', ['project'=>$project, 'sprint'=>$sprint, 'user'=>$user]);
     }
 
     /**
@@ -57,7 +58,6 @@ class RetrospectiveController extends Controller
 
         $retrospective->text = ($request['text']);
         $retrospective->category = $request['category'];
-        $retrospective->project_id = $project->id;
         $retrospective->sprint_id = $sprint->id;
         $retrospective->user_id= $user->id;
 

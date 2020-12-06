@@ -35,18 +35,93 @@ body {
     height: 100%;
 }
 
-.column {
-    float: left;
-    width: 33.33%;
+
+.buttonAddRetrospective{
+
+   float: right;
 }
 
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+
+.columnRetrospective {
+
+    box-sizing: border-box;
+
+    float:left;
+    width: 45%;
+    height: fit-content;
+    padding: 10px;
+    margin: 5px;
+
 }
 
+#retrospectiveGood{
+
+    background-color: darkseagreen;
+    border-color: #868e96;
+    border-width: 1px;
+}
+
+#retrospectiveImprove {
+
+    background-color: darksalmon;
+    border-color: #868e96;
+    border-width: 1px;
+
+}
+
+.columnRetrospectiveTitle{
+
+    text-align: center;
+    color: #f1f1f1;
+}
+
+@media screen and (max-width: 600px) {
+    .columnRetrospective {
+        width: 100%;
+    }
+}
+
+    /* Clear floats after the columns */
+    .rowRetrospective :after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+
+
+
+.input-group {
+    position: relative;
+    display: block;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #dddddd;
+    color: #2d3748;
+    font-weight: bold;
+
+}
+
+.overflow{
+    overflow: auto;
+}
+
+.cardRetrospective {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< master
 .bg-olive {
     background-color: #3d9970;
 }
@@ -93,3 +168,9 @@ body {
         opacity: 1;
     }
 }
+
+========================================================================
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> retrospectiveRoderik
