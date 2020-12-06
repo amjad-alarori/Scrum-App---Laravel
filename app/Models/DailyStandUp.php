@@ -11,19 +11,23 @@ class DailyStandUp extends Model
 
     protected $fillable = [
         'name',
-        'date',
         'yesterday',
         'today',
         'challenge',
     ];
 
-    public function project()
+//    public function project()
+//    {
+//        return $this->belongsTo(Project::class, 'project_id', 'id');
+//    }
+
+    public function sprint()
     {
-        return $this->belongsTo(Project::class, 'project_id', 'id');
+        return $this->belongsTo(Sprint::class, 'sprint_id', 'id');
     }
 
-    public function sprints(){
-
-        return $this->hasMany(Sprint::class, 'project_id', 'id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

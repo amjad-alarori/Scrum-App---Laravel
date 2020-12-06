@@ -52,7 +52,7 @@
                     </div>
                     <div class="card-footer">
 
-                        <a href="/sprintDashboard/dailyStandUp" class="btn btn-primary">Go to Daily stand up</a>
+                        <a href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}" class="btn btn-primary">Go to Daily stand up</a>
                     </div>
                 </div>
             </div>

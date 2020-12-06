@@ -17,9 +17,10 @@ class DailyStandUpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Project $project, Sprint $sprint, User $user)
     {
-        return view('dailyStandUp', ['dailyStandUp' => $dailyStandUps]);
+        $dailyStandUp = DailyStandUp::query()->where('sprint_id','=', $sprint->id);
+        return view ('dailyStandUp', ['project'=> $project, 'sprint'=> $sprint, 'user'=> $user, 'dailyStandUp'=> $dailyStandUp]);
     }
 
     /**
@@ -27,10 +28,9 @@ class DailyStandUpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(DailyStandUp $dailyStandUp)
     {
         return view('dailyStandUpForm');
-
     }
 
     /**
@@ -39,12 +39,15 @@ class DailyStandUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Sprint $sprint, User $user, Project $project)
+    public function store(Request $request, Sprint $sprint, Project $project)
     {
-        $request->validate(['yesterday'=>['required', 'string'],
-           'today'=>['required', 'string'],
-            'challenge'=>['required', 'string']]);
+        $request->validate([
+            'yesterday'=>['required', 'string'],
+            'today'=>['required', 'string'],
+            'challenge'=>['required', 'string']
+        ]);
 
+        $user = Auth::user();
 
         $dailyStandUp = new DailyStandUp();
 
@@ -58,9 +61,6 @@ class DailyStandUpController extends Controller
 
         return redirect(route('dailyStandUp.index', ['project'=>$project->id, 'sprint'=>$sprint->id]));
 
-
-
-
     }
 
     /**
@@ -69,7 +69,7 @@ class DailyStandUpController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DailyStandUp $dailyStandUp)
     {
         //
     }
@@ -80,7 +80,7 @@ class DailyStandUpController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DailyStandUp $dailyStandUp)
     {
         //
     }
@@ -92,7 +92,7 @@ class DailyStandUpController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DailyStandUp $dailyStandUp)
     {
         //
     }
@@ -103,8 +103,9 @@ class DailyStandUpController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DailyStandUp $dailyStandUp)
     {
-        //
+        $dailyStandUp->delete();
+        return redirect()->back();
     }
 }
