@@ -76,7 +76,7 @@
                     @error('acceptance_criteria')
                     <p class='text-sm text-red-600 mt-2'>{{ $message }}</p>
                     @enderror
-                </div>
+                </div><br>
 
 
                 <input type="submit" class="btn btn-info" value="Save">
@@ -115,7 +115,11 @@
             <td>{{ $product->user_story }}</td>
             <td>{{ $product->story_points }}</td>
             <td>{{ $product->acceptance_criteria }}</td>
-            <td> <a class="btn btn-danger" href="{{route('ProductBackLog.destroy',['project'=>$project->id,'ProductBackLog' => $product->id])}}">Delete</a></td>
+            <form method="POST" action="{{route('ProductBackLog.destroy',['project'=>$project,'ProductBackLog' => $product->id])}}">
+                @method('DELETE')
+                @csrf
+            <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
+            </form>
         </tr>
 
         </tbody>

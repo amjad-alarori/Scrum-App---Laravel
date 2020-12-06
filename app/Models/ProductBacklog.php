@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductBacklog extends Model
 {
     use HasFactory;
-
+//    protected $table = 'product_backlogs';
     protected $fillable = [
         'title',
         'description',
