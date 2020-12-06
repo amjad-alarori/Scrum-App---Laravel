@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ScrumTeamController;
 use App\Http\Controllers\DailyStandUpController;
+use App\Http\Controllers\SprintReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ use App\Http\Controllers\DailyStandUpController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//for testing
+//Route::get('reviews', [SprintReviewController::class, 'index']);
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
     Route::get('', [PagesController::class, 'home'])->name('home');
