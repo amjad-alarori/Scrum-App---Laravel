@@ -17,10 +17,6 @@ use App\Http\Controllers\ScrumTeamController;
 |
 */
 
-Route::view('chart','chart');
-
-
-
 
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
