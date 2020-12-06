@@ -33,7 +33,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('defofdone', 'DefOfDoneController');
          });
 
+
         Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
+
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
