@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property mixed scrumTeam
@@ -20,6 +21,11 @@ class Project extends Model
         'deadline',
         'sprintLength'
     ];
+
+    public function roleAuth()
+    {
+        return $this->scrumTeam->where('userId','==', Auth::id())->first()->roleId;
+    }
 
     public function scrumTeam()
     {
