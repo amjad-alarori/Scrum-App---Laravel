@@ -36,7 +36,7 @@
 
 
             <div class="columnRetrospective" id="retrospectiveGood">
-                <h3 class="columnRetrospectiveTitle">What went Good? </h3>
+                <h3 class="h3 columnRetrospectiveTitle">What went Good? </h3>
                 <br>
 
 
@@ -44,7 +44,7 @@
                     @if ($comment->category==1)
 
                 <div class="input-group overflow">
-                    <div class="card-body">
+                    <div class="cardRetrospective">
                         <p class="card-text">{{$comment->text}}</p>
                     </div>
                     <div class="card-footer text-muted">
@@ -57,17 +57,20 @@
             </div>
 
             <div class="columnRetrospective" id="retrospectiveImprove">
-             <h3 class="columnRetrospectiveTitle">Which things can be improved?</h3>
+             <h3 class="h3 columnRetrospectiveTitle">Which things can be improved?</h3>
                 <br>
+
              @foreach ($retrospective as $comment)
              @if($comment->category==2)
-                        <div class="input-group overflow">
-                            <div class="card-body">
-                                <p class="card-text">{{$comment->text}}</p>
-                            </div>
-                            <div class="card-footer text-muted">
-                                {{$comment->user->name}}
-                            </div>
+
+                 <div class="input-group overflow">
+                    <div class="cardRetrospective">
+                      <p class="card-text">{{$comment->text}}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                    Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
+                    </div>
+                 </div>
                  @endif
                  @endforeach
 
