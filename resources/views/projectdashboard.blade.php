@@ -125,7 +125,7 @@
                 </div>
                 <div class="card-body">
                     @foreach ($sprints as $sprint)
-                        <div class="col-md-4 mb-5">
+                        <div class="col-md-4 mb-5 inline-block h-100">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h1 class="card-title h5 border-bottom border-secondary pb-2">{{$sprint->title}}</h1>
@@ -159,9 +159,9 @@
         google.charts.load('current', {'packages': ['gauge']});
         google.charts.setOnLoadCallback(drawGauge);
 
-        var startdate = "{{$startdate = count($project->sprints)>0?$project->sprints[0]->startdate:$project->created_at}}";
-        var projectLength ={{date_diff(date_create($startdate),date_create($project->deadline))->format('%a')}}
-        var days ={{date_create('NOW')<date_create($startdate)?0:date_diff(date_create('NOW'),date_create($startdate))->format('%a')}}
+        var startdate = "{{$startdate = count($sprints)>0?$sprints[0]->startdate:$project->created_at->setTime(0,0,0)}}";
+        var projectLength ={{$projectLength = date_diff(date_create($startdate),date_create($project->deadline))->format('%a')}}
+        var days ={{$days = date_create('NOW')<date_create($startdate)?0:date_diff(date_create('NOW'),date_create($startdate))->format('%a')}}
 
 
         var gaugeOptions = {
