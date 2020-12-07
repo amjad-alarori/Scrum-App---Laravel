@@ -46,10 +46,10 @@ class ProductBacklogController extends Controller
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['string', 'nullable'],
-            'priority' => ['integer', 'nullable'],
-            'business_value' => ['integer', 'nullable'],
+            'priority' => ['integer', 'required'],
+            'business_value' => ['integer', 'required'],
             'user_story' => ['string', 'nullable'],
-            'story_points' => ['integer', 'nullable'],
+            'story_points' => ['integer', 'required'],
             'acceptance_criteria' => ['string', 'nullable'],
 
         ]);
@@ -118,9 +118,9 @@ class ProductBacklogController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Project $project, $productBacklog)
+    public function destroy(Project $project, ProductBacklog $productBackLog)
     {
-        ProductBacklog::find($productBacklog)->delete();
+        $productBackLog->delete();
         return redirect()->back();
 
     }

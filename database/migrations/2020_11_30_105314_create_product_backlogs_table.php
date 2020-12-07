@@ -16,15 +16,16 @@ class CreateProductBacklogsTable extends Migration
         Schema::create('product_backlogs', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('priority');
             $table->integer('business_value');
-            $table->text('user_story');
+            $table->text('user_story')->nullable();
             $table->integer('story_points');
-            $table->text('acceptance_criteria');
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->text('acceptance_criteria')->nullable();
+            $table->foreignId('project_id')->constrained();
             $table->timestamps();
+
+            $table->text('mission')->nullable();
         });
     }
 

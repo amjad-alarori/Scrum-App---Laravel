@@ -30,11 +30,13 @@ Route::group(['middleware' => 'web'], function () {
         Route::prefix('project/{project}')->group(function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
-            Route::resource('ProductBackLog', 'ProductBacklogController');
+            Route::resource('productBackLog', 'ProductBacklogController');
             Route::resource('defofdone', 'DefOfDoneController');
          });
 
+
         Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
+
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
@@ -43,7 +45,7 @@ Route::group(['middleware' => 'web'], function () {
             //tijdelijke routes om snelle toegang te krijgen tot view
             Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
             //Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp'])->name('dailyStandUp');
-            Route::get('dailyStandUpForm', [DailyStandUpController::class, 'create'])->name('dailyStandUpForm');
+//            Route::get('dailyStandUpForm', [DailyStandUpController::class, 'create'])->name('dailyStandUpForm');
             //Route::get('dailyStandUp', [DailyStandUpController::class, 'dailyStandUp']);
         });
     });

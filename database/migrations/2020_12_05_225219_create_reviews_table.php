@@ -16,7 +16,7 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            $table->integer('category');
+            $table->integer('category');// waarom categpry precies?
             $table->foreignId('sprint_id')->constrained('sprints');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();

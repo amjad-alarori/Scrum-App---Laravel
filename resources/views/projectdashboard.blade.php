@@ -86,7 +86,7 @@
                             necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('ProductBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
+                        <a href="{{route('productBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
                             page</a>
                     </div>
                 </div>
