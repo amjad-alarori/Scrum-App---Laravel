@@ -5,6 +5,16 @@
 @endsection
 
 @section('content')
+
+    <div class="container h-100">
+        <div class="row align-items-center pb-4 my-4 border-bottom border-secondary rounded-bottom">
+            <div class="col-sm-10">
+                <h1 class="display-4 text-blue ">
+                    Edit Your Product Backlog</h1>
+            </div>
+        </div>
+
+
     <div class="h-100 flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-gray-100">
         <div class="w-full md:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg">
             <form method="POST" action="{{ route('productBackLog.update',['project'=> $project->id, 'productBackLog' => $productBackLog->id]) }}">
