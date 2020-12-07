@@ -24,7 +24,6 @@
 
 <body>
 {{--<div class="min-h-screen font-sans text-gray-900 antialiased">--}}
-<div class="h-100 font-sans text-gray-900 antialiased">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/">ScrumApp team B3</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -66,6 +65,7 @@
             </div>
         </div>
     </nav>
+<main role="main" class="container font-sans text-gray-900 antialiased">
     @if(session()->has('NoAccess'))
         <div class="container">
             <div class="alert alert-danger alert-dismissible m-3" id="noaccess-error">
@@ -77,7 +77,7 @@
     <div class="container-fluid pt-9 h-100">
         @yield('content')
     </div>
-</div>
+</main>
 </body>
 
 
