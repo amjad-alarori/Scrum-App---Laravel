@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Retrospective::class, 'user_id', 'id');
     }
+
+    public function dailyStandUp()
+    {
+        return $this->hasMany(DailyStandUp::class, 'user_id', 'id');
+    }
 }

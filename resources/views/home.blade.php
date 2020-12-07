@@ -5,21 +5,21 @@
 @endsection
 
 @section('content')
-    <div class="h-100 bg-olive">
+    <body class="bg-olive">
         <div class="container h-100 flex flex-col justify-center items-center pt-6">
-            <span class="tracking-in-expand-fwd display-1 text-center">
+            <div class="tracking-in-expand-fwd text-center p-2" style="font-size: min(6rem, 7vw); font-weight: 300;line-height: 1.2;">
                 Scrumapp<br>
                 WFADSD2020<br>
                 Team B3
-            </span>
-            <span class="tracking-in-expand-fwd-delayed display-4 text-center">
+            </div>
+            <div class="tracking-in-expand-fwd-delayed text-center" style="font-size: min(3.5rem, 4vw); font-weight: 300;line-height: 1.2;">
                 @auth()
                     Go to your <a class="card-link" href="{{route('project.index')}}">projects</a> and have fun.
                 @else()
                     make an account or loing<br/>
                     to enjoy convenience of scrumapp.
                 @endif
-            </span>
+            </div>
         </div>
-    </div>
+    </body>
 @endsection

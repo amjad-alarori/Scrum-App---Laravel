@@ -52,7 +52,7 @@
                     </div>
                     <div class="card-footer">
 
-                        <a href="/sprintDashboard/dailyStandUp" class="btn btn-primary">Go to Daily stand up</a>
+                        <a href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}" class="btn btn-primary">Go to Daily stand up</a>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/sprintReview" class="btn btn-primary">Go to Sprint review</a>
+                        <a href="{{route('review.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'review'=>$review=1])}}" class="btn btn-primary">Go to Sprint review</a>
                     </div>
                 </div>
             </div>

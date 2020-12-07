@@ -56,7 +56,7 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect(route('sprintReview.index', ['project'=>$project->id, 'sprint'=> $sprint->id]
+        return redirect(route('review.index', ['project'=>$project->id, 'sprint'=> $sprint->id]
         ));
     }
 

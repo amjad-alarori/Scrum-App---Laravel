@@ -4,7 +4,7 @@ use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ScrumTeamController;
-use App\Http\Controllers\DailyStandUpController;
+//use App\Http\Controllers\DailyStandUpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +16,7 @@ use App\Http\Controllers\DailyStandUpController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
@@ -33,14 +34,17 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('defofdone', 'DefOfDoneController');
          });
 
+
         Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
+
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
+            Route::resource('dailyStandUp', 'DailyStandUpController');
             //Route::resource('sprintDashboard', 'PagesController');
 
             //tijdelijke routes om snelle toegang te krijgen tot view
             Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
-            Route::get('sprintDashboard/dailyStandUp', [PagesController::class, 'dailyStandUp'])->name('dailyStandUp');
+            //Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp'])->name('dailyStandUp');
             Route::get('dailyStandUpForm', [DailyStandUpController::class, 'create'])->name('dailyStandUpForm');
             //Route::get('dailyStandUp', [DailyStandUpController::class, 'dailyStandUp']);
         });
