@@ -138,7 +138,7 @@
                                 <div class="card-footer">
                                     <a href="{{route('sprint.show',['project'=> $project, 'sprint'=> $sprint])}}"
                                        class="btn btn-primary">Go to sprint</a>
-                                    <a href="{{route('sprint.update',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
+                                    <a href="{{route('sprint.edit',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
                                        class="btn btn-warning">Edit sprint</a>
                                     <a href="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
                                        class="btn btn-danger">Delete sprint</a>

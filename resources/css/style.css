@@ -75,11 +75,23 @@ body {
     color: #f1f1f1;
 }
 
+#columnSprintDashboard1{
+
+    margin:auto;
+}
+
+#columnSprintDashboard2{
+
+    margin:auto;
+}
 @media screen and (max-width: 600px) {
     .columnRetrospective {
         width: 100%;
     }
 }
+
+
+
 
     /* Clear floats after the columns */
     .rowRetrospective :after {
@@ -95,6 +107,8 @@ body {
         display: table;
         clear: both;
     }
+
+
 
 
 
@@ -119,6 +133,13 @@ body {
 
 .cardRetrospective {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+#cardProductBacklog{
+
+    column-count: 2;
+    column-gap: 30px;
 }
 
 

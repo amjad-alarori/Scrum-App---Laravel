@@ -63,6 +63,7 @@ class ProductBacklogController extends Controller
         $product->user_story = $request->user_story;
         $product->story_points = $request->story_points;
         $product->project_id = $project->id;
+        $product->sprint_id= null;
         $product->acceptance_criteria = $request->acceptance_criteria;
 
 
