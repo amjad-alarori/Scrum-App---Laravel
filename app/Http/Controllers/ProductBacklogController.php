@@ -118,9 +118,9 @@ class ProductBacklogController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Project $project, $productBacklog)
+    public function destroy(Project $project, ProductBacklog $productBackLog)
     {
-        ProductBacklog::find($productBacklog)->delete();
+        $productBackLog->delete();
         return redirect()->back();
 
     }

@@ -22,8 +22,7 @@ class CreateProductBacklogsTable extends Migration
             $table->text('user_story');
             $table->integer('story_points');
             $table->text('acceptance_criteria');
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
     }
