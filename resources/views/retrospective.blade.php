@@ -32,7 +32,7 @@
 
         <div class="rowRetrospective">
 
-
+        <input type="hidden" value="{{$sprint->id}}">
 
 
             <div class="columnRetrospective" id="retrospectiveGood">

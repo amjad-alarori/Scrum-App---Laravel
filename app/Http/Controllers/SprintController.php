@@ -84,7 +84,7 @@ class SprintController extends Controller
      */
     public function edit(Project $project, Sprint $sprint)
     {
-        //
+        return view('addSprint',['project'=>$project, 'sprint'=>$sprint]);
     }
 
     /**
@@ -97,7 +97,22 @@ class SprintController extends Controller
      */
     public function update(Request $request, Project $project, Sprint $sprint)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['string', 'nullable'],
+            'startdate' => ['required', 'date', 'after:' . date('m/d/Y')],
+
+        ]);
+
+        $sprint->title = isset($request['title']) ? $request['title'] : null;
+        $sprint->description = isset($request['description']) ? $request['description'] : null;
+        $sprint->startdate = $request['startdate'];
+        $sprint->enddate = date('Y-m-d', strtotime($request['startdate'] . " + " . $project->sprintLength . " days"));
+        $sprint->project_id = $project->id;
+
+        $sprint->update();
+
+        return redirect(route('project.show', ['project' => $sprint->project_id]));
     }
 
     /**
