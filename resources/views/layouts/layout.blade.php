@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+
+
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -24,47 +26,73 @@
 
 <body>
 {{--<div class="min-h-screen font-sans text-gray-900 antialiased">--}}
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="/">ScrumApp team B3</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/">ScrumApp team B3</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out {{request()->getRequestUri()=='/'?'active':''}}">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out {{request()->getRequestUri()=='/'?'active':''}}">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            @auth
+                <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                    <a class="nav-link {{request()->url()==route('project.index')?'active':''}}"
+                       href="{{route('project.index')}}">Projects <span class="sr-only">(current)</span></a>
                 </li>
 
-                @auth
-                    <li class="nav-item  block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                        <a class="nav-link {{request()->url()==route('project.index')?'active':''}}"
-                           href="{{route('project.index')}}">Projects <span class="sr-only">(current)</span></a>
+                @if(!is_null(request()->route('project')))
+                    <li class="nav-item dropdown block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Project menu</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="{{route('scrumTeam.index',['project' => $project->id])}}">Scrum teams</a>
+                            <a class="dropdown-item" href="{{route('productBackLog.index',['project'=>$project])}}">Product Backlog</a>
+                            <a class="dropdown-item" href="{{route('defofdone.index',['project'=>$project])}}">Definition of Done</a>
+                        </div>
                     </li>
-                @endif
-            </ul>
 
-            <div class="float-right">
-                <ul class="navbar-nav mr-auto">
-                    @if (Route::has('login'))
-                        @auth
-                            @livewire('navigation-dropdown')
-                        @else
+                    @if(!is_null(request()->route('sprint')))
+                        <li class="nav-item dropdown block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">Sprint menu</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item"
+                                   href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}">Daily stand up</a>
+                                <a class="dropdown-item" href="{{route('review.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'review'=>$review=1])}}">Sprint review</a>
+                                <a class="dropdown-item" href="#">Scrum board</a>
+                                <a class="dropdown-item" href="{{route('retrospective.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}">Retrospective</a>
+                            </div>
+                        </li>
+                    @endif
+                @endif
+            @endif
+        </ul>
+
+        <div class="float-right">
+            <ul class="navbar-nav mr-auto">
+                @if (Route::has('login'))
+                    @auth
+                        @livewire('navigation-dropdown')
+                    @else
+                        <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
+                            <a href="{{ route('login') }}" class="nav-link">Login</a>
+                        </li>
+                        @if (Route::has('register'))
                             <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                                <a href="{{ route('login') }}" class="nav-link">Login</a>
+                                <a href="{{ route('register') }}" class="nav-link">Register</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item block pl-1 pr-2 py-3 border-l-4 border-transparent text-base focus:outline-none transition duration-150 ease-in-out">
-                                    <a href="{{ route('register') }}" class="nav-link">Register</a>
-                                </li>
-                            @endif
                         @endif
                     @endif
-                </ul>
-            </div>
+                @endif
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 <main role="main" class="container font-sans text-gray-900 antialiased">
     @if(session()->has('NoAccess'))
         <div class="container">

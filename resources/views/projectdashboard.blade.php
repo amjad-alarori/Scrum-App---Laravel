@@ -82,8 +82,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Product Backlog</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque sequi doloribus.</p>
+                        <p class="card-text">Add, delete and manage the project backlog elements.</p>
                     </div>
                     <div class="card-footer">
                         <a href="{{route('productBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
@@ -99,8 +98,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Definition of Done</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque.</p>
+                        <p class="card-text">When can you check a backlog element as done? manage the criteria .</p>
                     </div>
                     <div class="card-footer">
                         <a href="{{route('defofdone.index',['project'=>$project])}}" class="btn btn-primary">Go to
