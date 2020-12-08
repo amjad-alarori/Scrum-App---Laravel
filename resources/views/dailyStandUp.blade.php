@@ -40,7 +40,7 @@
                 </div>
                 <br><br>
                 <div>
-                    <a href="/dailyStandUpForm" class="btn btn-primary">Go to Daily stand up Form</a>
+                    <a href="{{route('dailyStandUp.create',['project'=> $project->id, 'sprint'=> $sprint->id, 'review'=>$review=1])}}" class="btn btn-primary">Go to Daily stand up Form</a>
                 </div>
             </div>
 
@@ -94,18 +94,7 @@
             {{--END accordion bootstrap 4--}}
 
 
-            <div class="col-md-4 mb-5">
-                <h2>Teamleden</h2>
-                <hr>
-                <address>
-                    <br> Naam 1
-                    <br> Naam 2
-                    <br> Naam 3
-                    <br> Naam 4
-                    <br> Naam 5
-                    <br> Naam 6
-                </address>
-            </div>
+
         </div>
 
 

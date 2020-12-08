@@ -40,13 +40,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
-            //Route::resource('sprintDashboard', 'PagesController');
-
+            Route::resource('dailyStandUpForm', 'DailyStandUpController');
             //tijdelijke routes om snelle toegang te krijgen tot view
             Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
-            //Route::get('dailyStandUp', [PagesController::class, 'dailyStandUp'])->name('dailyStandUp');
-//            Route::get('dailyStandUpForm', [DailyStandUpController::class, 'create'])->name('dailyStandUpForm');
-            //Route::get('dailyStandUp', [DailyStandUpController::class, 'dailyStandUp']);
         });
     });
 });
