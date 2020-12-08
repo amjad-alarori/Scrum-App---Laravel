@@ -30,7 +30,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::prefix('project/{project}')->group(function () {
             Route::resource('scrumTeam', 'ScrumTeamController');
             Route::resource('sprint', 'SprintController');
-            Route::resource('ProductBackLog', 'ProductBacklogController');
+            Route::resource('productBackLog', 'ProductBacklogController');
             Route::resource('defOfDone', 'DefOfDoneController');
          });
 
@@ -40,7 +40,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
-//            Route::resource('scrumBoard', 'ScrumboardController');
+            Route::resource('sprintBacklog', 'SprintBacklogController');
             //Route::resource('sprintDashboard', 'PagesController');
 
             //tijdelijke routes om snelle toegang te krijgen tot view

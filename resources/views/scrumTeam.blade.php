@@ -5,52 +5,50 @@
 @endsection
 
 @section('content')
-    <div class="container pt-5">
-        @if(session()->has('destroyMember'))
-            <div class="alert alert-danger alert-dismissible" id="destroy-error">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{session('destroyMember')}}
-            </div>
-        @endif
-        <div class="row">
-            @foreach($members as $member)
-                <div class="col-sm-4">
-                    <div class="card m-2 scrum-team-member rounded p-1">
-                        <div class="row no-gutters h-100 w-100">
-                            <div class="col-sm-5 h-100 rounded" style="background: #868e96;">
-                                <img class="member-card-img p-2 rounded-full"
-                                     src="{{ $member['user']->profile_photo_url }}" alt="{{ $member['user']->name }}"/>
-                            </div>
-                            <div class="col-sm-7 h-100">
-                                <div class="card-body h-100">
-                                    <div class="h-75">
-                                        <h5 class="card-title font-weight-bold">{{$member['scrumRole']->title}}</h5>
-                                        <p class="card-text">Name: {{ $member['user']->name }}</p>
-                                    </div>
-                                    @if($fullPermission)
-                                        <div class="h-25">
-                                            <div class="float-right">
-                                                <form method="post"
-                                                    action="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    {{--<input type="hidden" name="_method" value="DELETE">--}}
-                                                    <button type="submit"
-                                                            class="btn btn-primary stretched-link float-right w-100">
-                                                        Remove
-                                                    </button>
-                                                </form>
-                                                {{--<a href="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}" class="btn btn-primary stretched-link float-right w-100">Remove</a>--}}
-                                            </div>
-                                        </div>
-                                    @endif
+    @if(session()->has('destroyMember'))
+        <div class="alert alert-danger alert-dismissible" id="destroy-error">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{session('destroyMember')}}
+        </div>
+    @endif
+    <div class="row">
+        @foreach($members as $member)
+            <div class="col-sm-4">
+                <div class="card m-2 scrum-team-member rounded p-1">
+                    <div class="row no-gutters h-100 w-100">
+                        <div class="col-sm-5 h-100 rounded" style="background: #868e96;">
+                            <img class="member-card-img p-2 rounded-full"
+                                 src="{{ $member['user']->profile_photo_url }}" alt="{{ $member['user']->name }}"/>
+                        </div>
+                        <div class="col-sm-7 h-100">
+                            <div class="card-body h-100">
+                                <div class="h-75">
+                                    <h5 class="card-title font-weight-bold">{{$member['scrumRole']->title}}</h5>
+                                    <p class="card-text">Name: {{ $member['user']->name }}</p>
                                 </div>
+                                @if($fullPermission)
+                                    <div class="h-25">
+                                        <div class="float-right">
+                                            <form method="post"
+                                                  action="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}">
+                                                @method('DELETE')
+                                                @csrf
+                                                {{--<input type="hidden" name="_method" value="DELETE">--}}
+                                                <button type="submit"
+                                                        class="btn btn-primary stretched-link float-right w-100">
+                                                    Remove
+                                                </button>
+                                            </form>
+                                            {{--<a href="{{route('scrumTeam.destroy',['project'=> $project->id ,'scrumTeam' => $member['teamMember']->id])}}" class="btn btn-primary stretched-link float-right w-100">Remove</a>--}}
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
 
     @if($fullPermission)
@@ -63,16 +61,14 @@
                     @csrf
                     <div class="form-group">
                         <label class="block font-medium text-sm text-gray-700" for="user">E-mail of the user</label>
-                        <div class="input-group md-form form-sm form-2 pl-0">
-                            <input class="rounded-md shadow-sm block mt-1 w-full form-control lime-border" id="user"
+                        <div class="input-group md-form form-sm form-2">
+                            <input class="rounded-md shadow-sm block mt-1 w-full form-input" id="user"
                                    type="text" placeholder="Search e-mail" aria-label="user" name="user"
                                    value="{{old('user')}}">
-                            <div class="input-group-append">
-                                <button type="button"
-                                        class="rounded-md shadow-sm block mt-1 w-full btn input-group-text lime lighten-2"
-                                        id="userSearch">search
-                                </button>
-                            </div>
+                            <button type="button"
+                                    class="rounded-md shadow-sm block mt-1 w-full btn input-group-text lime lighten-2"
+                                    id="userSearch">search
+                            </button>
                         </div>
                         @error('user')
                         <p class='text-sm text-red-600 mt-2'>{{ $message }}</p>

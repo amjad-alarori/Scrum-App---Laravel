@@ -12,7 +12,7 @@ class DefOfDoneController extends Controller
      * Display a listing of the resource.
      *
      * @param Project $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index(Project $project)
     {
@@ -83,18 +83,21 @@ class DefOfDoneController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DefOfDone  $defOfDone
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Project $project
+     * @param DefOfDone $defOfDone
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, DefOfDone $defOfDone, Project $project)
+    public function update(Request $request,Project $project, DefOfDone $defOfDone)
     {
 //        dd(request()->all());
         $defOfDone->title = $request->get('title');
         $defOfDone->body = $request->get('body');
         $defOfDone->projectId = $project->id;
 
-        $defOfDone->save();
+        $defOfDone->update();
+
+        return redirect()->back();
     }
 
     /**

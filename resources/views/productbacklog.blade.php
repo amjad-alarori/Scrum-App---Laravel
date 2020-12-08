@@ -6,9 +6,17 @@
 
 @section('content')
 
+    <div class="container h-100">
+        <div class="row align-items-center pb-4 my-4 border-bottom border-secondary rounded-bottom">
+            <div class="col-sm-10">
+                <h1 class="display-4 text-blue ">
+                    Your Product Backlog</h1>
+            </div>
+        </div>
+
     <div class="h-100 flex flex-col md:justify-center items-center pt-6 md:pt-0 bg-gray-100">
         <div class="w-full md:max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg">
-            <form method="POST" action="{{ route('ProductBackLog.store',['project'=> $project->id]) }}">
+            <form method="POST" action="{{ route('productBackLog.store',['project'=> $project->id]) }}">
                 @csrf
                 <div>
 
@@ -93,7 +101,6 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col">Project id</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Priority</th>
@@ -107,7 +114,6 @@
 
         @foreach($products as $product)
         <tr>
-            <th scope="row">{{ $product->project_id }}</th>
             <td>{{ $product->title }}</td>
             <td>{{ $product->description }}</td>
             <td>{{ $product->priority }}</td>
@@ -115,17 +121,23 @@
             <td>{{ $product->user_story }}</td>
             <td>{{ $product->story_points }}</td>
             <td>{{ $product->acceptance_criteria }}</td>
-            <form method="POST" action="{{route('ProductBackLog.destroy',['project'=>$project,'ProductBackLog' => $product->id])}}">
+            <form method="POST" action="{{route('productBackLog.destroy',['project'=>$project,'productBackLog' => $product->id])}}">
                 @method('DELETE')
                 @csrf
             <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
             </form>
-        </tr>
 
+            <form method="POST" action="{{route('productBackLog.edit',['project'=>$project,'productBackLog' => $product->id])}}">
+                @method('GET')
+                @csrf
+                <td> <button class="btn btn-warning " type="submit">Edit</button> </td>
+            </form>
+        </tr>
+        @endforeach
         </tbody>
     </table>
 
-    @endforeach
+
 @endsection
 
 

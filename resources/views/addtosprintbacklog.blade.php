@@ -27,62 +27,31 @@
 
     <div class="container">
 
+        @foreach ($productbBacklog as $item)
 
 
+        <div class="card text-white bg-dark" style="width: 20rem;display:inline-block;" >
+           <div class="card-body">
+             <h4 class="title">{{$item->title}}</h4>
+                <p class="card-text">Description: {{$item->description}}</p><br>
+               <br>
+               <p class="card-text">Userstory:<br>{{$item->user_story}}</p><br>
+               <br>
+                <p class="card-text">Priority: {{$item->priority}}</p><br>
+                <p class="card-text">Business Value: {{$item->business_value}}</p><br>
 
-        <div class="rowRetrospective">
-
-
-
-
-            <div class="columnRetrospective" id="retrospectiveGood">
-                <h3 class="h3 columnRetrospectiveTitle">What went Good? </h3>
-                <br>
-
-
-                @foreach($retrospective as $comment)
-                    @if ($comment->category==1)
-
-                <div class="input-group overflow">
-                    <div class="cardRetrospective">
-                        <p class="card-text">{{$comment->text}}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                       Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
-                    </div>
-                </div>
-                    @endif
-                    @endforeach
-
-            </div>
-
-            <div class="columnRetrospective" id="retrospectiveImprove">
-             <h3 class="h3 columnRetrospectiveTitle">Which things can be improved?</h3>
-                <br>
-
-             @foreach ($retrospective as $comment)
-             @if($comment->category==2)
-
-                 <div class="input-group overflow">
-                    <div class="cardRetrospective">
-                      <p class="card-text">{{$comment->text}}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                    Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
-                    </div>
-                 </div>
-                 @endif
-                 @endforeach
-
-            </div>
-
-
-
-
+                <p class="card-text">Story Points: {{$item->story_points}}</p><br>
+               <br>
+                <p class="card-text">Acceptance criteria: {{$item->acceptance_criteria}}</p>
+           </div>
         </div>
+            @endforeach
 
 
-        <!-- /.row -->
+
+
+
+
     </div>
         <!-- /.container -->
 @endsection

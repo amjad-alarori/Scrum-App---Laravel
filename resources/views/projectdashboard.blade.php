@@ -82,11 +82,10 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Product Backlog</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque sequi doloribus.</p>
+                        <p class="card-text">Add, delete and manage the project backlog elements.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('ProductBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
+                        <a href="{{route('productBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
                             page</a>
                     </div>
                 </div>
@@ -99,8 +98,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Definition of Done</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                            necessitatibus neque.</p>
+                        <p class="card-text">When can you check a backlog element as done? manage the criteria .</p>
                     </div>
                     <div class="card-footer">
                         <a href="{{route('defOfDone.index',['project'=>$project])}}" class="btn btn-primary">Go to
@@ -125,7 +123,7 @@
                 </div>
                 <div class="card-body">
                     @foreach ($sprints as $sprint)
-                        <div class="col-md-4 mb-5">
+                        <div class="col-md-4 mb-5 inline-block h-100">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h1 class="card-title h5 border-bottom border-secondary pb-2">{{$sprint->title}}</h1>
@@ -138,7 +136,7 @@
                                 <div class="card-footer">
                                     <a href="{{route('sprint.show',['project'=> $project, 'sprint'=> $sprint])}}"
                                        class="btn btn-primary">Go to sprint</a>
-                                    <a href="{{route('sprint.update',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
+                                    <a href="{{route('sprint.edit',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
                                        class="btn btn-warning">Edit sprint</a>
                                     <a href="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
                                        class="btn btn-danger">Delete sprint</a>
@@ -159,9 +157,9 @@
         google.charts.load('current', {'packages': ['gauge']});
         google.charts.setOnLoadCallback(drawGauge);
 
-        var startdate = "{{$startdate = count($project->sprints)>0?$project->sprints[0]->startdate:$project->created_at}}";
-        var projectLength ={{date_diff(date_create($startdate),date_create($project->deadline))->format('%a')}}
-        var days ={{date_create('NOW')<date_create($startdate)?0:date_diff(date_create('NOW'),date_create($startdate))->format('%a')}}
+        var startdate = "{{$startdate = count($sprints)>0?$sprints[0]->startdate:$project->created_at->setTime(0,0,0)}}";
+        var projectLength ={{$projectLength = date_diff(date_create($startdate),date_create($project->deadline))->format('%a')}}
+        var days ={{$days = date_create('NOW')<date_create($startdate)?0:date_diff(date_create('NOW'),date_create($startdate))->format('%a')}}
 
 
         var gaugeOptions = {

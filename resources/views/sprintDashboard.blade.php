@@ -43,7 +43,7 @@
 
         <!-- /.row -->
         <div class="row">
-            <div class="col-md-3 mb-5">
+            <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/dailyStandUp.jpg') }}" alt="">
                     <div class="card-body">
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 mb-5">
+            <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/sprintReview.png') }}" alt="">
                     <div class="card-body">
@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 mb-5">
+            <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/scrumBoard.png') }}" alt="">
                     <div class="card-body">
@@ -83,7 +83,11 @@
                 </div>
             </div>
 
-            <div class="col-md-3 mb-5">
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-4 mb-5" id="columnSprintDashboard1">
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/sprintRetrospective.jpg') }}" alt="">
                     <div class="card-body">
@@ -95,7 +99,21 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-4 mb-5 sprintDashboard" id="columnSprintDashboard2">
+                <div class="card h-100">
+                    <img class="card-img-top" src="" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">Sprintbacklog</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{route('sprintBacklog.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-primary">Go to Sprintbacklog</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <!-- /.row -->
 
     </div>
