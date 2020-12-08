@@ -21,18 +21,11 @@ class CreateProductBacklogsTable extends Migration
             $table->integer('business_value');
             $table->text('user_story')->nullable();
             $table->integer('story_points');
-<<<<<<< HEAD
-            $table->text('acceptance_criteria');
-            $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('sprint_id')->nullable();
-            $table->foreign('project_id')->references('id')->on('projects');
-=======
             $table->text('acceptance_criteria')->nullable();
-            $table->foreignId('project_id')->constrained();
->>>>>>> 210c2cd295e8347258abf78ab956114fe975e520
+            $table->foreignId('project_id')->constrained('projects');
+            $table->foreignId('sprint_id')->nullable()->constrained('sprints');
             $table->timestamps();
 
-            $table->text('mission')->nullable();
         });
     }
 
@@ -46,3 +39,4 @@ class CreateProductBacklogsTable extends Migration
         Schema::dropIfExists('product_backlogs');
     }
 }
+
