@@ -32,15 +32,33 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5">
-                                Mission:<br/>
-                                Vision:<br/>
-                                Deadline:<br/>
+                                Mission:
+                            </div>
+                            <div class="col-6">
+                                {{$project->mission}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                Vision:
+                            </div>
+                            <div class="col-6">
+                                {{$project->vision}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                Deadline:
+                            </div>
+                            <div class="col-6">
+                                {{date('d F Y',strtotime($project->deadline))}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
                                 Sprint length:
                             </div>
                             <div class="col-6">
-                                {{$project->mission}}<br/>
-                                {{$project->vision}}<br/>
-                                {{date('d F Y',strtotime($project->deadline))}}<br/>
                                 {{$project->sprintLength}} days
                             </div>
                         </div>
@@ -57,11 +75,11 @@
         <div class="row">
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
-                    <div class="card-img-top h-100">
+                    <div class="card-img-top">
                         <img class="w-100 h-100 img-fluid mx-auto p-1" src="{{ asset('images/scrumteam.jpg') }}"
                              alt="Product backlog">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body overflow-auto" style="max-height: 150px;">
                         <h4 class="card-title">Scrum Team</h4>
                         @foreach ($teammembers as $teammember)
                             <li class="{{$teammember->user->id==Auth::id()?"font-weight-bold":""}}">{{$teammember->user->name . " (" . $teammember->scrumRole->title . ")"}}</li>
@@ -76,11 +94,11 @@
 
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
-                    <div class="card-img-top h-100">
+                    <div class="card-img-top">
                         <img class="w-100 h-100 img-fluid mx-auto p-1" src="{{ asset('images/productbacklog.jpg') }}"
                              alt="Product backlog">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body overflow-auto" style="max-height: 150px;">
                         <h4 class="card-title">Product Backlog</h4>
                         <p class="card-text">Add, delete and manage the project backlog elements.</p>
                     </div>
@@ -93,10 +111,10 @@
 
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
-                    <div class="card-img-top h-100">
+                    <div class="card-img-top">
                         <img class="w-100 h-100 img-fluid mx-auto p-1" src="{{asset('images/dod.jpg')}}" alt="">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body overflow-auto" style="max-height: 150px;">
                         <h4 class="card-title">Definition of Done</h4>
                         <p class="card-text">When can you check a backlog element as done? manage the criteria .</p>
                     </div>

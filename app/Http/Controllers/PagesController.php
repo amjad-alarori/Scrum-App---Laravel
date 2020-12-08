@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Models\Productbacklog;
-use App\Models\Post;
 
 class PagesController extends Controller
 {
-    public function home()
-    {
-        return view('home');
-    }
 
     public function sprintDashboard()
     {
@@ -29,11 +23,6 @@ class PagesController extends Controller
         return view('scrumBoard');
     }
 
-    public function projectdashboard()
-    {
-        return view('projectdashboard');
-    }
-
     public function addSprint(Project $project)
     {
         return view('addsprint', ['project' => $project]);
@@ -42,11 +31,6 @@ class PagesController extends Controller
     public function dod()
     {
         return view('dod');
-    }
-
-    public function team()
-    {
-        return view ('team');
     }
 
     public function definitionOfDone()
