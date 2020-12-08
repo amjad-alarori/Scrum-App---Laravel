@@ -22,10 +22,32 @@
 
 {{--        <a href="{{route('sprintBacklog.show',['project'=>$project->id, 'sprint'=> $sprint->id, 'sprintBacklog'=>$sprintProductBacklog])}}" class="btn btn-primary">Add Backlog items to sprint</a>--}}
 
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Business Value</th>
+                <th scope="col">User Story</th>
+                <th scope="col">Story Points</th>
+                <th scope="col">Acceptance Criteria</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach($products as $product)
+                <tr>
+                    <td>{{ $product->title }}</td>
+                    <td>{{ $product->description }}</td>
+                    <td>{{ $product->priority }}</td>
+                    <td>{{ $product->business_value }}</td>
+                    <td>{{ $product->user_story }}</td>
+                    <td>{{ $product->story_points }}</td>
+                    <td>{{ $product->acceptance_criteria }}</td>
 
 
 
-<div class="col-6">
 
         @foreach($ProductBacklogs as $item)
 
