@@ -159,7 +159,7 @@
 
         var startdate = "{{$startdate = count($sprints)>0?$sprints[0]->startdate:$project->created_at->setTime(0,0,0)}}";
         var projectLength ={{$projectLength = date_diff(date_create($startdate),date_create($project->deadline))->format('%a')}}
-        var days ={{$days = date_create('NOW')<date_create($startdate)?0:date_diff(date_create('NOW'),date_create($startdate))->format('%a')}}
+        var days ={{$days = date_create('NOW')<date_create($startdate)?0:(date_create('NOW')>date_create($project->deadline)?$projectLength:date_diff(date_create('NOW'),date_create($startdate))->format('%a'))}}
 
 
         var gaugeOptions = {

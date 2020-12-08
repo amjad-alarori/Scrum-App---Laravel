@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ScrumTeam;
 use Illuminate\Database\Seeder;
 
 class ScrumTeamSeeder extends Seeder
@@ -13,6 +14,6 @@ class ScrumTeamSeeder extends Seeder
      */
     public function run()
     {
-        //
+        ScrumTeam::factory()->count(180)->create();
     }
 }

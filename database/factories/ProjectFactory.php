@@ -22,7 +22,12 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title'=>$this->faker->word,
+            'description'=>$this->faker->text,
+            'mission'=>$this->faker->sentence,
+            'vision'=>$this->faker->sentence,
+            'deadline'=>$this->faker->dateTime,
+            'sprintLength'=>$this->faker->randomElement([7,14,21,18]),
         ];
     }
 }
