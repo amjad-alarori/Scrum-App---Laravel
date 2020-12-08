@@ -6,7 +6,7 @@ use App\Models\Project;
 use App\Models\Sprint;
 use Illuminate\Http\Request;
 use App\Models\ScrumTeam;
-use http\Client\Curl\User;
+use App\Models\User;
 use App\Models\DailyStandUp;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,9 +28,9 @@ class DailyStandUpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(DailyStandUp $dailyStandUp)
+    public function create(Project $project, Sprint $sprint)
     {
-        return view('dailyStandUpForm');
+        return view('dailyStandUpForm', ['sprint'=>$sprint, 'project'=>$project]);
     }
 
     /**
@@ -39,7 +39,7 @@ class DailyStandUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Sprint $sprint, Project $project)
+    public function store(Request $request, Project $project, Sprint $sprint)
     {
         $request->validate([
             'yesterday'=>['required', 'string'],
