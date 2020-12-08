@@ -7,8 +7,10 @@ use App\Http\Middleware\ProjectAdminAccess;
 use App\Models\Project;
 use App\Models\ScrumRole;
 use App\Models\ScrumTeam;
+use App\Models\Sprint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -102,7 +104,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $sprints=$project->sprints;
+        $sprints=$project->sprints()->orderBy('startdate')->get();
         $teammembers=$project->scrumTeam;
 
         return view('projectdashboard',['project'=>$project, 'sprints'=>$sprints, 'teammembers'=>$teammembers]);

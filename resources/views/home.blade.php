@@ -14,7 +14,7 @@
             </div>
             <div class="tracking-in-expand-fwd-delayed text-center" style="font-size: min(3.5rem, 4vw); font-weight: 300;line-height: 1.2;">
                 @auth()
-                    Go to your <a class="card-link" href="{{route('project.index')}}">projects</a> and have fun.
+                    Go to your <a class="card-link font-weight-bold" style="color:#012f99;" href="{{route('project.index')}}"><ins>projects</ins></a> and have fun.
                 @else()
                     make an account or loing<br/>
                     to enjoy convenience of scrumapp.
