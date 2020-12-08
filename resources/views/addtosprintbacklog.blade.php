@@ -27,26 +27,40 @@
 
     <div class="container">
 
-        @foreach ($productbBacklog as $item)
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Business Value</th>
+                <th scope="col">User Story</th>
+                <th scope="col">Story Points</th>
+                <th scope="col">Acceptance Criteria</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                @foreach($productBackLog as $item)
+
+            <tr>
+                <td>{{ $item->title }}</td>
+                <td>{{ $item->description }}</td>
+                <td>{{ $item->priority }}</td>
+                <td>{{ $item->business_value }}</td>
+                <td>{{ $item->user_story }}</td>
+                <td>{{ $item->story_points }}</td>
+                <td>{{ $item->acceptance_criteria }}</td>
 
 
-        <div class="card text-white bg-dark" style="width: 20rem;display:inline-block;" >
-           <div class="card-body">
-             <h4 class="title">{{$item->title}}</h4>
-                <p class="card-text">Description: {{$item->description}}</p><br>
-               <br>
-               <p class="card-text">Userstory:<br>{{$item->user_story}}</p><br>
-               <br>
-                <p class="card-text">Priority: {{$item->priority}}</p><br>
-                <p class="card-text">Business Value: {{$item->business_value}}</p><br>
 
-                <p class="card-text">Story Points: {{$item->story_points}}</p><br>
-               <br>
-                <p class="card-text">Acceptance criteria: {{$item->acceptance_criteria}}</p>
-           </div>
-        </div>
-            @endforeach
-
+{{--           <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project,'sprint'=>$sprint, '$productBackLog'=>$item->id])}}">--}}
+{{--                    @method('GET')--}}
+{{--                    @csrf--}}
+{{--                    <td> <button class="btn btn-warning " type="submit">Add item to sprint</button> </td>--}}
+{{--                </form>--}}
+            </tr>
+        @endforeach
 
 
 

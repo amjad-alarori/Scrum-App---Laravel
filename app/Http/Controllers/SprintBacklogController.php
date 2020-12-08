@@ -12,16 +12,18 @@ class SprintBacklogController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index(Project $project, Sprint $sprint)
     {
-        $ProductBacklogs = ProductBacklog::query()->where('sprint_id', null)->get();
-        $sprintBacklogs = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
 
-       
+        $sprintBacklog = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
+      //  $productBackLog = ProductBacklog::query()->where('sprint_id', '=',  null)->get();
 
-        return view ('sprintBacklog', ['project'=> $project, 'sprint'=> $sprint, 'ProductBacklogs'=>$ProductBacklogs, 'sprintBacklogs'=>$sprintBacklogs]);
+
+
+        return view ('sprintBacklog', ['project'=> $project, 'sprint'=> $sprint , 'sprintBacklog'=>$sprintBacklog]);
+
 
 
     }
@@ -50,14 +52,19 @@ class SprintBacklogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param ProductBacklog $productBacklog
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Project $project, Sprint $sprint, ProductBacklog $sprintBacklog)
+    public function show(Project $project, Sprint $sprint)
     {
-        dd("hi");
-       // $productBacklog = $sprintBacklog->project;
-      //  return view ('addtosprintbacklog', ['project'=> $project, 'sprint'=> $sprint, 'productBacklog'=>$productBacklog]);
+
+        $productBackLog = ProductBacklog::query()->where('sprint_id', '=',  null)->get();
+        //$sprintBacklog = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
+
+        return view ('addtosprintbacklog', ['project'=> $project, 'sprint'=> $sprint, 'productBackLog'=>$productBackLog]);
+
     }
 
     /**
@@ -74,13 +81,19 @@ class SprintBacklogController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param ProductBacklog $productBacklog
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProductBacklog $productBackLog)
     {
-        //
+
+        $productBackLog->sprint_id = $request['sprint_id'];
+
+        $productBackLog->update();
+
+
+
     }
 
     /**

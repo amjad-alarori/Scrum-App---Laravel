@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductBacklog;
 use App\Models\Project;
+use App\Models\Sprint;
 use Illuminate\Http\Request;
 
 class ProductBacklogController extends Controller
@@ -83,7 +84,7 @@ class ProductBacklogController extends Controller
      */
     public function show(Project $project, ProductBacklog $productBacklog)
     {
-        
+
 
     }
 
@@ -159,4 +160,8 @@ class ProductBacklogController extends Controller
         return redirect()->back();
 
     }
+
+
+
+
 }
