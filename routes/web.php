@@ -40,12 +40,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< master
              Route::resource('sprintBacklog', 'SprintBacklogController');
             //Route::resource('sprintDashboard', 'PagesController');
-========================================================================
             Route::resource('dailyStandUpForm', 'DailyStandUpController');
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> review
             //tijdelijke routes om snelle toegang te krijgen tot view
             Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
         });
