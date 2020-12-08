@@ -103,7 +103,7 @@
                             necessitatibus neque.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('defofdone.index',['project'=>$project])}}" class="btn btn-primary">Go to
+                        <a href="{{route('defOfDone.index',['project'=>$project])}}" class="btn btn-primary">Go to
                             page</a>
                     </div>
                 </div>

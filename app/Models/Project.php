@@ -43,6 +43,11 @@ class Project extends Model
         return $this->hasMany(ProductBacklog::class,'ProjectId' ,'id');
 
     }
+
+    public function defOfDone()
+    {
+        return $this->hasMany(DefOfDone::class, 'projectId', 'id');
+    }
 }
 
 
