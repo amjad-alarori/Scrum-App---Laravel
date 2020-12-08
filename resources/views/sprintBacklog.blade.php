@@ -20,7 +20,8 @@
 
     <div class="container">
 
-{{--        <a href="{{route('sprintBacklog.show',['project'=>$project->id, 'sprint'=> $sprint->id, 'sprintBacklog'=>$sprintProductBacklog])}}" class="btn btn-primary">Add Backlog items to sprint</a>--}}
+      <a href="{{route('sprintBacklog.show',['project'=> $project->id, 'sprint'=> $sprint->id, 'sprintBacklog'=> $sprintBacklog])}}>" class="btn btn-primary">Add from productbacklog</a>
+
 
         <table class="table table-hover">
             <thead>
@@ -34,63 +35,25 @@
                 <th scope="col">Acceptance Criteria</th>
             </tr>
             </thead>
+
+
             <tbody>
 
-            @foreach($products as $product)
+            @foreach ($sprintBacklog as $sprintItem)
                 <tr>
-                    <td>{{ $product->title }}</td>
-                    <td>{{ $product->description }}</td>
-                    <td>{{ $product->priority }}</td>
-                    <td>{{ $product->business_value }}</td>
-                    <td>{{ $product->user_story }}</td>
-                    <td>{{ $product->story_points }}</td>
-                    <td>{{ $product->acceptance_criteria }}</td>
+                    <td>{{ $sprintItem->title }}</td>
+                    <td>{{ $sprintItem->description }}</td>
+                    <td>{{ $sprintItem->priority }}</td>
+                    <td>{{ $sprintItem->business_value }}</td>
+                    <td>{{ $sprintItem->user_story }}</td>
+                    <td>{{ $sprintItem->story_points }}</td>
+                    <td>{{ $sprintItem->acceptance_criteria }}</td>
 
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
 
-
-
-        @foreach($ProductBacklogs as $item)
-
-            <div class="card text-white bg-secondary" id="cardProductBacklog" style="width: 30rem;display:inline-block;" >
-                <div class="card-header">{{$item->title}}</div>
-                <div class="card-body">
-                    <p class="card-text">Description: {{$item->description}}</p><br>
-
-                    <p class="card-text">Userstory:<br>{{$item->user_story}}</p><br>
-
-                    <p class="card-text">Priority: {{$item->priority}}</p>
-                    <p class="card-text">Business Value: {{$item->business_value}}</p>
-
-                    <p class="card-text">Story Points: {{$item->story_points}}</p><br>
-
-                    <p class="card-text">Acceptance criteria: {{$item->acceptance_criteria}}</p>
-                </div>
-            </div>
-
-        @endforeach
-
-</div>
-<div class="col-6">
-    @foreach($sprintBacklogs as $item)
-
-        <div class="card text-white bg-dark" style="width: 20rem;display:inline-block;" >
-            <div class="card-body">
-                <h3 class="h3">{{$item->title}}</h3>
-                <p class="card-text">Description: {{$item->description}}</p><br>
-                <br>
-                <p class="card-text">Userstory:<br>{{$item->user_story}}</p><br>
-                <br>
-                <p class="card-text">Priority: {{$item->priority}}</p><br>
-                <p class="card-text">Business Value: {{$item->business_value}}</p><br>
-
-                <p class="card-text">Story Points: {{$item->story_points}}</p><br>
-                <br>
-                <p class="card-text">Acceptance criteria: {{$item->acceptance_criteria}}</p>
-            </div>
-        </div>
-
-    @endforeach
-</div>
 
 
 
