@@ -41,16 +41,16 @@
             </thead>
             <tbody>
 
-                @foreach($productBackLog as $item)
+{{--                @foreach($productBackLog as $item)--}}
 
-            <tr>
-                <td>{{ $item->title }}</td>
-                <td>{{ $item->description }}</td>
-                <td>{{ $item->priority }}</td>
-                <td>{{ $item->business_value }}</td>
-                <td>{{ $item->user_story }}</td>
-                <td>{{ $item->story_points }}</td>
-                <td>{{ $item->acceptance_criteria }}</td>
+{{--            <tr>--}}
+{{--                <td>{{ $item->title }}</td>--}}
+{{--                <td>{{ $item->description }}</td>--}}
+{{--                <td>{{ $item->priority }}</td>--}}
+{{--                <td>{{ $item->business_value }}</td>--}}
+{{--                <td>{{ $item->user_story }}</td>--}}
+{{--                <td>{{ $item->story_points }}</td>--}}
+{{--                <td>{{ $item->acceptance_criteria }}</td>--}}
 
 
 
@@ -59,7 +59,32 @@
 {{--                    @csrf--}}
 {{--                    <td> <button class="btn btn-warning " type="submit">Add item to sprint</button> </td>--}}
 {{--                </form>--}}
-            </tr>
+{{--            </tr>--}}
+{{--        @endforeach--}}
+
+
+
+
+                @foreach($sprintBacklogs as $sprintBacklog)
+
+                    <tr>
+                        <td>{{ $sprintBacklog->title }}</td>
+                        <td>{{ $sprintBacklog->description }}</td>
+                        <td>{{ $sprintBacklog->priority }}</td>
+                        <td>{{ $sprintBacklog->business_value }}</td>
+                        <td>{{ $sprintBacklog->user_story }}</td>
+                        <td>{{ $sprintBacklog->story_points }}</td>
+                        <td>{{ $sprintBacklog->acceptance_criteria }}</td>
+
+
+
+                                   <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project->id,'sprint'=>$sprint->id, 'sprintBacklog'=>$sprintBacklog->id])}}">
+                                            @method('POST')
+                                            @csrf
+                                       <input type="hidden" value="{{$sprint->id}}">
+                                            <td> <button class="btn btn-warning " type="submit">Add item to sprint</button> </td>
+                                        </form>
+                    </tr>
         @endforeach
 
 

@@ -16,14 +16,14 @@ class SprintBacklogController extends Controller
      */
     public function index(Project $project, Sprint $sprint)
     {
-
-        $sprintBacklog = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
+       $sprintBacklogs = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
+       // $sprintBacklog = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
       //  $productBackLog = ProductBacklog::query()->where('sprint_id', '=',  null)->get();
 
 
 
-        return view ('sprintBacklog', ['project'=> $project, 'sprint'=> $sprint , 'sprintBacklog'=>$sprintBacklog]);
-
+     //   return view ('sprintBacklog', ['project'=> $project, 'sprint'=> $sprint , 'sprintBacklog'=>$sprintBacklog]);
+        return view ('sprintBacklog', ['project'=> $project, 'sprint'=> $sprint , 'sprintBacklogs'=>$sprintBacklogs]);
 
 
     }
@@ -57,13 +57,15 @@ class SprintBacklogController extends Controller
      * @param ProductBacklog $productBacklog
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Project $project, Sprint $sprint)
-    {
+    public function show(Project $project, Sprint $sprint, ProductBacklog $sprintBacklog)
 
-        $productBackLog = ProductBacklog::query()->where('sprint_id', '=',  null)->get();
+    {
+        $sprintBacklog = ProductBacklog::query()->where('sprint_id', '=',  null)->get();
+
+      //  $productBackLog = ProductBacklog::query()->where('sprint_id', '=',  null)->get();
         //$sprintBacklog = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
 
-        return view ('addtosprintbacklog', ['project'=> $project, 'sprint'=> $sprint, 'productBackLog'=>$productBackLog]);
+        return view ('addtosprintbacklog', ['project'=> $project, 'sprint'=> $sprint, 'sprintBacklog'=>$sprintBacklog]);
 
     }
 
@@ -82,8 +84,8 @@ class SprintBacklogController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param ProductBacklog $productBacklog
-     * @return void
+     * @param ProductBacklog $productBackLog
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, ProductBacklog $productBackLog)
     {
@@ -91,6 +93,8 @@ class SprintBacklogController extends Controller
         $productBackLog->sprint_id = $request['sprint_id'];
 
         $productBackLog->update();
+
+        return redirect()->back()->with('sucess', 'inserted successfully');
 
 
 

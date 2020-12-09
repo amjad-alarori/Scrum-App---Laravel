@@ -40,7 +40,8 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
-             Route::resource('sprintBacklog', 'SprintBacklogController');
+            Route::resource('scrumBoard', 'ScrumBoardController');
+            Route::resource('sprintBacklog', 'SprintBacklogController');
             //Route::resource('sprintDashboard', 'PagesController');
 
             //tijdelijke routes om snelle toegang te krijgen tot view

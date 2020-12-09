@@ -90,9 +90,6 @@ body {
     }
 }
 
-
-
-
     /* Clear floats after the columns */
     .rowRetrospective :after {
         content: "";
@@ -102,11 +99,11 @@ body {
 
 
     /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+    /*.row:after {*/
+    /*    content: "";*/
+    /*    display: table;*/
+    /*    clear: both;*/
+    /*}*/
 
 
 
@@ -114,7 +111,7 @@ body {
 
 
 
-.input-group {
+.retrospectiveInput-group {
     position: relative;
     display: block;
     padding: 10px;
@@ -127,7 +124,7 @@ body {
 
 }
 
-.overflow{
+.retrospectiveOverflow{
     overflow: auto;
 }
 
@@ -135,13 +132,127 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/*scrumboard start*/
 
-#cardProductBacklog{
 
-    column-count: 2;
-    column-gap: 30px;
+
+
+.column-scrumBoard {
+    border-right: 5px solid;
+    border-color: blue;
+    margin-left: auto;
+
+    height: 100%;
+    width: 100%;
 }
 
+.input-group{
+    position: relative;
+    display: block;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-left: 5px solid #012f99 ;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+
+    color: #f1f1f1;
+
+
+}
+
+
+span.arrow {
+    content: "\2193";
+    font-weight: bold;
+}
+
+.h5ScrumBoard{
+
+    font-weight: bolder;
+    opacity: 100%;
+}
+
+hr.lineBacklogItem{
+
+    border-top: solid #2d3748;
+}
+
+
+
+.buttonScrumBoard{
+    /*display: inline-block;*/
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.button-backlogScrumBoard{
+    background: #f1f1f1;
+
+    color: #3366aa;
+    font-weight: bold;
+}
+.button-progressScrumBoard{
+    background: #f1f1f1;
+
+    color: darkgoldenrod;
+    font-weight: bold;
+}
+.button-doneScrumBoard{
+    background: #f1f1f1;
+
+    color: #007b03;
+    font-weight: bold;
+}
+.button-deleteScrumBoard{
+    background: #f1f1f1;
+
+    color: #be0000;
+    font-weight: bold;
+}
+
+.btnScrumBoard{
+
+    color: #718096;
+    text-decoration: none;
+    font-weight: bold;
+
+
+}
+.btn-linkScrumBoard{
+
+    color: #f1f1f1;
+    opacity: 50%;
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+.btn-linkScrumBoard:hover {
+    color: #f1f1f1;
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.btnScrumBoard:hover {
+
+    color: #f1f1f1;
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+
+
+
+
+/*Scrumboard end*/
 
 .bg-olive {
     background-color: #3d9970;

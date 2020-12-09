@@ -61,10 +61,9 @@
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">Sprint menu</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                <a class="dropdown-item"
-                                   href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}">Daily stand up</a>
+                                <a class="dropdown-item" href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}">Daily stand up</a>
                                 <a class="dropdown-item" href="{{route('review.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'review'=>$review=1])}}">Sprint review</a>
-                                <a class="dropdown-item" href="#">Scrum board</a>
+                                <a class="dropdown-item" href="{{route('scrumBoard.index', ['project'=>$project->id, 'sprint'=> $sprint->id, 'scrumBoard'=> $scrumBoard=1])}}">Scrum Board</a>
                                 <a class="dropdown-item" href="{{route('retrospective.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}">Retrospective</a>
                             </div>
                         </li>

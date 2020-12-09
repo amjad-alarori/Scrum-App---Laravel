@@ -78,7 +78,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/scrumBoard" class="btn btn-primary">Go to Scrum Board</a>
+                        <a href="{{route('scrumBoard.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}" class="btn btn-primary">Go to Scrum Board</a>
                     </div>
                 </div>
             </div>
