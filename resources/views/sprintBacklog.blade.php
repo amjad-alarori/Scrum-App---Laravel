@@ -50,6 +50,8 @@
 
 
 
+
+
                 </tr>
             @endforeach
             <a href="{{route('sprintBacklog.show',['project'=>$project,'sprint'=>$sprint->id, 'sprintBacklog'=>$sprintItem->id])}}>" class="btn btn-primary">Add from productbacklog</a>
