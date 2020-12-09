@@ -20,7 +20,7 @@ use App\Http\Controllers\ScrumTeamController;
 
 Route::group(['middleware' => 'web'], function () {
     /** voeg hier de routes welke zonder authorisatie te bereiken is */
-    Route::get('', [PagesController::class, 'home'])->name('home');
+    Route::view('', 'home');
 
     Route::group(['middleware' => Authenticate::class], function () {
         /** voeg hier de routes welke authorisatie nodig hebben */

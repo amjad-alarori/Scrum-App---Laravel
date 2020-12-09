@@ -23,7 +23,6 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-
      * @return Project[]|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
