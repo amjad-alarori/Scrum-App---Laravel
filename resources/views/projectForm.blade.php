@@ -67,6 +67,17 @@
                     @enderror
                 </div>
 
+                <div class="mt-4">
+                    <label class="block font-medium text-sm text-gray-700" for="role">Your role {{old('role')}}</label>
+                    <select class="form-control rounded-md shadow-sm inline-block mt-1 col-sm-5" id="role" name="role">
+                        <option value="1" {{old('role')==1?"selected":""}}>Product Owner</option>
+                        <option value="2" {{old('role')==2?"selected":(is_null(old('role'))?"selected":"")}}>Scrum Master</option>
+                    </select>
+                    @error('role')
+                    <p class='text-sm text-red-600 mt-2'>{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <div class="flex items-center justify-end mt-4">
                     <a href="{{route('project.index')}}"
                         class="btn inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">

@@ -64,7 +64,8 @@ class ProjectController extends Controller
             'mission' => ['string', 'nullable'],
             'vision' => ['string', 'nullable'],
             'deadline' => ['date', 'after:' . date('m/d/Y')],
-            'sprintLength' => ['integer', 'min:1']
+            'sprintLength' => ['integer', 'min:1'],
+            'role'=>['required', 'integer','min:1','max:2']
         ]);
 
 
@@ -88,7 +89,7 @@ class ProjectController extends Controller
         $scrumTeam = new ScrumTeam();
         $scrumTeam->projectId = $project->id;
         $scrumTeam->userId = Auth::id();
-        $scrumTeam->roleId = 2;
+        $scrumTeam->roleId = $request['role'];
 
         $scrumTeam->save();
 
