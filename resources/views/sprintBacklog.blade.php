@@ -20,7 +20,6 @@
 
     <div class="container">
 
-      <a href="{{route('sprintBacklog.show',['project'=> $project->id, 'sprint'=> $sprint->id, 'sprintBacklog'=> $sprintBacklog])}}>" class="btn btn-primary">Add from productbacklog</a>
 
 
         <table class="table table-hover">
@@ -49,8 +48,11 @@
                     <td>{{ $sprintItem->story_points }}</td>
                     <td>{{ $sprintItem->acceptance_criteria }}</td>
 
+
+
                 </tr>
             @endforeach
+            <a href="{{route('sprintBacklog.show',['project'=>$project,'sprint'=>$sprint->id, 'sprintBacklog'=>$sprintItem->id])}}>" class="btn btn-primary">Add from productbacklog</a>
             </tbody>
         </table>
 

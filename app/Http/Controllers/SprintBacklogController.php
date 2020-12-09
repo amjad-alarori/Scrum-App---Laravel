@@ -61,6 +61,7 @@ class SprintBacklogController extends Controller
     {
 
         $productBackLog = ProductBacklog::query()->where('sprint_id', '=',  null)->get();
+
         //$sprintBacklog = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
 
         return view ('addtosprintbacklog', ['project'=> $project, 'sprint'=> $sprint, 'productBackLog'=>$productBackLog]);
@@ -85,14 +86,15 @@ class SprintBacklogController extends Controller
      * @param ProductBacklog $productBacklog
      * @return void
      */
-    public function update(Request $request, ProductBacklog $productBackLog)
+    public function update(Request $request, $sprintBacklog)
     {
 
-        $productBackLog->sprint_id = $request['sprint_id'];
 
-        $productBackLog->update();
+       $moment = ProductBacklog::find($request['sprintBacklog']);
+       $moment->sprint_id = $request['sprint'];
+       $moment->save();
 
-
+       return redirect()->back();
 
     }
 

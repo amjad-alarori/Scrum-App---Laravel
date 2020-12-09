@@ -43,6 +43,8 @@
 
                 @foreach($productBackLog as $item)
 
+
+
             <tr>
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->description }}</td>
@@ -54,12 +56,18 @@
 
 
 
-{{--           <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project,'sprint'=>$sprint, '$productBackLog'=>$item->id])}}">--}}
-{{--                    @method('GET')--}}
-{{--                    @csrf--}}
-{{--                    <td> <button class="btn btn-warning " type="submit">Add item to sprint</button> </td>--}}
-{{--                </form>--}}
+
+
+           <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project,'sprint'=>$sprint->id, 'sprintBacklog'=>$item->id])}}">
+                    @method('PUT')
+                    @csrf
+                    <td> <button class="btn btn-warning " type="submit">Add to sprint</button> </td>
+                </form>
+
+
+
             </tr>
+
         @endforeach
 
 
