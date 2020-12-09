@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductBacklogController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
@@ -42,9 +43,11 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('dailyStandUp', 'DailyStandUpController');
              Route::resource('sprintBacklog', 'SprintBacklogController');
             //Route::resource('sprintDashboard', 'PagesController');
-            Route::resource('dailyStandUpForm', 'DailyStandUpController');
+            Route::resource('dailyStandUpForm', 'DailyStandUpC[ontroller');
             //tijdelijke routes om snelle toegang te krijgen tot view
+            Route::put('sprintBacklog/{sprintBacklog}', [ProductBacklogController::class, 'updatesprintid'])->name('updatesprintid');
             Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
+
         });
     });
 });
