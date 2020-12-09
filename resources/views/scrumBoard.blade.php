@@ -38,7 +38,7 @@
                         <div id="accordion">
                             <div class="cardBacklogItem">
 
-                                    <button class="btn btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                    <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
                                         More info <span class="arrow">&#8681;</span>
                                     </button>
 
@@ -73,7 +73,7 @@
                         <div id="accordion">
                             <div class="cardBacklogItem">
 
-                                    <button class="btn btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+                                    <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
                                         More info <span class="arrow">&#8681;</span>
                                         </button>
 
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="footer-widget">
+                <div class="column-scrumBoard">
                     <h4 class="h4">Done</h4><br>
                     <hr>
 
