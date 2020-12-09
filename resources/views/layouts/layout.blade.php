@@ -50,6 +50,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Project menu</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="{{route('project.show',['project'=>$project->id])}}">Project dashboard</a>
                             <a class="dropdown-item" href="{{route('scrumTeam.index',['project' => $project->id])}}">Scrum teams</a>
                             <a class="dropdown-item" href="{{route('productBackLog.index',['project'=>$project])}}">Product Backlog</a>
                             <a class="dropdown-item" href="{{route('defOfDone.index',['project'=>$project])}}">Definition of Done</a>
@@ -61,6 +62,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">Sprint menu</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item" href="{{route('sprint.show',['project'=> $project->id, 'sprint'=> $sprint->id ])}}">Sprint dashboard</a>
                                 <a class="dropdown-item"
                                    href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}">Daily stand up</a>
                                 <a class="dropdown-item" href="{{route('review.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'review'=>$review=1])}}">Sprint review</a>
