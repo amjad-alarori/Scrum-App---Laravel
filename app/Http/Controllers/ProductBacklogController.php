@@ -110,40 +110,40 @@ class ProductBacklogController extends Controller
      */
     public function update(Request $request, Project $project, ProductBacklog $productBackLog)
 
-        {
+    {
 
-            $request->validate([
-                'title' => ['required', 'string'],
-                'description' => ['string', 'nullable'],
-                'priority' => ['integer', 'required'],
-                'business_value' => ['integer', 'required'],
-                'user_story' => ['string', 'nullable'],
-                'story_points' => ['integer', 'required'],
-                'acceptance_criteria' => ['string', 'nullable'],
+        $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['string', 'nullable'],
+            'priority' => ['integer', 'required'],
+            'business_value' => ['integer', 'required'],
+            'user_story' => ['string', 'nullable'],
+            'story_points' => ['integer', 'required'],
+            'acceptance_criteria' => ['string', 'nullable'],
 
-            ]);
-
-
-
-            $productBackLog->title = $request->title;
-            $productBackLog->description = $request->description;
-            $productBackLog->priority = $request->priority;
-            $productBackLog->business_value = $request->business_value;
-            $productBackLog->user_story = $request->user_story;
-            $productBackLog->story_points = $request->story_points;
-            $productBackLog->project_id = $project->id;
-            $productBackLog->acceptance_criteria = $request->acceptance_criteria;
+        ]);
 
 
 
+        $productBackLog->title = $request->title;
+        $productBackLog->description = $request->description;
+        $productBackLog->priority = $request->priority;
+        $productBackLog->business_value = $request->business_value;
+        $productBackLog->user_story = $request->user_story;
+        $productBackLog->story_points = $request->story_points;
+        $productBackLog->project_id = $project->id;
+        $productBackLog->acceptance_criteria = $request->acceptance_criteria;
 
-            $productBackLog->update();
 
-            return redirect()->action(
-                [ProductBacklogController::class, 'index'], ['project' => $project]
-            );
 
-        }
+
+        $productBackLog->update();
+
+        return redirect()->action(
+            [ProductBacklogController::class, 'index'], ['project' => $project]
+        );
+
+    }
 
 
     /**
@@ -158,6 +158,19 @@ class ProductBacklogController extends Controller
     {
         $productBackLog->delete();
         return redirect()->back();
+
+    }
+
+    public function updatesprintid(Request $request, Project $project, $sprintBacklog)
+    {
+
+
+        $second = ProductBacklog::find($request['sprintBacklog']);
+        $second->sprint_id = null;
+        $second->save();
+
+        return redirect()->back();
+
 
     }
 

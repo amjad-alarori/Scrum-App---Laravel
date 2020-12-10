@@ -90,11 +90,9 @@ class SprintBacklogController extends Controller
     {
 
 
-       $moment = ProductBacklog::find($request['sprintBacklog']);
-       $moment->sprint_id = $request['sprint'];
-       $moment->save();
-
-       return redirect()->back();
+        $moment = ProductBacklog::find($sprintBacklog);
+        $moment->sprint_id = $request['sprint'];
+        $moment->save();
 
     }
 

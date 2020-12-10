@@ -49,12 +49,17 @@
                     <td>{{ $sprintItem->acceptance_criteria }}</td>
 
 
-
-
+                    <form method="POST" action="{{route('updatesprintid',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$sprintItem->id])}}">
+                        @method('PUT')
+                        @csrf
+                        <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
+                    </form>
 
                 </tr>
+
             @endforeach
             <a href="{{route('sprintBacklog.show',['project'=>$project,'sprint'=>$sprint->id, 'sprintBacklog'=>$sprintItem->id])}}>" class="btn btn-primary">Add from productbacklog</a>
+
             </tbody>
         </table>
 
@@ -62,6 +67,7 @@
 
 
 
+
     </div>
-        <!-- /.container -->
+    <!-- /.container -->
 @endsection

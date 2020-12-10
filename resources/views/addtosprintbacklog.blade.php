@@ -58,11 +58,11 @@
 
 
 
-           <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project,'sprint'=>$sprint->id, 'sprintBacklog'=>$item->id])}}">
+           <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$item])}}">
                     @method('PUT')
                     @csrf
-                    <td> <button class="btn btn-warning " type="submit">Add to sprint</button> </td>
-                </form>
+                    <td> <button class="btn btn-warning " type="submit">{{$item->id}}</button> </td>
+           </form>
 
 
 
