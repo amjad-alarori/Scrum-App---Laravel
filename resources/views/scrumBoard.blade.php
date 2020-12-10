@@ -30,22 +30,29 @@
                 <hr>
                 <br>
 
+                @foreach ($sprintBacklogsToDo as $toDo)
+
                 <div class="input-group overflow">
-                    <h5 class="h5ScrumBoard">Backlog Item</h5>
+                    <h5 class="h5ScrumBoard">{{$toDo->title}}</h5>
                     <hr class="lineBacklogItem">
                     <br>
 
-                    <div id="accordion">
+                    <div id="accordion{{$toDo->title}}">
                         <div class="cardBacklogItem">
 
-                            <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                            <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse{{$toDo->title}}" aria-expanded="false" aria-controls="collapse">
                                 More info <span class="arrow">&#8681;</span>
                             </button>
 
 
-                            <div id="collapse" class="collapse" aria-labelledby="heading">
+                            <div id="collapse{{$toDo->title}}" class="collapse" aria-labelledby="heading">
                                 <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  {{$toDo->description}}<br>
+                                    {{$toDo->user_story}}<br>
+                                    {{$toDo->story_points}}<br>
+                                    {{$toDo->business_value}}<br>
+                                    {{$toDo->priority}}<br>
+                                    {{$toDo->acceptance_criteria}}
                                 </div>
                             </div>
                         </div>
@@ -55,36 +62,38 @@
                     <div class="margin-top-10">
                         <button class="buttonScrumBoard button-backlogScrumBoard">To Do</button><button class="buttonScrumBoard button-progressScrumBoard">In Progress</button><button class="buttonScrumBoard button-doneScrumBoard">Done</button><button class="buttonScrumBoard button-deleteScrumBoard">Delete</button>
                     </div>
+
+
                 </div>
+                @endforeach
+
+{{--                <div class="input-group overflow">--}}
+{{--                    <h5 class="h5ScrumBoard">Backlog Item</h5>--}}
+{{--                    <hr class="lineBacklogItem">--}}
+{{--                    <br>--}}
 
 
-                <div class="input-group overflow">
-                    <h5 class="h5ScrumBoard">Backlog Item</h5>
-                    <hr class="lineBacklogItem">
-                    <br>
+{{--                    <div id="accordion">--}}
+{{--                        <div class="cardBacklogItem">--}}
+
+{{--                            <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">--}}
+{{--                                More info <span class="arrow">&#8681;</span>--}}
+{{--                            </button>--}}
 
 
-                    <div id="accordion">
-                        <div class="cardBacklogItem">
+{{--                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <br>--}}
 
-                            <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                More info <span class="arrow">&#8681;</span>
-                            </button>
-
-
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="margin-top-10">
-                        <button class="buttonScrumBoard button-backlogScrumBoard">To Do</button><button class="buttonScrumBoard button-progressScrumBoard">In Progress</button><button class="buttonScrumBoard button-doneScrumBoard">Done</button><button class="buttonScrumBoard button-deleteScrumBoard">Delete</button>
-                    </div>
-                </div>
+{{--                    <div class="margin-top-10">--}}
+{{--                        <button class="buttonScrumBoard button-backlogScrumBoard">To Do</button><button class="buttonScrumBoard button-progressScrumBoard">In Progress</button><button class="buttonScrumBoard button-doneScrumBoard">Done</button><button class="buttonScrumBoard button-deleteScrumBoard">Delete</button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
         <div class="col-md-4 col-sm-6">

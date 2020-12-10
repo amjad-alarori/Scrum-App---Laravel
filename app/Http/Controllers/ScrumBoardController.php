@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductBacklog;
 use App\Models\Project;
 use App\Models\Sprint;
 use Illuminate\Http\Request;
@@ -15,7 +16,12 @@ class ScrumBoardController extends Controller
      */
     public function index(Project $project, Sprint $sprint)
     {
-        return view('scrumBoard', ['project'=> $project, 'sprint'=> $sprint]);
+
+        $sprintBacklogsToDo= ProductBacklog::query()->where('status', '=', null)->where('sprint_id', '=', $sprint->id)->get();
+        $sprintBacklogsInProgress= ProductBacklog::query()->where('status', '=', 1)->where('sprint_id', '=', $sprint->id)->get();
+        $sprintBacklogsDone= ProductBacklog::query()->where('status', '=', 2)->where('sprint_id', '=', $sprint->id)->get();
+
+        return view('scrumBoard', ['project'=> $project, 'sprint'=> $sprint, 'sprintBacklogsToDo'=>$sprintBacklogsToDo, 'sprintBacklogsInProgress'=>$sprintBacklogsInProgress, 'sprintBacklogsDone'=>$sprintBacklogsDone]);
     }
 
     /**
