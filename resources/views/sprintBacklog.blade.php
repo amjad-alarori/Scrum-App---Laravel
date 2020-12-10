@@ -20,7 +20,7 @@
 
             <div class="container">
 
-{{--              <a href="{{route('sprintBacklog.show',['project'=> $project->id, 'sprint'=> $sprint->id, 'sprintBacklogs'=>$sprintBacklogs])}}>" class="btn btn-primary">Add from productbacklog</a>--}}
+              <a href="{{route('sprintBacklog.show',['project'=> $project->id, 'sprint'=> $sprint->id, 'sprintBacklogs'=>$sprintBacklogs])}}>" class="btn btn-primary">Add from productbacklog</a>
 
                 <table class="table table-hover">
                     <thead>
