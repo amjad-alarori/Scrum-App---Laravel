@@ -160,21 +160,4 @@ class ProductBacklogController extends Controller
         return redirect()->back();
 
     }
-
-    public function updatesprintid(Request $request, Project $project, $sprintBacklog)
-    {
-
-
-        $second = ProductBacklog::find($request['sprintBacklog']);
-        $second->sprint_id = null;
-        $second->save();
-
-        return redirect()->back();
-
-
-    }
-
-
-
-
 }

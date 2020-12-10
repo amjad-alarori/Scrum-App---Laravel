@@ -34,10 +34,7 @@
                 <th scope="col">Acceptance Criteria</th>
             </tr>
             </thead>
-
-
             <tbody>
-
             @foreach ($sprintBacklog as $sprintItem)
                 <tr>
                     <td>{{ $sprintItem->title }}</td>
@@ -47,18 +44,17 @@
                     <td>{{ $sprintItem->user_story }}</td>
                     <td>{{ $sprintItem->story_points }}</td>
                     <td>{{ $sprintItem->acceptance_criteria }}</td>
-
-
-                    <form method="POST" action="{{route('updatesprintid',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$sprintItem->id])}}">
-                        @method('PUT')
+                    <td>
+                    <form method="POST" action="{{route('sprintBacklog.destroy',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$sprintItem->id])}}">
+                        @method('DELETE')
                         @csrf
-                        <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
+                        <button class="btn btn-danger " type="submit">Delete</button>
                     </form>
-
+                    </td>
                 </tr>
-
             @endforeach
-            <a href="{{route('sprintBacklog.show',['project'=>$project,'sprint'=>$sprint->id, 'sprintBacklog'=>$sprintItem->id])}}>" class="btn btn-primary">Add from productbacklog</a>
+
+            <a href="{{route('sprintBacklog.create',['project'=>$project,'sprint'=>$sprint->id])}}" class="btn btn-primary">Add from productbacklog</a>
 
             </tbody>
         </table>

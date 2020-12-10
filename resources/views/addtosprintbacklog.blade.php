@@ -54,16 +54,13 @@
                 <td>{{ $item->story_points }}</td>
                 <td>{{ $item->acceptance_criteria }}</td>
 
-
-
-
-
-           <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$item])}}">
-                    @method('PUT')
-                    @csrf
-                    <td> <button class="btn btn-warning " type="submit">{{$item->id}}</button> </td>
-           </form>
-
+                <td>
+                   <form method="POST" action="{{route('sprintBacklog.update',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$item])}}">
+                            @method('PATCH')
+                            @csrf
+                        <button class="btn btn-warning " type="submit">{{$item->id}}</button>
+                   </form>
+                </td>
 
 
             </tr>
