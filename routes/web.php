@@ -42,11 +42,15 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('retrospective', 'RetrospectiveController');
             Route::resource('review', 'ReviewController');
             Route::resource('dailyStandUp', 'DailyStandUpController');
-             Route::resource('sprintBacklog', 'SprintBacklogController');
+            Route::resource('scrumBoard', 'ScrumBoardController');
+            Route::resource('sprintBacklog', 'SprintBacklogController');
+
             //Route::resource('sprintDashboard', 'PagesController');
             Route::resource('dailyStandUpForm', 'DailyStandUpController');
+
+
             //tijdelijke routes om snelle toegang te krijgen tot view
-            Route::put('sprintBacklog/{sprintBacklog}', [ProductBacklogController::class, 'updatesprintid'])->name('updatesprintid');
+//            Route::put('sprintBacklog/{sprintBacklog}', [ProductBacklogController::class, 'updatesprintid'])->name('updatesprintid');
             Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
         });
     });
