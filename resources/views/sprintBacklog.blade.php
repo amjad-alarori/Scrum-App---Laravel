@@ -49,11 +49,7 @@
                     <td>{{ $sprintItem->acceptance_criteria }}</td>
 
 
-                    <form method="POST" action="{{route('updatesprintid',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$sprintItem->id])}}">
-                        @method('PUT')
-                        @csrf
-                        <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
-                    </form>
+
 
 
                 </tr>

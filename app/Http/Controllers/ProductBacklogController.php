@@ -161,18 +161,6 @@ class ProductBacklogController extends Controller
 
     }
 
-    public function updatesprintid(Request $request, Project $project, $sprintBacklog)
-    {
-
-        $moment = ProductBacklog::find($request['sprintBacklog']);
-        $moment->sprint_id = null;
-        $moment->save();
-
-        return redirect()->back();
-
-
-    }
-
 
 
 
