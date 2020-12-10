@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDailyStandUpsTable extends Migration
+class CreateStandUpQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDailyStandUpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('daily_stand_ups', function (Blueprint $table) {
+        Schema::create('stand_up_questions', function (Blueprint $table) {
             $table->id();
-            $table->date('stand_up_date');
-            $table->foreignId('sprint_id')->constrained('sprints');
+            $table->foreignId('stand_up_id')->constrained('daily_stand_ups');
+            $table->string('question');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDailyStandUpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daily_stand_ups');
+        Schema::dropIfExists('stand_up_questions');
     }
 }

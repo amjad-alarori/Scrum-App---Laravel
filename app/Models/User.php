@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -73,5 +74,18 @@ class User extends Authenticatable
     public function dailyStandUp()
     {
         return $this->hasMany(DailyStandUp::class, 'user_id', 'id');
+    }
+
+    public function standUpAnswers()
+    {
+        return $this->hasMany(StandUpAnswer::class,'user_id','id');
+    }
+
+    public function standUpAnswersOfSprint(Sprint $sprint)
+    {
+        return $this->hasMany(StandUpAnswer::class,'user_id','id')
+            ->whereHas('question',function (Builder $query, $sprint){
+                $query->where('stand_up_id','=',$sprint->id);
+                });
     }
 }

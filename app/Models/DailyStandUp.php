@@ -10,24 +10,16 @@ class DailyStandUp extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'yesterday',
-        'today',
-        'challenge',
+        'stand_up_date'
     ];
-
-//    public function project()
-//    {
-//        return $this->belongsTo(Project::class, 'project_id', 'id');
-//    }
 
     public function sprint()
     {
         return $this->belongsTo(Sprint::class, 'sprint_id', 'id');
     }
 
-    public function user()
+    public function questions()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->hasMany(StandUpQuestion::class,'stand_up_id','id');
     }
 }
