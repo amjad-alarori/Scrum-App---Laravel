@@ -22,6 +22,7 @@ class CreateProductBacklogsTable extends Migration
             $table->text('user_story')->nullable();
             $table->integer('story_points');
             $table->text('acceptance_criteria')->nullable();
+            $table->integer('status')->nullable();
             $table->foreignId('project_id')->constrained('projects');
             $table->foreignId('sprint_id')->nullable()->constrained('sprints');
             $table->timestamps();

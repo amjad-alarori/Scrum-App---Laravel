@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Middleware\Authenticate;
+use App\Http\Controllers\ProductBacklogController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ScrumTeamController;
@@ -44,6 +46,7 @@ Route::group(['middleware' => 'web'], function () {
             //Route::resource('sprintDashboard', 'PagesController');
             Route::resource('dailyStandUpForm', 'DailyStandUpController');
             //tijdelijke routes om snelle toegang te krijgen tot view
+            Route::put('sprintBacklog/{sprintBacklog}', [ProductBacklogController::class, 'updatesprintid'])->name('updatesprintid');
             Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
         });
     });

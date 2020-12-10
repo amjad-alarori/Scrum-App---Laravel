@@ -20,7 +20,6 @@
 
     <div class="container">
 
-      <a href="{{route('sprintBacklog.show',['project'=> $project->id, 'sprint'=> $sprint->id, 'sprintBacklog'=> $sprintBacklog])}}>" class="btn btn-primary">Add from productbacklog</a>
 
 
         <table class="table table-hover">
@@ -35,10 +34,7 @@
                 <th scope="col">Acceptance Criteria</th>
             </tr>
             </thead>
-
-
             <tbody>
-
             @foreach ($sprintBacklog as $sprintItem)
                 <tr>
                     <td>{{ $sprintItem->title }}</td>
@@ -48,9 +44,18 @@
                     <td>{{ $sprintItem->user_story }}</td>
                     <td>{{ $sprintItem->story_points }}</td>
                     <td>{{ $sprintItem->acceptance_criteria }}</td>
-
+                    <td>
+                    <form method="POST" action="{{route('sprintBacklog.destroy',['project'=>$project,'sprint'=>$sprint, 'sprintBacklog'=>$sprintItem->id])}}">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger " type="submit">Delete</button>
+                    </form>
+                    </td>
                 </tr>
             @endforeach
+
+            <a href="{{route('sprintBacklog.create',['project'=>$project,'sprint'=>$sprint->id])}}" class="btn btn-primary">Add from productbacklog</a>
+
             </tbody>
         </table>
 
@@ -58,6 +63,7 @@
 
 
 
+
     </div>
-        <!-- /.container -->
+    <!-- /.container -->
 @endsection
