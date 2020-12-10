@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Sprint;
 use Illuminate\Http\Request;
 
 class ScrumBoardController extends Controller
@@ -9,11 +11,11 @@ class ScrumBoardController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index()
+    public function index(Project $project, Sprint $sprint)
     {
-        //
+        return view('scrumBoard', ['project'=> $project, 'sprint'=> $sprint]);
     }
 
     /**
