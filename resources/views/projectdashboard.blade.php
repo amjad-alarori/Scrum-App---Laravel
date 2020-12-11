@@ -80,31 +80,32 @@
                              alt="Product backlog">
                     </div>
                     <div class="card-body overflow-auto" style="max-height: 150px;">
-                        <h4 class="card-title">Scrum Team</h4>
+                        <h5 class="card-title"><i class="fas fa-users fa-fw" ></i>&nbsp; &nbsp;Scrum Team</h5>
                         @foreach ($teammembers as $teammember)
                             <li class="{{$teammember->user->id==Auth::id()?"font-weight-bold":""}}">{{$teammember->user->name . " (" . $teammember->scrumRole->title . ")"}}</li>
                         @endforeach
                     </div>
                     <div class="card-footer">
                         <a href="{{route('scrumTeam.index',['project' => $project->id])}}"
-                           class="btn btn-primary float-right">Go to teams</a>
+                           class="btn btn-primary">Go to teams</a>
                     </div>
                 </div>
             </div>
 
+
+
             <div class="col-md-4 mb-5">
-                <div class="card h-100">
-                    <div class="card-img-top">
+                <div class="card card-cascade narrower h-100">
+                    <div class="card-img-top view view-cascade">
                         <img class="w-100 h-100 img-fluid mx-auto p-1" src="{{ asset('images/productbacklog.jpg') }}"
                              alt="Product backlog">
                     </div>
                     <div class="card-body overflow-auto" style="max-height: 150px;">
-                        <h4 class="card-title">Product Backlog</h4>
+                        <h4 class="card-title"><i class="fas fa-list-alt"></i></i>&nbsp; &nbsp;Product Backlog</h4>
                         <p class="card-text">Add, delete and manage the project backlog elements.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('productBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
-                            page</a>
+                        <a href="{{route('productBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to Product Backlog</a>
                     </div>
                 </div>
             </div>
@@ -115,12 +116,11 @@
                         <img class="w-100 h-100 img-fluid mx-auto p-1" src="{{asset('images/dod.jpg')}}" alt="">
                     </div>
                     <div class="card-body overflow-auto" style="max-height: 150px;">
-                        <h4 class="card-title">Definition of Done</h4>
+                        <h4 class="card-title"><i class="fas fa-tasks"></i>&nbsp; &nbsp;Definition of Done</h4>
                         <p class="card-text">When can you check a backlog element as done? manage the criteria .</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('defOfDone.index',['project'=>$project])}}" class="btn btn-primary">Go to
-                            page</a>
+                        <a href="{{route('defOfDone.index',['project'=>$project])}}" class="btn btn-primary">Go to Definition of Done</a>
                     </div>
                 </div>
             </div>

@@ -17,11 +17,10 @@ class ScrumBoardController extends Controller
     public function index(Project $project, Sprint $sprint)
     {
 
-        $sprintBacklogsToDo= ProductBacklog::query()->where('status', '=', null)->where('sprint_id', '=', $sprint->id)->get();
-        $sprintBacklogsInProgress= ProductBacklog::query()->where('status', '=', 1)->where('sprint_id', '=', $sprint->id)->get();
-        $sprintBacklogsDone= ProductBacklog::query()->where('status', '=', 2)->where('sprint_id', '=', $sprint->id)->get();
+        $scrumBoardItems= ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
 
-        return view('scrumBoard', ['project'=> $project, 'sprint'=> $sprint, 'sprintBacklogsToDo'=>$sprintBacklogsToDo, 'sprintBacklogsInProgress'=>$sprintBacklogsInProgress, 'sprintBacklogsDone'=>$sprintBacklogsDone]);
+
+        return view('scrumBoard', ['project'=> $project, 'sprint'=> $sprint, 'scrumBoardItems'=>$scrumBoardItems]);
     }
 
     /**
@@ -72,21 +71,26 @@ class ScrumBoardController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project, Sprint $sprint, ProductBacklog $scrumBoard)
     {
-        //
+        $scrumBoard->status = $request['status'];
+        $scrumBoard->update();
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request,Project $project, Sprint $sprint, ProductBacklog $scrumBoard)
     {
-        //
+        $scrumBoard->sprint_id = null;
+        $scrumBoard->update();
+
+        return redirect()->back();
     }
 }

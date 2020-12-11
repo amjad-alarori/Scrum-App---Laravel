@@ -47,7 +47,7 @@
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/dailyStandUp.jpg') }}" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Daily Stand up</h4>
+                        <h4 class="card-title"><i class="fas fa-comments"></i>&nbsp; &nbsp;Daily Stand up</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
@@ -61,7 +61,7 @@
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/sprintReview.png') }}" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Sprint review</h4>
+                        <h4 class="card-title"><i class="fas fa-clipboard-check"></i>&nbsp; &nbsp;Sprint review</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
                     </div>
                     <div class="card-footer">
@@ -74,7 +74,7 @@
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/scrumBoard.png') }}" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Scrum board</h4>
+                        <h4 class="card-title"><i class="fas fa-chalkboard"></i>&nbsp; &nbsp;Scrum board</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
                     </div>
                     <div class="card-footer">
@@ -91,7 +91,7 @@
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ asset('images/sprintRetrospective.jpg') }}" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Retrospective</h4>
+                        <h4 class="card-title"><i class="fas fa-reply"></i>&nbsp; &nbsp; Retrospective</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
@@ -102,9 +102,9 @@
 
             <div class="col-md-4 mb-5 sprintDashboard" id="columnSprintDashboard2">
                 <div class="card h-100">
-                    <img class="card-img-top" src="" alt="">
+                    <img class="card-img-top" src="{{ asset('images/sprintbacklog.jpg') }}" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Sprintbacklog</h4>
+                        <h4 class="card-title"><i class="fas fa-stream"></i>&nbsp; &nbsp;Sprintbacklog</h4>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
