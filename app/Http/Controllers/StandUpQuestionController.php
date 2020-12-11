@@ -32,7 +32,7 @@ class StandUpQuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +43,7 @@ class StandUpQuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\StandUpQuestion  $standUpQuestion
+     * @param \App\Models\StandUpQuestion $standUpQuestion
      * @return \Illuminate\Http\Response
      */
     public function show(StandUpQuestion $standUpQuestion)
@@ -54,7 +54,7 @@ class StandUpQuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\StandUpQuestion  $standUpQuestion
+     * @param \App\Models\StandUpQuestion $standUpQuestion
      * @return \Illuminate\Http\Response
      */
     public function edit(StandUpQuestion $standUpQuestion)
@@ -65,8 +65,8 @@ class StandUpQuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\StandUpQuestion  $standUpQuestion
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\StandUpQuestion $standUpQuestion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, StandUpQuestion $standUpQuestion)
@@ -77,13 +77,25 @@ class StandUpQuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Project $project
      * @param Sprint $sprint
      * @param \App\Models\StandUpQuestion $standUpQuestion
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Project $project, Sprint $sprint, StandUpQuestion $standUpQuestion)
     {
-        dd('Question destroy', $standUpQuestion);
+        $dailyStandUp = $standUpQuestion->dailyStandUp;
+
+        if (count($dailyStandUp->questions) > 1):
+            if (count($standUpQuestion->answers) === 0):
+                $standUpQuestion->delete();
+                return redirect()->back();
+            else:
+                return redirect()->back()->with('showError', 'this question is already answered');
+            endif;
+        else:
+            return redirect()->back()->with('showError', 'Each daily stand-up must include at least one question');
+        endif;
     }
 }

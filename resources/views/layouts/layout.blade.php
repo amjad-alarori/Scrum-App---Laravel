@@ -97,12 +97,13 @@
         </div>
     </div>
 </nav>
+
 <main role="main" class="container font-sans text-gray-900 antialiased">
-    @if(session()->has('NoAccess'))
+    @if(session()->has('NoAccess') || session()->has('showError'))
         <div class="container">
             <div class="alert alert-danger alert-dismissible m-3" id="noaccess-error">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{session('NoAccess')}}
+                {{session()->has('NoAccess')?session('NoAccess'):session('showError')}}
             </div>
         </div>
     @endif
