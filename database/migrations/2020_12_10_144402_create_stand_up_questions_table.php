@@ -15,7 +15,8 @@ class CreateStandUpQuestionsTable extends Migration
     {
         Schema::create('stand_up_questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stand_up_id')->constrained('daily_stand_ups');
+            $table->foreignId('stand_up_id')->constrained('daily_stand_ups')
+                ->onDelete('cascade')->onUpdate('cascade');
             $table->string('question');
             $table->timestamps();
         });

@@ -15,8 +15,10 @@ class CreateStandUpAnswersTable extends Migration
     {
         Schema::create('stand_up_answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained('stand_up_questions');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('question_id')->constrained('stand_up_questions')
+                ->onDelete('restrict')->onUpdate('restrict');
+            $table->foreignId('user_id')->constrained('users')
+                ->onDelete('restrict')->onUpdate('restrict');
             $table->mediumText('answer');
             $table->timestamps();
         });

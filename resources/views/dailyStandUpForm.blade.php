@@ -5,164 +5,81 @@
 @endsection
 
 @section('content')
-
-
-    <!-- Header -->
     <header class="bg-primary py-5 mb-5">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-lg-12">
                     <h1 class="display-4 text-white mt-5 mb-2">Daily Stand Up Form</h1>
-
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- container -->
-        <x-jet-authentication-card>
-            <x-jet-validation-errors class="mb-4"/>
-
-            <form method="POST" action="{{isset($dailyStandUp)?route('dailyStandUp.update',['project'=> $project, 'sprint'=>$sprint]):route('dailyStandUp.store', ['project'=> $project, 'sprint'=>$sprint])}}">
+    <div class="h-100 flex flex-col md:justify-center items-center pt-6 sm:pt-0">
+        <div class="w-full md:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg">
+            <form method="POST"
+                  action="{{isset($dailyStandUp)?:route('dailyStandUp.store', ['project'=> $project, 'sprint'=>$sprint])}}">
                 @csrf
 
-                <div class="mt-4">
-                    <x-jet-label for="yesterday" value="{{ __('What did I do yesterday?') }}"/>
-                    <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="yesterday"
-                              name="yesterday"
-                              style="margin-top: 4px; margin-bottom: 0px;">{{old('yesterday')}}</textarea>
+                <div class="mt-4 border-bottom border-secondary pb-3 clearfix">
+                    <label class="block font-medium text-sm text-gray-700" for="standUpDate">Date of the
+                        stand-up:</label>
+                    @unless(isset($dailyStandUp))
+                        <input class="form-input rounded-md shadow-sm block mt-1 col-sm-5" id="standUpDate" type="date"
+                               name="standUpDate" autocomplete="standUpDate" required
+                               value="{{old('standUpDate')}}">
+                        @error('standUpDate')
+                        <p class='text-sm text-red-600 mt-2'>{{ $message }}</p>
+                        @enderror
+                    @else
+                        <label>{{$dailyStandUp->stand_up_date}}</label>
+                    @endunless
                 </div>
+                @if(isset($dailyStandUp))
+                    <div class="my-4">
+                        <div class="list-group">
+                            @foreach($dailyStandUp->questions as $question)
+                                <div href="#" class="list-group-item list-group-item-action">
+                                    {{$question->question}}
+                                    <div class="inline-flex items-center justify-end float-right">
+{{--                                        <form method="POST" action="">--}}
+{{--                                            @csrf--}}
+{{--                                            @method('DELETE')--}}
+                                            <button type="submit"
+                                                    class="btn btn-danger inline-flex items-center px-4 py-1 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                                                X
+                                            </button>
+{{--                                        </form>--}}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
                 <div class="mt-4">
-                    <x-jet-label for="today" value="{{ __('What will I do today?') }}"/>
-                    <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="today"
-                              name="today"
-                              style="margin-top: 4px; margin-bottom: 0px;">{{old('today')}}</textarea>
+                    <label class="block font-medium text-sm text-gray-700" for="question">New question</label>
+                    <input class="form-input rounded-md shadow-sm block w-full" id="question" type="text"
+                           name="question" autocomplete="question" required
+                           value="{{old('question')}}">
+                    @error('question')
+                    <p class='text-sm text-red-600 mt-2'>{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label for="challenge" value="{{ __('What does block me from achieving the sprint goal?') }}"/>
-                    <textarea class="form-input rounded-md shadow-sm block mt-1 w-full" id="challenge"
-                              name="challenge"
-                              style="margin-top: 4px; margin-bottom: 0px;">{{old('challenge')}}</textarea>
-
                     <div class="flex items-center justify-end mt-4">
-
-                        <x-jet-button class="ml-4">
-                            {{ __('Verstuur') }}
-                        </x-jet-button>
+                        <a href="{{(route('dailyStandUp.index',['project'=> $project, 'sprint'=> $sprint]))}}"
+                           class="btn inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                            exit
+                        </a>
+                        <button type="submit"
+                                class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                            create
+                        </button>
                     </div>
                 </div>
             </form>
-        </x-jet-authentication-card>
-        <br><br><br><br><br><br>
-
-    {{--        <!-- /.row -->--}}
-    {{--        <div class="row">--}}
-    {{--            <div class="col-md-3 mb-5">--}}
-    {{--                <div class="card h-100">--}}
-    {{--                    <img class="card-img-top" src="{{ asset('images/sprint toevoegen.jpg') }}" alt="">--}}
-    {{--                    <div class="card-body">--}}
-    {{--                        <h4 class="card-title">Sprint toevoegen</h4>--}}
-    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-    esse necessitatibus neque sequi doloribus.</p>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="card-footer">--}}
-    {{--                        <a href="#" class="btn btn-primary">Voeg een sprint toe</a>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--            <div class="col-md-3 mb-5">--}}
-    {{--                <div class="card h-100">--}}
-    {{--                    <img class="card-img-top" src="{{ asset('images/scrumteam.jpg') }}" alt="">--}}
-    {{--                    <div class="card-body">--}}
-    {{--                        <h4 class="card-title">Team samenstellen</h4>--}}
-    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-    esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="card-footer">--}}
-    {{--                        <a href="#" class="btn btn-primary">Stel het scrum team samen</a>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--            <div class="col-md-3 mb-5">--}}
-    {{--                <div class="card h-100">--}}
-    {{--                    <img class="card-img-top" src="{{ asset('images/dod.jpg') }}" alt="">--}}
-    {{--                    <div class="card-body">--}}
-    {{--                        <h4 class="card-title">Definition of Done</h4>--}}
-    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="card-footer">--}}
-    {{--                        <a href="#" class="btn btn-primary">Bekijken</a>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-
-    {{--            <div class="col-md-3 mb-5">--}}
-    {{--                <div class="card h-100">--}}
-    {{--                    <img class="card-img-top" src="{{ asset('images/productbacklog.jpg') }}" alt="">--}}
-    {{--                    <div class="card-body">--}}
-    {{--                        <h4 class="card-title">Product Backlog</h4>--}}
-    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="card-footer">--}}
-    {{--                        <a href="#" class="btn btn-primary">Bekijken</a>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-
-
-    {{--            <h1 class="display-4 mt-5 mb-2">Sprints</h1>--}}
-    {{--            <hr>--}}
-    {{--            <br>--}}
-    {{--            <br>--}}
-
-    {{--        <div class="row">--}}
-    {{--            <div class="col-md-4 mb-5">--}}
-    {{--                <div class="card h-100">--}}
-    {{--                    <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
-    {{--                    <div class="card-body">--}}
-    {{--                        <h4 class="card-title">Sprint 1</h4>--}}
-    {{--                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="card-footer">--}}
-    {{--                        <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-
-    {{--        <div class="col-md-4 mb-5">--}}
-    {{--            <div class="card h-100">--}}
-    {{--                <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
-    {{--                <div class="card-body">--}}
-    {{--                    <h4 class="card-title">Sprint 2</h4>--}}
-    {{--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-    {{--                </div>--}}
-    {{--                <div class="card-footer">--}}
-    {{--                    <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-
-    {{--        <div class="col-md-4 mb-5">--}}
-    {{--            <div class="card h-100">--}}
-    {{--                <img class="card-img-top" src="https://placehold.it/300x200" alt="">--}}
-    {{--                <div class="card-body">--}}
-    {{--                    <h4 class="card-title">Sprint 3</h4>--}}
-    {{--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>--}}
-    {{--                </div>--}}
-    {{--                <div class="card-footer">--}}
-    {{--                    <a href="#" class="btn btn-primary">Ga naar sprint</a>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-
-    {{--    </div>--}}
-    <!-- /.row -->
-
+        </div>
     </div>
-    <!-- /.container -->
 @endsection

@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-
-    <!-- Header -->
     <header class="bg-primary py-5 mb-5">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
@@ -17,7 +15,6 @@
         </div>
     </header>
 
-    <!-- Page Content -->
     <div class="container">
         <div class="row">
             <div class="col-md-8 mb-5">
@@ -51,8 +48,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
                     </div>
                     <div class="card-footer">
-
-                        <a href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}" class="btn btn-primary">Go to Daily stand up</a>
+                        <a href="{{route('dailyStandUp.index',['project'=> $project, 'sprint'=> $sprint])}}" class="btn btn-primary">Go to Daily stand up</a>
                     </div>
                 </div>
             </div>
@@ -113,9 +109,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- /.row -->
-
     </div>
-    <!-- /.container -->
 @endsection

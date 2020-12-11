@@ -22,4 +22,10 @@ class StandUpQuestion extends Model
     {
         return $this->hasMany(StandUpAnswer::class,'question_id','id');
     }
+
+    public function usersAnswers(User $user)
+    {
+        return $this->hasMany(StandUpAnswer::class,'question_id','id')
+            ->where('user_id','=',$user->id);
+    }
 }
