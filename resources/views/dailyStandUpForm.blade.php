@@ -83,13 +83,15 @@
                 </div>
             </form>
 
-            @foreach($dailyStandUp->questions as $question)
-                <form method="POST" id="destroy-{{$question->id}}" action="{{route('standUpQuestion.destroy',['project'=> $project, 'sprint'=> $sprint,'standUpQuestion'=> $question])}}">
-                    @csrf
-                    @method('DELETE')
-                </form>
-            @endforeach
-
+            @if(isset($dailyStandUp))
+                @foreach($dailyStandUp->questions as $question)
+                    <form method="POST" id="destroy-{{$question->id}}"
+                          action="{{route('standUpQuestion.destroy',['project'=> $project, 'sprint'=> $sprint,'standUpQuestion'=> $question])}}">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection
@@ -98,8 +100,8 @@
     <script>
         $(function () {
             $('.q-dest').click(function () {
-                let qid =  $(this).data('id');
-                $('#destroy-'+ qid).submit();
+                let qid = $(this).data('id');
+                $('#destroy-' + qid).submit();
             });
         });
     </script>

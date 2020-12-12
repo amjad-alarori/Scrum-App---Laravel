@@ -19,8 +19,7 @@ class ProjectAdminAccess
     {
         $project = $request->route('project');
         $userId = Auth::id();
-
-        $count = $project->scrumTeam()->where('userId', $userId)->where('roleId',1)->orwhere('roleId',2)->count();
+        $count = $project->scrumTeam()->where('userId','=', $userId)->whereIn('roleId',[1,2])->count();
 
         if ($count>0):
             return $next($request);

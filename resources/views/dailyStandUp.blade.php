@@ -30,7 +30,8 @@
                 <div class="card">
                     <div class="card-header" id="heading{{$dailyStandUp->id}}">
                         <h5 class="row mb-0">
-                            <div class="col-10 pr-0">
+                            <div class="{{$project->roleAuth() != 3?"col-10":"col-12"}} pr-0">
+
                                 <button
                                     class="btn btn-light border-transparent collapsed w-full text-left disabled:opacity-25 transition ease-in-out duration-150 focus:outline-none"
                                     data-toggle="collapse" data-target="#collapse{{$dailyStandUp->id}}"
@@ -38,17 +39,21 @@
                                     {{$dailyStandUp->stand_up_date}}
                                 </button>
                             </div>
-                            <div class="col-2 pl-0">
-                                <a class="btn btn-warning border-transparent float-right mx-1"
-                                   href="{{route('dailyStandUp.show',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">Edit</a>
+                            @if($project->roleAuth() != 3)
+                                <div class="col-2 pl-0">
+                                    <a class="btn btn-warning border-transparent float-right mx-1"
+                                       href="{{route('dailyStandUp.show',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">Edit</a>
 
-                                <form method="POST"
-                                    action="{{route('dailyStandUp.destroy',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger border-transparent float-right mx-1">Delete</button>
-                                </form>
-                            </div>
+                                    <form method="POST"
+                                          action="{{route('dailyStandUp.destroy',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="btn btn-danger border-transparent float-right mx-1">Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
                         </h5>
                     </div>
 

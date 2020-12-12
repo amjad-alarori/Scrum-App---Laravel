@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Sprint;
 use App\Models\StandUpQuestion;
 use App\Rules\DuringSprint;
+use App\Rules\UniqueDateInSprint;
 use Illuminate\Http\Request;
 use App\Models\ScrumTeam;
 use App\Models\User;
@@ -32,8 +33,9 @@ class DailyStandUpController extends Controller
      */
     public function index(Project $project, Sprint $sprint)
     {
-        $dailyStandUps = $sprint->dailyStandUp;
-        return view ('dailyStandUp', ['project'=> $project, 'sprint'=> $sprint, 'dailyStandUps'=>$dailyStandUps]);
+        $dailyStandUps = $sprint->dailyStandUp()->orderBy('stand_up_date')->get();
+
+        return view('dailyStandUp', ['project' => $project, 'sprint' => $sprint, 'dailyStandUps' => $dailyStandUps]);
     }
 
     /**
@@ -45,7 +47,7 @@ class DailyStandUpController extends Controller
      */
     public function create(Project $project, Sprint $sprint)
     {
-        return view('dailyStandUpForm', ['project'=>$project,'sprint'=>$sprint]);
+        return view('dailyStandUpForm', ['project' => $project, 'sprint' => $sprint]);
     }
 
     /**
@@ -59,23 +61,23 @@ class DailyStandUpController extends Controller
     public function store(Request $request, Project $project, Sprint $sprint)
     {
         $request->validate([
-            'standUpDate'=>['required', 'date', new DuringSprint($sprint)],
-            'question'=>['required', 'string'],
+            'standUpDate' => ['required', 'date', new DuringSprint($sprint), new UniqueDateInSprint($sprint)],
+            'question' => ['required', 'string'],
         ]);
 
         $dailyStandUp = new DailyStandUp();
-        $dailyStandUp->fill(['stand_up_date'=>$request['standUpDate']]);
+        $dailyStandUp->fill(['stand_up_date' => $request['standUpDate']]);
         $dailyStandUp->sprint_id = $sprint->id;
         $dailyStandUp->save();
 
         $standUpQuestion = new StandUpQuestion();
         $standUpQuestion->fill([
-            'question'=>$request['question']
+            'question' => $request['question']
         ]);
         $standUpQuestion->stand_up_id = $dailyStandUp->id;
         $standUpQuestion->save();
 
-        return redirect()->route('dailyStandUp.show',['project'=> $project, 'sprint'=> $sprint, 'dailyStandUp'=>$dailyStandUp]);
+        return redirect()->route('dailyStandUp.show', ['project' => $project, 'sprint' => $sprint, 'dailyStandUp' => $dailyStandUp]);
     }
 
     /**
@@ -88,7 +90,7 @@ class DailyStandUpController extends Controller
      */
     public function show(Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
-        return view('dailyStandUpForm', ['project'=>$project,'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp]);
+        return view('dailyStandUpForm', ['project' => $project, 'sprint' => $sprint, 'dailyStandUp' => $dailyStandUp]);
     }
 
     /**
@@ -113,20 +115,20 @@ class DailyStandUpController extends Controller
      * @param DailyStandUp $dailyStandUp
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,Project $project, Sprint $sprint,  DailyStandUp $dailyStandUp)
+    public function update(Request $request, Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
         $request->validate([
-            'question'=>['required', 'string'],
+            'question' => ['required', 'string'],
         ]);
 
         $standUpQuestion = new StandUpQuestion();
         $standUpQuestion->fill([
-            'question'=>$request['question']
+            'question' => $request['question']
         ]);
         $standUpQuestion->stand_up_id = $dailyStandUp->id;
         $standUpQuestion->save();
 
-        return redirect()->route('dailyStandUp.show',['project'=> $project, 'sprint'=> $sprint, 'dailyStandUp'=>$dailyStandUp]);
+        return redirect()->route('dailyStandUp.show', ['project' => $project, 'sprint' => $sprint, 'dailyStandUp' => $dailyStandUp]);
 
     }
 
@@ -136,13 +138,26 @@ class DailyStandUpController extends Controller
      * @param Project $project
      * @param Sprint $sprint
      * @param DailyStandUp $dailyStandUp
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Project $project, Sprint $sprint,  DailyStandUp $dailyStandUp)
+    public function destroy(Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
-        dd();
-        $dailyStandUp->delete();
-        return redirect()->back();
+        $answerFounded = false;
+        $questions = $dailyStandUp->questions;
+
+        foreach ($questions as $question):
+            if ($question->answers->count()):
+                $answerFounded = true;
+                break;
+            endif;
+        endforeach;
+
+        if (!$answerFounded):
+            $dailyStandUp->delete();
+            return redirect()->back();
+        else:
+            return redirect()->back()->with('showError','this daily standup has answers, delete the answers first to be able to delete this.');
+        endif;
     }
 }
