@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductBacklog;
 use App\Models\Project;
 use App\Models\Review;
 use App\Models\Sprint;
@@ -18,7 +19,7 @@ class ReviewController extends Controller
      */
     public function index(Project $project, Sprint $sprint, User $user)
     {
-        $review = Review::query()->where('sprint_id','=', $sprint->id);
+        $review = ProductBacklog::query()->where('sprint_id','=', $sprint->id)->get();
 
         return view ('review', ['project'=> $project, 'sprint'=> $sprint, 'user'=> $user, 'review'=>$review]);
     }
@@ -41,23 +42,23 @@ class ReviewController extends Controller
      */
     public function store(Request $request, Project $project, Sprint $sprint)
     {
-        $request->validate([
-            'text' => ['required', 'string']
-        ]);
-
-        $user = Auth::user();
-
-        $review = new Review();
-
-        $review->text = ($request['text']);
-        $review->project_id = $project->id;
-        $review->sprint_id = $sprint->id;
-        $review->user_id= $user->id;
-
-        $review->save();
-
-        return redirect(route('review.index', ['project'=>$project->id, 'sprint'=> $sprint->id]
-        ));
+//        $request->validate([
+//            'text' => ['required', 'string']
+//        ]);
+//
+//        $user = Auth::user();
+//
+//        $review = new Review();
+//
+//        $review->text = ($request['text']);
+//        $review->project_id = $project->id;
+//        $review->sprint_id = $sprint->id;
+//        $review->user_id= $user->id;
+//
+//        $review->save();
+//
+//        return redirect(route('review.index', ['project'=>$project->id, 'sprint'=> $sprint->id]
+//        ));
     }
 
     /**
