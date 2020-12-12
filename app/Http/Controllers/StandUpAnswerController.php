@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\ProjectAccess;
 use App\Http\Middleware\ProjectAdminAccess;
+use App\Http\Requests\StoreAnswerRequest;
 use App\Models\DailyStandUp;
 use App\Models\Project;
 use App\Models\Sprint;
 use App\Models\StandUpAnswer;
+use App\Models\StandUpQuestion;
 use Illuminate\Http\Request;
 
 class StandUpAnswerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(ProjectAccess::class)->only('create');
-        $this->middleware(ProjectAdminAccess::class)->except('create');
+        $this->middleware(ProjectAccess::class);
+//        $this->middleware(ProjectAdminAccess::class)->except();
     }
 
     /**
@@ -45,12 +47,15 @@ class StandUpAnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreAnswerRequest $request
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param DailyStandUp $dailyStandUp
+     * @return void
      */
-    public function store(Request $request)
+    public function store(StoreAnswerRequest $request,Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
-        //
+        dd($request);
     }
 
     /**
