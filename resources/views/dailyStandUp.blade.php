@@ -28,24 +28,29 @@
         <div class="w-full" id="accordion">
             @foreach($dailyStandUps as $dailyStandUp)
                 <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
+                    <div class="card-header" id="heading{{$dailyStandUp->id}}">
+                        <h5 class="row mb-0">
+                            <div class="col-11">
                             <button
                                 class="btn btn-light border-transparent collapsed w-full text-left disabled:opacity-25 transition ease-in-out duration-150 focus:outline-none"
-                                data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="false" aria-controls="collapseOne">
+                                data-toggle="collapse" data-target="#collapse{{$dailyStandUp->id}}"
+                                aria-expanded="false" aria-controls="collapse{{$dailyStandUp->id}}">
                                 {{$dailyStandUp->stand_up_date}}
                             </button>
+                            </div>
+                            <div class="col-1">
+                            <a class="btn btn-warning border-transparent" href="{{route('dailyStandUp.show',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">Edit</a>
+                            </div>
                         </h5>
                     </div>
 
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            <ul>
+                    <div id="collapse{{$dailyStandUp->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body ml-5">
+                            <ol style="list-style: square">
                                 @foreach($dailyStandUp->questions as $question)
-                                    <li>{{$questions->question}}</li>
+                                    <li>{{$question->question}}</li>
                                 @endforeach
-                            </ul>
+                            </ol>
                         </div>
                     </div>
                 </div>

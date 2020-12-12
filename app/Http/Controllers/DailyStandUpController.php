@@ -94,10 +94,12 @@ class DailyStandUpController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param DailyStandUp $dailyStandUp
+     * @return void
      */
-    public function edit(DailyStandUp $dailyStandUp)
+    public function edit(Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
         //
     }
@@ -106,22 +108,40 @@ class DailyStandUpController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     * @param Project $project
+     * @param Sprint $sprint
      * @param DailyStandUp $dailyStandUp
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, DailyStandUp $dailyStandUp)
+    public function update(Request $request,Project $project, Sprint $sprint,  DailyStandUp $dailyStandUp)
     {
-        //
+        $request->validate([
+            'question'=>['required', 'string'],
+        ]);
+
+        $standUpQuestion = new StandUpQuestion();
+        $standUpQuestion->fill([
+            'question'=>$request['question']
+        ]);
+        $standUpQuestion->stand_up_id = $dailyStandUp->id;
+        $standUpQuestion->save();
+
+        return redirect()->route('dailyStandUp.show',['project'=> $project, 'sprint'=> $sprint, 'dailyStandUp'=>$dailyStandUp]);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param DailyStandUp $dailyStandUp
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(DailyStandUp $dailyStandUp)
+    public function destroy(Project $project, Sprint $sprint,  DailyStandUp $dailyStandUp)
     {
+        dd();
         $dailyStandUp->delete();
         return redirect()->back();
     }

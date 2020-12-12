@@ -6,7 +6,6 @@ use App\Http\Controllers\ProductBacklogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ScrumTeamController;
-//use App\Http\Controllers\DailyStandUpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +33,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('sprint', 'SprintController');
             Route::resource('productBackLog', 'ProductBacklogController');
             Route::resource('defOfDone', 'DefOfDoneController');
-         });
+        });
 
 
         Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
@@ -44,6 +43,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('dailyStandUp', 'DailyStandUpController');
             Route::resource('scrumBoard', 'ScrumBoardController');
             Route::resource('sprintBacklog', 'SprintBacklogController');
+
+            Route::resource('standUpQuestion', 'StandUpQuestionController');
+            Route::resource('standUpAnswer', 'StandUpAnswerController');
 
             //Route::resource('sprintDashboard', 'PagesController');
             Route::resource('dailyStandUpForm', 'DailyStandUpController');

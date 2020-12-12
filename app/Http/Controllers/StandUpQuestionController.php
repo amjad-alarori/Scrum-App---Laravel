@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Sprint;
 use App\Models\StandUpQuestion;
 use Illuminate\Http\Request;
 
@@ -75,11 +77,13 @@ class StandUpQuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\StandUpQuestion  $standUpQuestion
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param \App\Models\StandUpQuestion $standUpQuestion
+     * @return void
      */
-    public function destroy(StandUpQuestion $standUpQuestion)
+    public function destroy(Project $project, Sprint $sprint, StandUpQuestion $standUpQuestion)
     {
-        //
+        dd('Question destroy', $standUpQuestion);
     }
 }

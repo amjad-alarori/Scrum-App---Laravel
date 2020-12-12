@@ -18,9 +18,11 @@
     <div class="h-100 flex flex-col md:justify-center items-center pt-6 sm:pt-0">
         <div class="w-full md:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden md:rounded-lg">
             <form method="POST"
-                  action="{{isset($dailyStandUp)?:route('dailyStandUp.store', ['project'=> $project, 'sprint'=>$sprint])}}">
+                  action="{{isset($dailyStandUp)?route('dailyStandUp.update', ['project'=> $project, 'sprint'=>$sprint,'dailyStandUp'=>$dailyStandUp]):route('dailyStandUp.store', ['project'=> $project, 'sprint'=>$sprint])}}">
                 @csrf
-
+                @if(isset($dailyStandUp))
+                    @method('PUT')
+                @endif
                 <div class="mt-4 border-bottom border-secondary pb-3 clearfix">
                     <label class="block font-medium text-sm text-gray-700" for="standUpDate">Date of the
                         stand-up:</label>
@@ -42,14 +44,14 @@
                                 <div href="#" class="list-group-item list-group-item-action">
                                     {{$question->question}}
                                     <div class="inline-flex items-center justify-end float-right">
-{{--                                        <form method="POST" action="">--}}
-{{--                                            @csrf--}}
-{{--                                            @method('DELETE')--}}
-                                            <button type="submit"
-                                                    class="btn btn-danger inline-flex items-center px-4 py-1 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150 ml-4">
-                                                X
-                                            </button>
-{{--                                        </form>--}}
+                                        {{--                                        <form method="POST" action="">--}}
+                                        {{--                                            @csrf--}}
+                                        {{--                                            @method('DELETE')--}}
+                                        <button type="button" data-id="{{$question->id}}"
+                                                class="q-dest btn btn-danger inline-flex items-center px-4 py-1 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                                            X
+                                        </button>
+                                        {{--                                        </form>--}}
                                     </div>
                                 </div>
                             @endforeach
@@ -80,6 +82,25 @@
                     </div>
                 </div>
             </form>
+
+            @foreach($dailyStandUp->questions as $question)
+                <form method="POST" id="destroy-{{$question->id}}" action="{{route('standUpQuestion.destroy',['project'=> $project, 'sprint'=> $sprint,'standUpQuestion'=> $question])}}">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            @endforeach
+
         </div>
     </div>
+@endsection
+
+@section('Script')
+    <script>
+        $(function () {
+            $('.q-dest').click(function () {
+                let qid =  $(this).data('id');
+                $('#destroy-'+ qid).submit();
+            });
+        });
+    </script>
 @endsection
