@@ -361,3 +361,16 @@ hr.lineBacklogItem{
     }
 }
 
+.edit-button{
+    background-color: #e66400;
+}
+.edit-button:hover{
+    background-color: #e29039;
+}
+.del-but{
+    background-color: #830202;
+}
+.del-but:hover{
+    background-color: #833535;
+}
+

@@ -11,13 +11,13 @@ use App\Models\Sprint;
 use App\Models\StandUpAnswer;
 use App\Models\StandUpQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StandUpAnswerController extends Controller
 {
     public function __construct()
     {
         $this->middleware(ProjectAccess::class);
-//        $this->middleware(ProjectAdminAccess::class)->except();
     }
 
     /**
@@ -40,7 +40,6 @@ class StandUpAnswerController extends Controller
      */
     public function create(Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
-
         return view('standUpAnswer',['project'=>$project, 'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp]);
     }
 
@@ -51,11 +50,18 @@ class StandUpAnswerController extends Controller
      * @param Project $project
      * @param Sprint $sprint
      * @param DailyStandUp $dailyStandUp
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAnswerRequest $request,Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
-        dd($request);
+        $answer = new StandUpAnswer();
+        $answer->question_id = $request['questionId'];
+        $answer->user_id = Auth::id();
+        $answer->answer = $request['question'.$request['questionId']];
+
+        $answer->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -77,7 +83,7 @@ class StandUpAnswerController extends Controller
      */
     public function edit(StandUpAnswer $standUpAnswer)
     {
-        //
+        dd("Edit");
     }
 
     /**
@@ -95,11 +101,15 @@ class StandUpAnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\StandUpAnswer  $standUpAnswer
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param DailyStandUp $dailyStandUp
+     * @param \App\Models\StandUpAnswer $standUpAnswer
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(StandUpAnswer $standUpAnswer)
+    public function destroy(Project $project,Sprint $sprint,DailyStandUp $dailyStandUp, StandUpAnswer $standUpAnswer)
     {
-        //
+        $standUpAnswer->delete();
+        return redirect()->back();
     }
 }
