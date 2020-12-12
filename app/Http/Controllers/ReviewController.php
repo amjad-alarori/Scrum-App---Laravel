@@ -20,18 +20,20 @@ class ReviewController extends Controller
     public function index(Project $project, Sprint $sprint, User $user)
     {
         $review = ProductBacklog::query()->where('sprint_id','=', $sprint->id)->get();
-
         return view ('review', ['project'=> $project, 'sprint'=> $sprint, 'user'=> $user, 'review'=>$review]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project, Sprint $sprint, User $user)
     {
-        //
+        return view('addreview', ['project'=>$project, 'sprint'=>$sprint, 'user'=>$user]);
+
     }
 
     /**
@@ -42,23 +44,25 @@ class ReviewController extends Controller
      */
     public function store(Request $request, Project $project, Sprint $sprint)
     {
-//        $request->validate([
-//            'text' => ['required', 'string']
-//        ]);
-//
-//        $user = Auth::user();
-//
-//        $review = new Review();
-//
-//        $review->text = ($request['text']);
-//        $review->project_id = $project->id;
-//        $review->sprint_id = $sprint->id;
-//        $review->user_id= $user->id;
-//
-//        $review->save();
-//
-//        return redirect(route('review.index', ['project'=>$project->id, 'sprint'=> $sprint->id]
-//        ));
+        $request->validate([
+            'text' => ['required', 'string'],
+            'category' => ['required', 'integer'],
+
+        ]);
+
+        $user=Auth::user();
+
+        $review = new review();
+
+        $review->text = ($request['text']);
+        $review->category = $request['category'];
+        $review->sprint_id = $sprint->id;
+        $review->user_id= $user->id;
+
+        $review->save();
+
+        return redirect(route('review.index', ['project'=>$project->id, 'sprint'=> $sprint->id]
+        ));
     }
 
     /**

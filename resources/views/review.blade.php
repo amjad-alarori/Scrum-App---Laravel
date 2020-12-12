@@ -171,11 +171,31 @@
                     @endif
                 @endforeach
 
+
             </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="column-review">
+                <h4 class="h4">Comments</h4><br>
+                <hr>
+                <br>
+                <a href="{{route('review.create',['project'=>$project->id, 'sprint'=> $sprint->id, 'user'=>$user->id])}}" class="btn btn-primary">Add a new review comment</a>
+                <br><br>
+                <hr>
+                <br>
+                <input type="hidden" value="{{$sprint->id}}">
+
+
+
+
         </div>
     </div>
 
 
+
+
+<br>
+    <hr>
 
 
 
