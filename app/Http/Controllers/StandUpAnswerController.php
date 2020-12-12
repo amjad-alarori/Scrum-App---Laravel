@@ -78,24 +78,35 @@ class StandUpAnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\StandUpAnswer  $standUpAnswer
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param DailyStandUp $dailyStandUp
+     * @param \App\Models\StandUpAnswer $standUpAnswer
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
      */
-    public function edit(StandUpAnswer $standUpAnswer)
+    public function edit(Project $project, Sprint $sprint, DailyStandUp $dailyStandUp, StandUpAnswer $standUpAnswer)
     {
-        dd("Edit");
+        return view('standUpAnswer',['project'=>$project, 'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp, 'answer'=>$standUpAnswer]);
     }
+
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\StandUpAnswer  $standUpAnswer
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param DailyStandUp $dailyStandUp
+     * @param \App\Models\StandUpAnswer $standUpAnswer
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, StandUpAnswer $standUpAnswer)
+    public function update(StoreAnswerRequest $request,Project $project, Sprint $sprint, DailyStandUp $dailyStandUp, StandUpAnswer $standUpAnswer)
     {
-        //
+        $standUpAnswer->answer = $request['question'.$request['questionId']];
+        $standUpAnswer->update();
+
+        return view('standUpAnswer',['project'=>$project, 'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp]);
+
     }
 
     /**
@@ -105,11 +116,12 @@ class StandUpAnswerController extends Controller
      * @param Sprint $sprint
      * @param DailyStandUp $dailyStandUp
      * @param \App\Models\StandUpAnswer $standUpAnswer
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function destroy(Project $project,Sprint $sprint,DailyStandUp $dailyStandUp, StandUpAnswer $standUpAnswer)
     {
         $standUpAnswer->delete();
-        return redirect()->back();
+        return view('standUpAnswer',['project'=>$project, 'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp]);
+
     }
 }

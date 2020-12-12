@@ -13,10 +13,13 @@
         </div>
         @enderror
         @foreach($dailyStandUp->questions as $question)
-            @if(count($question->usersAnswers())==0)
+            @if(count($question->usersAnswers())==0 || (isset($answer) && $question->usersAnswers()[0]==$answer ))
                 <form method="POST"
-                      action="{{route('standUpAnswer.store',['project'=>$project,'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp])}}">
+                      action="{{isset($answer)?route('standUpAnswer.update',['project'=>$project,'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp,'standUpAnswer'=>$answer]):route('standUpAnswer.store',['project'=>$project,'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp])}}">
                     @csrf
+                    @if(isset($answer))
+                        @method('PUT')
+                    @endif
                     <div class="row px-4 pt-4 pb-2 bg-white sm:p-6">
                         <label class="block px-3 font-medium text-sm text-gray-700" for="question{{$question->id}}">
                             {{$question->question}}
@@ -24,7 +27,7 @@
                         <input type="hidden" name="questionId" value="{{$question->id}}">
                         <textarea class="form-input rounded-md shadow-sm mx-4 mt-1 block w-full"
                                   id="question{{$question->id}}" style="white-space: pre-wrap;"
-                                  name="question{{$question->id}}">{{old('question'.$question->id)}}</textarea>
+                                  name="question{{$question->id}}">{{is_null(old('question'.$question->id))?isset($answer)?$answer->answer:'':old('question'.$question->id)}}</textarea>
                         @error('question'.$question->id)
                         <p class='text-sm text-red-600 px-4 mt-2'>{{ $message }}</p>
                         @enderror
