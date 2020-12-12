@@ -33,27 +33,26 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('sprint', 'SprintController');
             Route::resource('productBackLog', 'ProductBacklogController');
             Route::resource('defOfDone', 'DefOfDoneController');
-        });
 
 
-        Route::prefix('project/{project}/sprint/{sprint}')->group(function () {
+            Route::prefix('sprint/{sprint}')->group(function () {
+                Route::resource('retrospective', 'RetrospectiveController');
+                Route::resource('review', 'ReviewController');
+                Route::resource('scrumBoard', 'ScrumBoardController');
+                Route::resource('sprintBacklog', 'SprintBacklogController');
 
-            Route::resource('retrospective', 'RetrospectiveController');
-            Route::resource('review', 'ReviewController');
-            Route::resource('dailyStandUp', 'DailyStandUpController');
-            Route::resource('scrumBoard', 'ScrumBoardController');
-            Route::resource('sprintBacklog', 'SprintBacklogController');
+                //Route::resource('sprintDashboard', 'PagesController');
 
-            Route::resource('standUpQuestion', 'StandUpQuestionController');
-            Route::resource('standUpAnswer', 'StandUpAnswerController');
+                Route::resource('dailyStandUp', 'DailyStandUpController');
+                Route::prefix('dailyStandUp/{dailyStandUp}')->group(function () {
+                    Route::resource('standUpQuestion', 'StandUpQuestionController');
+                    Route::resource('standUpAnswer', 'StandUpAnswerController');
+                });
 
-            //Route::resource('sprintDashboard', 'PagesController');
-            Route::resource('dailyStandUpForm', 'DailyStandUpController');
-
-
-            //tijdelijke routes om snelle toegang te krijgen tot view
+                //tijdelijke routes om snelle toegang te krijgen tot view
 //            Route::put('sprintBacklog/{sprintBacklog}', [ProductBacklogController::class, 'updatesprintid'])->name('updatesprintid');
-            Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
+                Route::get('sprintDashboard', [PagesController::class, 'sprintDashboard'])->name('sprintDashboard');
+            });
         });
     });
 });

@@ -44,14 +44,10 @@
                                 <div href="#" class="list-group-item list-group-item-action">
                                     {{$question->question}}
                                     <div class="inline-flex items-center justify-end float-right">
-                                        {{--                                        <form method="POST" action="">--}}
-                                        {{--                                            @csrf--}}
-                                        {{--                                            @method('DELETE')--}}
                                         <button type="button" data-id="{{$question->id}}"
                                                 class="q-dest btn btn-danger inline-flex items-center px-4 py-1 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                                             X
                                         </button>
-                                        {{--                                        </form>--}}
                                     </div>
                                 </div>
                             @endforeach
@@ -86,7 +82,7 @@
             @if(isset($dailyStandUp))
                 @foreach($dailyStandUp->questions as $question)
                     <form method="POST" id="destroy-{{$question->id}}"
-                          action="{{route('standUpQuestion.destroy',['project'=> $project, 'sprint'=> $sprint,'standUpQuestion'=> $question])}}">
+                          action="{{route('standUpQuestion.destroy',['project'=> $project, 'sprint'=> $sprint,'dailyStandUp'=> $dailyStandUp,'standUpQuestion'=> $question])}}">
                         @csrf
                         @method('DELETE')
                     </form>

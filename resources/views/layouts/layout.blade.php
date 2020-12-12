@@ -107,7 +107,7 @@
             </div>
         </div>
     @endif
-    <div class="container-fluid pt-9 h-100">
+    <div class="container-fluid pt-9 h-100 pb-3">
         @yield('content')
     </div>
 </main>

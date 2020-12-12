@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\ProjectAccess;
 use App\Http\Middleware\ProjectAdminAccess;
+use App\Models\DailyStandUp;
 use App\Models\Project;
 use App\Models\Sprint;
 use App\Models\StandUpQuestion;
@@ -85,13 +86,14 @@ class StandUpQuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
      * @param Project $project
      * @param Sprint $sprint
-     * @param \App\Models\StandUpQuestion $standUpQuestion
+     * @param DailyStandUp $dailyStandUp
+     * @param StandUpQuestion $standUpQuestion
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Project $project, Sprint $sprint, StandUpQuestion $standUpQuestion)
+    public function destroy(Project $project, Sprint $sprint,DailyStandUp $dailyStandUp,StandUpQuestion $standUpQuestion)
     {
         $dailyStandUp = $standUpQuestion->dailyStandUp;
 

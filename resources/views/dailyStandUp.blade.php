@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-header" id="heading{{$dailyStandUp->id}}">
                         <h5 class="row mb-0">
-                            <div class="{{$project->roleAuth() != 3?"col-10":"col-12"}} pr-0">
+                            <div class="{{$project->roleAuth() != 3?"col-sm-8 col-lg-10":"col-sm-9 col-lg-11"}} p-1">
 
                                 <button
                                     class="btn btn-light border-transparent collapsed w-full text-left disabled:opacity-25 transition ease-in-out duration-150 focus:outline-none"
@@ -40,18 +40,25 @@
                                 </button>
                             </div>
                             @if($project->roleAuth() != 3)
-                                <div class="col-2 pl-0">
-                                    <a class="btn btn-warning border-transparent float-right mx-1"
+                                <div class="col-sm-2 col-lg-1 p-1">
+                                    <a class="btn btn-warning btn-block border-transparent float-right"
                                        href="{{route('dailyStandUp.show',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">Edit</a>
+                                </div>
 
+                                <div class="col-sm-2 col-lg-1 p-1">
                                     <form method="POST"
                                           action="{{route('dailyStandUp.destroy',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                                class="btn btn-danger border-transparent float-right mx-1">Delete
+                                                class="btn btn-danger btn-block border-transparent float-right">Delete
                                         </button>
                                     </form>
+                                </div>
+                            @else
+                                <div class="col-sm-2 col-lg-1 p-1">
+                                    <a class="btn btn-block bg-gray-800 hover:bg-gray-700 active:bg-gray-900 text-white border-transparent float-right focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
+                                       href="{{route('standUpAnswer.create',['project'=>$project, 'sprint'=> $sprint,'dailyStandUp'=>$dailyStandUp])}}">Answer</a>
                                 </div>
                             @endif
                         </h5>

@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ProjectAccess;
+use App\Http\Middleware\ProjectAdminAccess;
+use App\Models\DailyStandUp;
+use App\Models\Project;
+use App\Models\Sprint;
 use App\Models\StandUpAnswer;
 use Illuminate\Http\Request;
 
 class StandUpAnswerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(ProjectAccess::class)->only('create');
+        $this->middleware(ProjectAdminAccess::class)->except('create');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +31,15 @@ class StandUpAnswerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Project $project
+     * @param Sprint $sprint
+     * @param DailyStandUp $dailyStandUp
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
      */
-    public function create()
+    public function create(Project $project, Sprint $sprint, DailyStandUp $dailyStandUp)
     {
-        //
+
+        return view('standUpAnswer',['project'=>$project, 'sprint'=>$sprint, 'dailyStandUp'=>$dailyStandUp]);
     }
 
     /**

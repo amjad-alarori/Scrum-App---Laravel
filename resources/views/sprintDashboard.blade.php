@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Home Sprint Dashboard
+    Sprint Dashboard
 @endsection
 
 @section('content')
