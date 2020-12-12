@@ -74,6 +74,48 @@
                         </div>
                     @endif
                 @endforeach
+                @foreach ($review as $inProgress)
+                    @if ($inProgress->status==1)
+
+                        <div class="input-groupScrumBoard overflow">
+                            <h5 class="h5ScrumBoard">{{$inProgress->title}}</h5>
+                            <hr class="lineBacklogItem">
+                            <br>
+
+                            <div id="accordion{{$inProgress->id}}">
+                                <div class="cardBacklogItem">
+
+                                    {{$inProgress->description}}<br>
+                                    <br>
+
+                                    <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse{{$inProgress->id}}" aria-expanded="false" aria-controls="collapse">
+                                        More info <span class="arrow">&#8681;</span>
+                                    </button>
+
+
+                                    <div id="collapse{{$inProgress->id}}" class="collapse" aria-labelledby="heading">
+                                        <div class="card-body">
+                                            <span style="font-weight:bold; color: darkblue">User story:</span><br>
+                                            {{$inProgress->user_story}}<br>
+                                            <br>
+                                            <span style="font-weight:bold; color: darkblue">Story points:</span>
+                                            {{$inProgress->story_points}}<br>
+                                            <span style="font-weight:bold; color: darkblue">Business value:</span>
+                                            {{$inProgress->business_value}}<br>
+                                            <span style="font-weight:bold; color: darkblue">Priority:</span>
+                                            {{$inProgress->priority}}<br>
+                                            <br>
+                                            <span style="font-weight:bold; color: darkblue">Acceptance criteria:</span><br>
+                                            {{$inProgress->acceptance_criteria}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                        </div>
+                    @endif
+                @endforeach
 
 
             </div>
