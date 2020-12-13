@@ -12,7 +12,7 @@ class ScrumRoleStore implements Rule
     /**
      * Create a new rule instance.
      *
-     * @return void
+     * @param $projectId
      */
     public function __construct($projectId)
     {

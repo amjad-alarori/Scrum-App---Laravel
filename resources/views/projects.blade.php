@@ -12,7 +12,7 @@
                     Your projects</h1>
             </div>
             <div class="col-sm-2">
-                <a type="submit" href="{{route('project.create')}}"
+                <a href="{{route('project.create')}}"
                    class="btn  inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                     Create new project
                 </a>

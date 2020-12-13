@@ -15,12 +15,9 @@ class CreateDailyStandUpsTable extends Migration
     {
         Schema::create('daily_stand_ups', function (Blueprint $table) {
             $table->id();
-            $table->text('yesterday');
-            $table->text('today');
-            $table->text('challenge');
-            $table->timestamps();
+            $table->date('stand_up_date');
             $table->foreignId('sprint_id')->constrained('sprints');
-            $table->foreignId('user_id')->constrained('users');
+            $table->timestamps();
         });
     }
 

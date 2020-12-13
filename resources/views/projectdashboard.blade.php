@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Home
+    Project dashboard
 @endsection
 
 @section('content')
@@ -20,11 +20,11 @@
             <div class="col-md-6">
                 <div class="card rounded m-2">
                     <div class="card-header h2">Project information
-                    @if($project->roleAuth() != 3)
-                        <a class="btn float-right bg-warning"
-                           href="{{route('project.edit',['project'=>$project])}}">
-                            Edit</a>
-                    @endif
+                        @if($project->roleAuth() != 3)
+                            <a class="btn float-right bg-warning"
+                               href="{{route('project.edit',['project'=>$project])}}">
+                                Edit</a>
+                        @endif
                     </div>
                     <div class="card-body">
                         {{$project->description}}
@@ -80,7 +80,7 @@
                              alt="Product backlog">
                     </div>
                     <div class="card-body overflow-auto" style="max-height: 150px;">
-                        <h5 class="card-title"><i class="fas fa-users fa-fw" ></i>&nbsp; &nbsp;Scrum Team</h5>
+                        <h5 class="card-title"><i class="fas fa-users fa-fw"></i>&nbsp; &nbsp;Scrum Team</h5>
                         @foreach ($teammembers as $teammember)
                             <li class="{{$teammember->user->id==Auth::id()?"font-weight-bold":""}}">{{$teammember->user->name . " (" . $teammember->scrumRole->title . ")"}}</li>
                         @endforeach
@@ -91,7 +91,6 @@
                     </div>
                 </div>
             </div>
-
 
 
             <div class="col-md-4 mb-5">
@@ -105,7 +104,8 @@
                         <p class="card-text">Add, delete and manage the project backlog elements.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('productBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to Product Backlog</a>
+                        <a href="{{route('productBackLog.index',['project'=>$project])}}" class="btn btn-primary">Go to
+                            Product Backlog</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,8 @@
                         <p class="card-text">When can you check a backlog element as done? manage the criteria .</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('defOfDone.index',['project'=>$project])}}" class="btn btn-primary">Go to Definition of Done</a>
+                        <a href="{{route('defOfDone.index',['project'=>$project])}}" class="btn btn-primary">Go to
+                            Definition of Done</a>
                     </div>
                 </div>
             </div>
@@ -151,13 +152,21 @@
                                         Enddate: {{date("d/m/Y", strtotime($sprint->enddate))}}
                                     </p>
                                 </div>
-                                <div class="card-footer">
-                                    <a href="{{route('sprint.show',['project'=> $project, 'sprint'=> $sprint])}}"
-                                       class="btn btn-primary">Go to sprint</a>
-                                    <a href="{{route('sprint.edit',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
-                                       class="btn btn-warning">Edit sprint</a>
-                                    <a href="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
-                                       class="btn btn-danger">Delete sprint</a>
+                                <div class="card-footer row">
+                                    <div class="{{$project->roleAuth() != 3?"col-lg-4":"col-12"}} p-1">
+                                        <a href="{{route('sprint.show',['project'=> $project, 'sprint'=> $sprint])}}"
+                                           class="btn btn-primary btn-block">To sprint</a>
+                                    </div>
+                                    @if($project->roleAuth() != 3)
+                                        <div class="col-lg-4 p-1">
+                                            <a href="{{route('sprint.edit',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
+                                               class="btn btn-warning btn-block">Edit</a>
+                                        </div>
+                                        <div class="col-lg-4 p-1">
+                                            <a href="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
+                                               class="btn btn-danger btn-block">Delete</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -183,9 +192,9 @@
         var gaugeOptions = {
             min: 0,
             max: projectLength,
-            yellowFrom: Math.round(projectLength*0.7),
-            yellowTo: Math.round(projectLength*0.85),
-            redFrom: Math.round(projectLength*0.85),
+            yellowFrom: Math.round(projectLength * 0.7),
+            yellowTo: Math.round(projectLength * 0.85),
+            redFrom: Math.round(projectLength * 0.85),
             redTo: projectLength,
             minorTicks: 5
         };

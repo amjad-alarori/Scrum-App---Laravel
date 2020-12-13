@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Home
+    Profile
 @endsection
 
 @section('content')
