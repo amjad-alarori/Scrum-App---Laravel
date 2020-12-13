@@ -20,8 +20,10 @@ class ReviewController extends Controller
     public function index(Project $project, Sprint $sprint, User $user)
     {
         $review = ProductBacklog::query()->where('sprint_id','=', $sprint->id)->get();
-        return view ('review', ['project'=> $project, 'sprint'=> $sprint, 'user'=> $user, 'review'=>$review]);
+        $review1 = Review::query()->where('sprint_id','=', $sprint->id)->get();
+        return view ('review', ['project'=> $project, 'sprint'=> $sprint, 'user'=> $user, 'review'=>$review, 'review1'=>$review1]);
     }
+
 
 
 

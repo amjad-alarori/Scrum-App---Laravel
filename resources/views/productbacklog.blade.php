@@ -121,6 +121,7 @@
             <td>{{ $product->user_story }}</td>
             <td>{{ $product->story_points }}</td>
             <td>{{ $product->acceptance_criteria }}</td>
+
             <form method="POST" action="{{route('productBackLog.destroy',['project'=>$project,'productBackLog' => $product->id])}}">
                 @method('DELETE')
                 @csrf

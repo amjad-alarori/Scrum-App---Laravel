@@ -183,19 +183,62 @@
                 <br><br>
                 <hr>
                 <br>
-                <input type="hidden" value="{{$sprint->id}}">
 
-
-
-
+            </div>
         </div>
     </div>
 
+            <br>
+            <br>
+            <hr>
+            <br>
+
+        <div class="columnRetrospective" id="retrospectiveGood">
+            <h3 class="h3 columnRetrospectiveTitle">What went Good? </h3>
+            <br>
+
+
+            @foreach($review1 as $comment)
+                @if ($comment->category==1)
+
+                    <div class="retrospectiveInput-group retrospectiveOverflow">
+                        <div class="cardRetrospective">
+                            <p class="card-text">{{$comment->text}}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
+                        </div>
+                    </div>
+
+                @endif
+            @endforeach
+
+        </div>
+
+        <div class="columnRetrospective" id="retrospectiveImprove">
+            <h3 class="h3 columnRetrospectiveTitle">Which things can be improved?</h3>
+            <br>
+
+            @foreach ($review1 as $comment)
+                @if($comment->category==2)
+
+                    <div class="input-group overflow">
+                        <div class="cardRetrospective">
+                            <p class="card-text">{{$comment->text}}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
+                        </div>
+                    </div>
+                @endif
+            @endforeach
 
 
 
-<br>
-    <hr>
+
+
+             <br>
+             <hr>
 
 
 

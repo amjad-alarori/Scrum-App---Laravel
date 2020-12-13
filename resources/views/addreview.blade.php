@@ -44,11 +44,11 @@
                         <label for="improve">Things that can be improved</label><br><br>
                         <label class="block font-medium text-sm text-gray-700" for="category">Select a Productbacklog</label>
                         <input class="form-input rounded-md shadow-sm block mt-1 col-sm-5" id="productbacklog" type="radio" name="productbacklog" autocomplete="productbacklog">
-                        <select name="productbacklog" id="productbacklog">
-
-                            <option></option>
-
-                        </select>
+{{--                        @foreach($productBacklog as $product)--}}
+{{--                        <select name="productbacklog" id="productbacklog">--}}
+{{--                            <option>{{ $product->title }}</option>--}}
+{{--                        </select>--}}
+{{--                        @endforeach--}}
                         <br><br>
                         @error('category')
                         <p class ='text-sm text-red-600 mt-2'>{{ $message }}</p>
@@ -70,38 +70,38 @@
 {{--        @foreach($review as $comment)--}}
 {{--            @if ($comment->category==1)--}}
 
-                <div class="retrospectiveInput-group retrospectiveOverflow">
-                    <div class="cardRetrospective">
-                        <p class="card-text"></p>
-                    </div>
-                    <div class="card-footer text-muted">
+{{--                <div class="retrospectiveInput-group retrospectiveOverflow">--}}
+{{--                    <div class="cardRetrospective">--}}
+{{--                        <p class="card-text"></p>--}}
+{{--                    </div>--}}
+{{--                    <div class="card-footer text-muted">--}}
 {{--                        Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}--}}
-                    </div>
-                </div>
+{{--                    </div>--}}
+{{--                </div>--}}
 
 {{--            @endif--}}
 {{--        @endforeach--}}
 
-    </div>
+{{--    </div>--}}
 
-    <div class="columnRetrospective" id="retrospectiveImprove">
-        <h3 class="h3 columnRetrospectiveTitle">Which things can be improved?</h3>
-        <br>
+{{--    <div class="columnRetrospective" id="retrospectiveImprove">--}}
+{{--        <h3 class="h3 columnRetrospectiveTitle">Which things can be improved?</h3>--}}
+{{--        <br>--}}
 
 {{--        @foreach ($review as $comment)--}}
 {{--            @if($comment->category==2)--}}
 
-                <div class="input-group overflow">
-                    <div class="cardRetrospective">
-                        <p class="card-text"></p>
-                    </div>
-                    <div class="card-footer text-muted">
+{{--                <div class="input-group overflow">--}}
+{{--                    <div class="cardRetrospective">--}}
+{{--                        <p class="card-text"></p>--}}
+{{--                    </div>--}}
+{{--                    <div class="card-footer text-muted">--}}
 {{--                        Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}--}}
-                    </div>
-                </div>
+{{--                    </div>--}}
+{{--                </div>--}}
 {{--            @endif--}}
 {{--        @endforeach--}}
-    </div>
+{{--    </div>--}}
 
 
 
