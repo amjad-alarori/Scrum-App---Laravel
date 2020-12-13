@@ -222,8 +222,15 @@
                         </div>
                         <div class="card-footer text-muted">
                             Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}<br>
-                            Task : {{isset($comment->backlog) ? $comment->backlog->title : ''}}
+                            Task : {{isset($comment->backlog) ? $comment->backlog->title : ''}}<br><br><hr><br>
+
+                            <form method="POST" action="{{route('review.destroy',['project'=>$project->id, 'sprint'=> $sprint, 'review'=>$comment->id])}}">
+                                @method('DELETE')
+                                @csrf
+                                <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
+                            </form>
                         </div>
+
                     </div>
                 @endif
             @endforeach
@@ -243,9 +250,14 @@
                         </div>
                         <div class="card-footer text-muted">
                             Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}<br>
-                            Task : {{isset($comment->backlog) ? $comment->backlog->title : ''}}
-
+                            Task : {{isset($comment->backlog) ? $comment->backlog->title : ''}}<br><br><hr><br>
+                            <form method="POST" action="{{route('review.destroy',['project'=>$project->id, 'sprint'=> $sprint, 'review'=>$comment->id])}}">
+                                @method('DELETE')
+                                @csrf
+                                <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
+                            </form>
                         </div>
+
                     </div>
                 @endif
             @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\ProductBacklog;
 use App\Models\Project;
 use App\Models\Review;
@@ -110,8 +111,9 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Project $project, Sprint $sprint, Review $review)
     {
-        //
+        $review->delete();
+        return redirect()->back();
     }
 }
