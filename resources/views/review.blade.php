@@ -174,15 +174,30 @@
 
             </div>
         </div>
+
+
         <div class="col-md-4 col-sm-6">
             <div class="column-review">
+
                 <h4 class="h4">Comments</h4><br>
                 <hr>
                 <br>
-                <a href="{{route('review.create',['project'=>$project->id, 'sprint'=> $sprint->id, 'user'=>$user->id])}}" class="btn btn-primary">Add a new review comment</a>
+                <h6 class="h6">Select a Productbacklog</h6>
+                <br>
+
+
+
+                <br>
+                <hr>
+                <br>
+
+                <a href="{{route('review.create',['project'=>$project->id, 'sprint'=> $sprint, 'user'=>$user->id])}}" class="btn btn-primary">Add a new review comment</a>
                 <br><br>
                 <hr>
                 <br>
+
+
+
 
             </div>
         </div>
@@ -206,10 +221,10 @@
                             <p class="card-text">{{$comment->text}}</p>
                         </div>
                         <div class="card-footer text-muted">
-                            Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
+                            Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}<br>
+                            Task : {{isset($comment->backlog) ? $comment->backlog->title : ''}}
                         </div>
                     </div>
-
                 @endif
             @endforeach
 
@@ -227,7 +242,9 @@
                             <p class="card-text">{{$comment->text}}</p>
                         </div>
                         <div class="card-footer text-muted">
-                            Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}
+                            Written by {{$comment->user->name}} on {{date("d/m/Y",strtotime($comment->created_at))}}<br>
+                            Task : {{isset($comment->backlog) ? $comment->backlog->title : ''}}
+
                         </div>
                     </div>
                 @endif

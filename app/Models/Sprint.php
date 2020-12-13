@@ -27,4 +27,8 @@ class Sprint extends Model
     {
         return $this->hasMany(DailyStandUp::class, 'sprint_id', 'id');
     }
+    public function backlogs()
+    {
+        return $this->hasMany(ProductBacklog::class, 'sprint_id', 'id');
+    }
 }
