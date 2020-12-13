@@ -230,7 +230,6 @@
                                 <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
                             </form>
                         </div>
-
                     </div>
                 @endif
             @endforeach
@@ -257,17 +256,12 @@
                                 <td> <button class="btn btn-danger " type="submit">Delete</button> </td>
                             </form>
                         </div>
-
                     </div>
                 @endif
             @endforeach
 
 
 
-
-
-             <br>
-             <hr>
 
 
 
