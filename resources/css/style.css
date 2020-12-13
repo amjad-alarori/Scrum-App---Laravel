@@ -215,7 +215,7 @@ hr.lineBacklogItem{
 .button-backlogScrumBoard{
     background: #f1f1f1;
     color: #3366aa;
-    opacity: 75%;
+    opacity: 85%;
     font-weight: bold;
     display: inline;
 }
@@ -229,7 +229,7 @@ hr.lineBacklogItem{
     display: inline;
     background: #f1f1f1;
     color: darkgoldenrod;
-    opacity: 75%;
+    opacity: 85%;
     font-weight: bold;
 }
 
@@ -245,7 +245,7 @@ hr.lineBacklogItem{
     display:inline;
     background: #f1f1f1;
     color: #007b03;
-    opacity: 75%;
+    opacity: 85%;
     font-weight: bold;
 }
 
@@ -261,7 +261,7 @@ hr.lineBacklogItem{
     display:inline;
     background: #f1f1f1;
     color: #be0000;
-    opacity: 75%;
+    opacity: 85%;
     font-weight: bold;
 }
 
