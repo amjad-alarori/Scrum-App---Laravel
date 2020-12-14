@@ -88,4 +88,7 @@ class User extends Authenticatable
                 $query->where('stand_up_id','=',$sprint->id);
                 });
     }
+
+
+
 }

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductBacklog;
 use App\Models\Project;
+use App\Models\ScrumTeam;
 use App\Models\Sprint;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ScrumBoardController extends Controller
 {
@@ -16,11 +19,11 @@ class ScrumBoardController extends Controller
      */
     public function index(Project $project, Sprint $sprint)
     {
-
         $scrumBoardItems= ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->get();
+        $teamMembers=$project->scrumTeam;
+        $user = Auth::user();
 
-
-        return view('scrumBoard', ['project'=> $project, 'sprint'=> $sprint, 'scrumBoardItems'=>$scrumBoardItems]);
+        return view('scrumBoard', ['project'=> $project, 'sprint'=> $sprint, 'scrumBoardItems'=>$scrumBoardItems, 'teamMembers'=>$teamMembers, 'user'=>$user]);
     }
 
     /**
@@ -76,6 +79,7 @@ class ScrumBoardController extends Controller
     public function update(Request $request, Project $project, Sprint $sprint, ProductBacklog $scrumBoard)
     {
         $scrumBoard->status = $request['status'];
+        $scrumBoard->user_id = $request['user_id'];
         $scrumBoard->update();
         return redirect()->back();
     }

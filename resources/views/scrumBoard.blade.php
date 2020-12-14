@@ -30,6 +30,7 @@
                             {{$toDo->description}}<br>
                             <br>
 
+
                             <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse{{$toDo->id}}" aria-expanded="false" aria-controls="collapse">
                                 More info <span class="arrow">&#8681;</span>
                             </button>
@@ -56,7 +57,7 @@
                     <br>
 
                     <div class="margin-top-10">
-                        <form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo])}}"><input type="hidden" name="status" value="">@method('PATCH') @csrf<button type="submit" class="buttonScrumBoard button-backlogScrumBoard">To Do</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo])}}"><input type="hidden" name="status" value="1"> @method('PATCH') @csrf  <button type="submit" class="buttonScrumBoard button-progressScrumBoard">In Progress</button></form> <form method="POST"  class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo])}}"><input type="hidden" name="status" value="2"> @method('PATCH') @csrf <button type="submit" class="buttonScrumBoard button-doneScrumBoard">Done</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.destroy',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo->id])}}">@method('DELETE') @csrf  <button type="submit" class="buttonScrumBoard button-deleteScrumBoard">Delete</button></form>
+                        <form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo])}}"><input type="hidden" name="status" value="">@method('PATCH') @csrf<button type="submit" class="buttonScrumBoard button-backlogScrumBoard">To Do</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo])}}"><input type="hidden" name="status" value="1"><input type="hidden" name="user_id" value="{{$user->id}}"> @method('PATCH') @csrf  <button type="submit" class="buttonScrumBoard button-progressScrumBoard">In Progress</button></form> <form method="POST"  class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo])}}"><input type="hidden" name="status" value="2"><input type="hidden" name="user_id" value="{{$user->id}}"> @method('PATCH') @csrf <button type="submit" class="buttonScrumBoard button-doneScrumBoard">Done</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.destroy',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$toDo->id])}}">@method('DELETE') @csrf  <button type="submit" class="buttonScrumBoard button-deleteScrumBoard">Delete</button></form>
                     </div>
                 </div>
                 @endif
@@ -85,6 +86,8 @@
 
                                     {{$inProgress->description}}<br>
                                     <br>
+                                    <span style="font-weight:bold; color: darkblue">Assigned to: </span>{{$user->name}}</span>
+                                    <br>
 
                                     <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse{{$inProgress->id}}" aria-expanded="false" aria-controls="collapse">
                                         More info <span class="arrow">&#8681;</span>
@@ -112,7 +115,7 @@
                             <br>
 
                             <div class="margin-top-10">
-                                <form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress])}}"><input type="hidden" name="status" value="">@method('PATCH') @csrf<button type="submit" class="buttonScrumBoard button-backlogScrumBoard">To Do</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress])}}"><input type="hidden" name="status" value="1"> @method('PATCH') @csrf  <button type="submit" class="buttonScrumBoard button-progressScrumBoard">In Progress</button></form> <form method="POST"  class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress])}}"><input type="hidden" name="status" value="2"> @method('PATCH') @csrf <button type="submit" class="buttonScrumBoard button-doneScrumBoard">Done</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.destroy',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress->id])}}">@method('DELETE') @csrf  <button type="submit" class="buttonScrumBoard button-deleteScrumBoard">Delete</button></form>
+                                <form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress])}}"><input type="hidden" name="status" value=""><input type="hidden" name="user_id" value="">@method('PATCH') @csrf<button type="submit" class="buttonScrumBoard button-backlogScrumBoard">To Do</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress])}}"><input type="hidden" name="status" value="1"><input type="hidden" name="user_id" value="{{$user->id}}"> @method('PATCH') @csrf  <button type="submit" class="buttonScrumBoard button-progressScrumBoard">In Progress</button></form> <form method="POST"  class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress])}}"><input type="hidden" name="status" value="2"><input type="hidden" name="user_id" value="{{$user->id}}"> @method('PATCH') @csrf <button type="submit" class="buttonScrumBoard button-doneScrumBoard">Done</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.destroy',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$inProgress->id])}}">@method('DELETE') @csrf  <button type="submit" class="buttonScrumBoard button-deleteScrumBoard">Delete</button></form>
                             </div>
 
                         </div>
@@ -138,6 +141,9 @@
                                 <div class="cardBacklogItem">
 
                                     {{$done->description}}<br>
+                                    <br>
+
+                                    <span style="font-weight:bold; color: darkblue">Assigned to: </span>{{$user->name}}</span>
                                     <br>
 
                                     <button class="btnScrumBoard btn-linkScrumBoard text-decoration-none" data-toggle="collapse" data-target="#collapse{{$done->id}}" aria-expanded="false" aria-controls="collapse">
@@ -167,7 +173,7 @@
                             <br>
 
                             <div class="margin-top-10">
-                                <form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done])}}"><input type="hidden" name="status" value="">@method('PATCH') @csrf<button type="submit" class="buttonScrumBoard button-backlogScrumBoard">To Do</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done])}}"><input type="hidden" name="status" value="1"> @method('PATCH') @csrf  <button type="submit" class="buttonScrumBoard button-progressScrumBoard">In Progress</button></form> <form method="POST"  class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done])}}"><input type="hidden" name="status" value="2"> @method('PATCH') @csrf <button type="submit" class="buttonScrumBoard button-doneScrumBoard">Done</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.destroy',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done->id])}}">@method('DELETE') @csrf  <button type="submit" class="buttonScrumBoard button-deleteScrumBoard">Delete</button></form>
+                                <form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done])}}"><input type="hidden" name="status" value=""><input type="hidden" name="user_id" value="">@method('PATCH') @csrf<button type="submit" class="buttonScrumBoard button-backlogScrumBoard">To Do</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done])}}"><input type="hidden" name="status" value="1"><input type="hidden" name="user_id" value="{{$user->id}}"> @method('PATCH') @csrf  <button type="submit" class="buttonScrumBoard button-progressScrumBoard">In Progress</button></form> <form method="POST"  class="formButtonScrumBoard" action="{{route('scrumBoard.update',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done])}}"><input type="hidden" name="status" value="2"><input type="hidden" name="user_id" value="{{$user->id}}"> @method('PATCH') @csrf <button type="submit" class="buttonScrumBoard button-doneScrumBoard">Done</button></form><form method="POST" class="formButtonScrumBoard" action="{{route('scrumBoard.destroy',['project'=>$project,'sprint'=>$sprint, 'scrumBoard'=>$done->id])}}">@method('DELETE') @csrf  <button type="submit" class="buttonScrumBoard button-deleteScrumBoard">Delete</button></form>
                             </div>
 
                         </div>
