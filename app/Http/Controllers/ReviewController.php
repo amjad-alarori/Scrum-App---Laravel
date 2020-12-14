@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CommentsAdminDelete;
+use App\Http\Middleware\ProjectAccess;
+use App\Http\Middleware\ProjectAdminAccess;
 use App\Models\Comment;
 use App\Models\ProductBacklog;
 use App\Models\Project;
@@ -18,6 +21,13 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware(ProjectAccess::class);
+        $this->middleware(CommentsAdminDelete::class)->only('destroy');
+    }
+
     public function index(Project $project, Sprint $sprint, User $user)
     {
         $review = ProductBacklog::query()->where('sprint_id','=', $sprint->id)->get();
