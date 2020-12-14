@@ -24,14 +24,11 @@
 
         <div class="row">
             <div class="col-md-8 mb-5">
-                <h2>Project informatie</h2>
+                <h2>Definition of Done (DoD)</h2>
                 <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi
-                    soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam.
-                    Repellat explicabo, maiores!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur
-                    magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt
-                    voluptate. Voluptatum.</p>
+                <p>The 'Definition of Done' is used to make requirements to tell when a feature is done. If the team has made agreements
+                on when you can call a backlog element is done, they can add them on this page so every one can see and be reminded on how
+                they can tell if their backlog element is done in terms of what has been discussed within the team.</p>
             </div>
             <div class="col-md-4 mb-5">
                 <h1>Teamleden</h1>
