@@ -19,7 +19,7 @@ class CreateReviewsTable extends Migration
             $table->integer('category');
             $table->foreignId('sprint_id')->constrained('sprints');
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('backlog_id')->constrained('product_backlogs');
+            $table->foreignId('backlog_id')->nullable()->constrained('product_backlogs');
             $table->timestamps();
         });
     }
