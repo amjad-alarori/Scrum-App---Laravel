@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <label class="block font-medium text-sm text-gray-700" for="user_story">Yser Story</label>
+                    <label class="block font-medium text-sm text-gray-700" for="user_story">User Story</label>
                     <input class="form-input rounded-md shadow-sm block mt-1 w-full" id="user_story" type="text"
                            name="user_story" autocomplete="user_story" value="{{old('user_story')}}">
                     @error('user_story')

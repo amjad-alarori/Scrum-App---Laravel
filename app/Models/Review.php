@@ -18,4 +18,9 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function backlog()
+    {
+        return $this->belongsTo(ProductBacklog::class, 'backlog_id', 'id');
+    }
 }

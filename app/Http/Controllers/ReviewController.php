@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\ProductBacklog;
 use App\Models\Project;
 use App\Models\Review;
@@ -34,6 +35,7 @@ class ReviewController extends Controller
      */
     public function create(Project $project, Sprint $sprint, User $user)
     {
+
         return view('addreview', ['project'=>$project, 'sprint'=>$sprint, 'user'=>$user]);
 
     }
@@ -46,6 +48,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request, Project $project, Sprint $sprint)
     {
+
         $request->validate([
             'text' => ['required', 'string'],
             'category' => ['required', 'integer'],
@@ -59,6 +62,7 @@ class ReviewController extends Controller
         $review->text = ($request['text']);
         $review->category = $request['category'];
         $review->sprint_id = $sprint->id;
+        $review->backlog_id = $request['backlog'];
         $review->user_id= $user->id;
 
         $review->save();
@@ -107,8 +111,9 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Project $project, Sprint $sprint, Review $review)
     {
-        //
+        $review->delete();
+        return redirect()->back();
     }
 }

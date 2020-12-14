@@ -67,7 +67,7 @@
                                 <a class="dropdown-item"
                                    href="{{route('dailyStandUp.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'dailyStandUp'=>$dailyStandUp=1])}}">Daily stand up</a>
                                 <a class="dropdown-item" href="{{route('review.index',['project'=> $project->id, 'sprint'=> $sprint->id, 'review'=>$review=1])}}">Sprint review</a>
-                                <a class="dropdown-item" href="#">Scrum board</a>
+                                <a class="dropdown-item" href="{{route('scrumBoard.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}">Scrum board</a>
                                 <a class="dropdown-item" href="{{route('retrospective.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}">Retrospective</a>
                                 <a class="dropdown-item" href="{{route('sprintBacklog.index',['project'=> $project->id, 'sprint'=> $sprint->id])}}">Sprintbacklog</a>
                             </div>
