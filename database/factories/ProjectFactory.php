@@ -26,7 +26,7 @@ class ProjectFactory extends Factory
             'description'=>$this->faker->text,
             'mission'=>$this->faker->sentence,
             'vision'=>$this->faker->sentence,
-            'deadline'=>$this->faker->dateTime,
+            'deadline'=>$this->faker->dateTimeBetween('first day of this year', 'last day of this year'),
             'sprintLength'=>$this->faker->randomElement([7,14,21,18]),
         ];
     }
