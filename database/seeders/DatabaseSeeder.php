@@ -13,9 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//         \App\Models\User::factory(180)->create();
-//        $this->call(ProjectSeeder::class);
+         \App\Models\User::factory(180)->create();
+        $this->call(ProjectSeeder::class);
         $this->call(ScrumTeamSeeder::class);
-
     }
 }

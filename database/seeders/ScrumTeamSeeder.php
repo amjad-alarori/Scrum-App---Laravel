@@ -21,32 +21,29 @@ class ScrumTeamSeeder extends Seeder
         $faker = $factory->create();
 
         $projects = Project::all();
+        $users = User::query()->orderBy('id')->pluck('id', 'id')->toArray();
+        $t = 0;
 
-        $users = User::query()->orderBy('id')->limit(count($projects))->pluck('id')->toArray();
         foreach ($projects as $project):
-            ScrumTeam::factory()->create([
-                'roleId' => 1,
-                'userId' => $faker->randomElement($users),
-                'projectId'=>$project->id
-            ]);
-        endforeach;
+            $t++;
+            $teamMembers = [];
 
-        $users = User::query()->orderBy('id')->offset(count($projects))->limit(count($projects))->pluck('id')->toArray();
-        foreach ($projects as $project):
-            ScrumTeam::factory()->create([
-                'roleId' => 2,
-                'userId' => $faker->randomElement($users),
-                'projectId'=>$project->id
-            ]);
-        endforeach;
+            for ($l = 1; $l < 6; $l++):
+                $role = $l < 3 ? $l : 3;
+                $userId = $faker->randomElement($users);
 
-        $users = User::query()->orderBy('id')->offset(count($projects))->pluck('id')->toArray();
-        foreach ($projects as $project):
-            ScrumTeam::factory()->count(3)->create([
-                'roleId' => 3,
-                'userId' => $faker->randomElement($users),
-                'projectId'=>$project->id
-            ]);
+                ScrumTeam::factory()->create([
+                    'roleId' => $role,
+                    'userId' => $userId,
+                    'projectId' => $project->id
+                ]);
+
+                $teamMembers[strval($userId)] = $userId;
+                unset($users[strval($userId)]);
+
+            endfor;
+
+            $users = $users+ $teamMembers;
         endforeach;
     }
 }
