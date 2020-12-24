@@ -47,7 +47,9 @@
         <br>
 {{--        <a class="nav-link" href="{{ route('defOfDone.create', ['project'=>$project])}}">Create a--}}
 {{--            requirement</a>--}}
+        @if($project->roleAuth() !=3)
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">Create a requirement</button>
+        @endif
         <div class="modal fade" id="createModal" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -89,6 +91,7 @@
                         <hr>
                         <p>{{ $def_of_done->body }}</p>
                         <div>
+                            @if($project->roleAuth() !=3)
                             <form method="post"
                               action="{{route('defOfDone.destroy', ['project'=>$project, 'defOfDone' => $def_of_done->id])}}">
                                 @csrf
@@ -98,6 +101,7 @@
                                 </button>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
+                            @endif
                         </div>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">

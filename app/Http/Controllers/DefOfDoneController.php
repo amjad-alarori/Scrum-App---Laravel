@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ProjectAccess;
+use App\Http\Middleware\ProjectAdminAccess;
 use App\Models\DefOfDone;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DefOfDoneController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(ProjectAccess::class)->only('index');
+        $this->middleware(ProjectAdminAccess::class)->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *

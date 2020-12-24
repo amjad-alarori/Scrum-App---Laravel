@@ -23,9 +23,6 @@ class ScrumTeamFactory extends Factory
      */
     public function definition()
     {
-
-        dd($this->states);
-
         $projectIds = Project::all('id');
         $userIds = User::all('id');
 

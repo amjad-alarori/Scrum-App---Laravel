@@ -19,8 +19,8 @@ class DailyStandUpController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(ProjectAccess::class)->only('index');
         $this->middleware(ProjectAdminAccess::class)->except('index');
+        $this->middleware(ProjectAccess::class)->only('index');
     }
 
     /**

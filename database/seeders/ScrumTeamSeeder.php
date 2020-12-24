@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Project;
 use App\Models\ScrumTeam;
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ScrumTeamSeeder extends Seeder
@@ -16,11 +17,33 @@ class ScrumTeamSeeder extends Seeder
      */
     public function run()
     {
-        $count = Project::all()->count();
-//        $users = User::query()->orderBy('id')->limit($count)->pluck('id');
+        $factory = new Factory();
+        $faker = $factory->create();
 
-        ScrumTeam::factory()->count($count)->create(['roleId'=>1]);
-        ScrumTeam::factory()->count($count)->create(['roleId'=>2]);
-        ScrumTeam::factory()->count($count*3)->create(['roleId'=>3]);
+        $projects = Project::all();
+        $users = User::query()->orderBy('id')->pluck('id', 'id')->toArray();
+        $t = 0;
+
+        foreach ($projects as $project):
+            $t++;
+            $teamMembers = [];
+
+            for ($l = 1; $l < 6; $l++):
+                $role = $l < 3 ? $l : 3;
+                $userId = $faker->randomElement($users);
+
+                ScrumTeam::factory()->create([
+                    'roleId' => $role,
+                    'userId' => $userId,
+                    'projectId' => $project->id
+                ]);
+
+                $teamMembers[strval($userId)] = $userId;
+                unset($users[strval($userId)]);
+
+            endfor;
+
+            $users = $users+ $teamMembers;
+        endforeach;
     }
 }
