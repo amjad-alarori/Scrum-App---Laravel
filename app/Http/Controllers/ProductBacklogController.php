@@ -141,7 +141,7 @@ class ProductBacklogController extends Controller
 
         return redirect()->action(
             [ProductBacklogController::class, 'index'], ['project' => $project]
-        );
+        )->with('successfullyUpdated', 'Item has been updated');
 
     }
 
@@ -157,7 +157,7 @@ class ProductBacklogController extends Controller
     public function destroy(Project $project, ProductBacklog $productBackLog)
     {
         $productBackLog->delete();
-        return redirect()->back();
+        return back()->with('successfullDeleted', 'item is successfully deleted.');
 
     }
 }

@@ -5,7 +5,14 @@
 @endsection
 
 @section('content')
-    <!-- Header -->
+
+    @if(session()->has('successfullyRemoved'))
+        <div class="alert alert-success alert-dismissible" id="delete-successfull">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{session('successfullyRemoved')}}
+        </div>
+    @endif
+
     <header class="bg-primary py-5 mb-5">
         <div class="container h-100">
             <div class="row h-100 align-items-center">

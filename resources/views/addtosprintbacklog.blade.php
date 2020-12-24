@@ -6,6 +6,12 @@
 
 @section('content')
 
+    @if(session()->has('successfullyAdded'))
+        <div class="alert alert-success alert-dismissible" id="delete-successfull">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{session('successfullyAdded')}}
+        </div>
+    @endif
 
     <!-- Header -->
     <header class="bg-primary py-5 mb-5">

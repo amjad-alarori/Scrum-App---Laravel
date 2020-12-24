@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    @if(session()->has('destroySprint'))
+        <div class="alert alert-danger alert-dismissible" id="destroy-error">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{session('destroySprint')}}
+        </div>
+        @endif
+
+    @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible" id="delete-successfull">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{session('success')}}
+        </div>
+    @endif
     <header class="bg-primary py-5 mb-5">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
@@ -163,8 +176,11 @@
                                                class="btn btn-warning btn-block">Edit</a>
                                         </div>
                                         <div class="col-lg-4 p-1">
-                                            <a href="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}"
-                                               class="btn btn-danger btn-block">Delete</a>
+                                            <form method="post" action="{{route('sprint.destroy',['project'=> $project->id, 'sprint'=> $sprint->id])}}">
+                                                @method('DELETE')
+                                                @csrf
+                                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                                            </form>
                                         </div>
                                     @endif
                                 </div>

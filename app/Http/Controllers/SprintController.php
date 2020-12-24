@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductBacklog;
 use App\Models\Project;
 use App\Models\Sprint;
 use Illuminate\Http\Request;
@@ -120,11 +121,23 @@ class SprintController extends Controller
      *
      * @param Project $project
      * @param \App\Models\Sprint $sprint
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Project $project, Sprint $sprint)
+    public function destroy(Project $project, Sprint $sprint, ProductBacklog $productBacklog)
     {
-        //
+       $productBacklogCount = ProductBacklog::query()->where('sprint_id', '=', $sprint->id)->count();
+
+       if($productBacklogCount === 0):
+           $sprint->delete();
+
+       return back()->with('success', 'Sprint is deleted.');
+
+       else:
+
+           return back()->with('destroySprint', 'You cannot delete this sprint because there are still items on your sprintbacklog. Please remove these items first.');
+       endif;
+
+
 
 
     }
