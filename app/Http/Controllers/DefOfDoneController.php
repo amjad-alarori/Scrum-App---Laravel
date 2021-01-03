@@ -115,12 +115,13 @@ class DefOfDoneController extends Controller
      *
      * @param Project $project
      * @param \App\Models\DefOfDone $defOfDone
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
     public function destroy(Project $project, DefOfDone $defOfDone)
     {
         $defOfDone->delete($defOfDone->id);
+        return redirect()->back();
 //        return redirect(route('defOfDone.index',['project'=>$project]));
     }
 }
