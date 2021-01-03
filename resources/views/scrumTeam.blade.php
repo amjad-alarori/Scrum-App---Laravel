@@ -11,9 +11,9 @@
             {{session('destroyMember')}}
         </div>
     @endif
-    <div class="row">
+    <div class="row d-flex justify-content-around">
         @foreach($members as $member)
-            <div class="col-sm-4">
+            <div>
                 <div class="card m-2 scrum-team-member rounded p-1">
                     <div class="row no-gutters h-100 w-100">
                         <div class="col-sm-5 h-100 rounded" style="background: #868e96;">
