@@ -25,6 +25,7 @@ class CreateProductBacklogsTable extends Migration
             $table->integer('status')->nullable();
             $table->foreignId('project_id')->constrained('projects');
             $table->foreignId('sprint_id')->nullable()->constrained('sprints');
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
 
         });

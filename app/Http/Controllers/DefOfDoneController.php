@@ -63,7 +63,7 @@ class DefOfDoneController extends Controller
 
         $defofdone->save();
 
-        return redirect(route('defOfDone.index',['project'=>$project]));
+        return redirect(route('defOfDone.index',['project'=>$project]))->with('successfullyCreated', 'Requirement has been created.');;
     }
 
     /**
@@ -107,7 +107,7 @@ class DefOfDoneController extends Controller
 
         $defOfDone->update();
 
-        return redirect()->back();
+        return back()->with('successfullyUpdated', 'Requirement has been updated');;
     }
 
     /**

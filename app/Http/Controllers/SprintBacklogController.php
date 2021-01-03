@@ -86,7 +86,7 @@ class SprintBacklogController extends Controller
         $sprintBacklog->sprint_id = $sprint->id;
         $sprintBacklog->update();
 
-        return redirect()->back();
+        return back()->with('successfullyAdded', 'Item has been added to sprintbacklog.');
     }
 
     /**
@@ -100,6 +100,6 @@ class SprintBacklogController extends Controller
         $sprintBacklog->sprint_id = null;
         $sprintBacklog->update();
 
-        return redirect()->back();
+        return back()->with('successfullyRemoved', 'Item has been removed from sprintbacklog.');
     }
 }

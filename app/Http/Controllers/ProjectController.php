@@ -93,7 +93,7 @@ class ProjectController extends Controller
 
         $scrumTeam->save();
 
-        return redirect()->Route('project.index');
+        return redirect()->Route('project.index')->with('successfullyCreated', 'Project has been created.');
     }
 
     /**
@@ -149,7 +149,7 @@ class ProjectController extends Controller
 
         $project->update();
 
-        return redirect()->Route('project.index');
+        return redirect()->Route('project.index')->with('successfullyUpdated', 'Project has been updated');
     }
 
     /**
@@ -161,6 +161,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect(route("project.index"));
+        return redirect(route("project.index"))->with('successfullyDeleted', 'Project has been deleted.');
     }
 }

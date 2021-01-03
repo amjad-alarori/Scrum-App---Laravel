@@ -6,6 +6,20 @@
 
 @section('content')
 
+    @if(session()->has('successfullDeleted'))
+        <div class="alert alert-success alert-dismissible" id="delete-successfull">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{session('successfullDeleted')}}
+        </div>
+    @endif
+
+    @if(session()->has('successfullyUpdated'))
+        <div class="alert alert-success alert-dismissible" id="delete-successfull">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{session('successfullyUpdated')}}
+        </div>
+    @endif
+
     <div class="container h-100">
         <div class="row align-items-center pb-4 my-4 border-bottom border-secondary rounded-bottom">
             <div class="col-sm-10">
