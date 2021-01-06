@@ -63,7 +63,7 @@ class ProjectController extends Controller
             'description' => ['string', 'nullable'],
             'mission' => ['string', 'nullable'],
             'vision' => ['string', 'nullable'],
-            'deadline' => ['date', 'after:' . date('m/d/Y')],
+            'deadline' => ['date', 'after_or_equal:' . date('m/d/Y')],
             'sprintLength' => ['integer', 'min:1'],
             'role'=>['required', 'integer','min:1','max:2']
         ]);
@@ -135,7 +135,7 @@ class ProjectController extends Controller
             'description' => ['string', 'nullable'],
             'mission' => ['string', 'nullable'],
             'vision' => ['string', 'nullable'],
-            'deadline' => ['date', 'after:' . date('m/d/Y',$project->createdat)],
+            'deadline' => ['date', 'after_or_equal:' . date('m/d/Y',$project->createdat)],
             'sprintLength' => ['integer', 'min:1']
         ]);
 
