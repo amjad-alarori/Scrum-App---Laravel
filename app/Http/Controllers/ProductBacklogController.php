@@ -31,8 +31,6 @@ class ProductBacklogController extends Controller
     {
         $products = ProductBacklog::query()->where('project_id','=',$project->id)->where('sprint_id', '=',  null)->get();
 
-
-
         return view('productbacklog', ['products' => $products, 'project'=>$project]);
     }
 

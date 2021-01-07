@@ -45,7 +45,7 @@ class SprintController extends Controller
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['string', 'nullable'],
-            'startdate' => ['required', 'date', 'after:' . date('m/d/Y')],
+            'startdate' => ['required', 'date', 'after_or_equal:' . date('m/d/Y')],
 //            'enddate'=>['required', 'date','after:' .date('m/d/Y')],
 //            'projectId'=>['required', 'integer'],
         ]);
@@ -101,7 +101,7 @@ class SprintController extends Controller
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['string', 'nullable'],
-            'startdate' => ['required', 'date', 'after:' . date('m/d/Y')],
+            'startdate' => ['required', 'date', 'after_or_equal:' . date('m/d/Y')],
 
         ]);
 
