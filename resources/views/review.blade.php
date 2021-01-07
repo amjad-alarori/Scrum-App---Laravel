@@ -243,7 +243,7 @@
             @foreach ($review1 as $comment)
                 @if($comment->category==2)
 
-                    <div class="input-group overflow">
+                    <div class="retrospectiveInput-group retrospectiveOverflow">
                         <div class="cardRetrospective">
                             <p class="card-text">{{$comment->text}}</p>
                         </div>
